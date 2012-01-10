@@ -1,0 +1,7 @@
+j2se_base="/usr/share/doc/j2sdk1.7-oracle-doc"
+
+if [ ! -e "$j2se_base/debian/info" ]; then
+    exit 0
+fi
+
+

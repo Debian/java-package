@@ -1,0 +1,68 @@
+#!/usr/bin/make -f
+# debian/rules for java-package
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# Extract source package version number from changelog
+VERSION := $(shell head -n 1 $(CURDIR)/debian/changelog | sed 's/.*(//;s/).*//')
+B := $(CURDIR)/debian/java-package
+
+build: build-stamp 
+
+build-stamp:
+	dh_testdir
+	# Add here commands to compile the indep part of the package.
+	sed s/@VERSION@/$(VERSION)/ make-jpkg > make-jpkg.out
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp SUPPORTED make-jpkg.out debian/semantic.cache
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	install -m 755 make-jpkg.out $(B)/usr/bin/make-jpkg
+	cp lib/*.sh lib/*-common $(B)/usr/share/java-package/
+	for dir in $(wildcard oracle-j2*); do \
+		cp -a $$dir $(B)/usr/share/java-package/; \
+	done
+	find $(B) -type d -name .svn | xargs -r rm -r
+
+# Generate SUPPORTED
+	echo "java-package currently supports the following binary packages:" > SUPPORTED
+	echo >> SUPPORTED
+	echo "(This list is automatically generated, do not edit)" >> SUPPORTED
+	echo >> SUPPORTED
+	grep -h "SUPPORTED$$" $(wildcard $(CURDIR)/lib/*-*.sh) | sed 's/"//g;s/).*//' >> SUPPORTED
+
+	dh_install
+
+binary: binary-indep
+
+binary-arch:
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs 
+	dh_installdocs
+	dh_installman make-jpkg.1
+	dh_link
+#	dh_strip
+	dh_compress 
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build clean binary-indep binary install

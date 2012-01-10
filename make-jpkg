@@ -1,0 +1,231 @@
+#! /bin/bash -e
+
+shopt -s nullglob
+
+### global variables
+
+# version of this package
+version="@VERSION@"
+
+working_dir="$( pwd )"
+program_name="$( basename "$0" )"
+program_dir="$( cd "$( dirname "$( type -p "$0" )" )" ; pwd )"
+
+lib_dir="/usr/share/java-package"
+[ "$J2SE_PACKAGE_LIBDIR" ] && lib_dir="$J2SE_PACKAGE_LIBDIR"
+
+# If a default has been set for either of the
+# environment variables, use it; otherwise, 
+# default to the name and email used by the 
+# Debian Java Maintainers project.
+if [ -z "$J2SE_PACKAGE_FULL_NAME" ]; then
+    maintainer_name="Debian Java Maintainers"
+else
+    maintainer_name="$J2SE_PACKAGE_FULL_NAME"
+fi
+
+if [ -z "$J2SE_PACKAGE_EMAIL" ]; then
+    maintainer_email="pkg-java-maintainers@lists.alioth.debian.org"
+else
+    maintainer_email="$J2SE_PACKAGE_EMAIL"
+fi
+
+genchanges=""
+
+### check for run in fakeroot
+
+# are we running as fakeroot
+if ! dh_testroot >/dev/null 2>&1; then
+    if [ -n "$FAKEROOTKEY" ]; then
+        echo "Internal error, fakeroot seems to fail faking root" >&2
+        exit 1
+    fi
+	exec fakeroot "$0" "$@"
+fi
+
+# check whether I'm real root, and bail out if so... ugly, but needed
+if touch /lib/.test 2>/dev/null; then
+	rm -f /lib/.test
+	echo "You are real root -- unfortunately, some Java distributions have" >&2
+	echo "install scripts that directly manipulate /etc, and may cause some" >&2
+	echo "inconsistencies on your system. Instead, you should become a" >&2
+	echo "non-root user and run:" >&2
+	echo >&2
+	echo "fakeroot make-jpkg $@" >&2
+	echo >&2
+	echo "which will allow no damage to be done to your system files and" >&2
+	echo "still permit the Java distribution to successfully extract." >&2
+	echo >&2
+	echo "Aborting." >&2
+	exit 1
+fi
+
+
+### Parse options
+
+function print_usage() {
+	cat << EOF
+Usage: $program_name [OPTION]... FILE
+
+$program_name builds Debian packages from Java(TM) 2 binary distributions.
+
+  --full-name NAME   full name used in the maintainer field of the package
+  --email EMAIL      email address used in the maintainer field of the package
+  --changes          create a .changes file
+  --revision         add debian revision
+
+  --help             display this help and exit
+  --version          output version information and exit
+
+EOF
+}
+
+function unrecognized_option() {
+    cat >&2 << EOF
+$program_name: unrecognized option \`$1'
+Try \`$program_name --help' for more information.
+EOF
+    exit 1
+}
+
+function missing_argument() {
+    cat >&2 << EOF
+$program_name: missing argument for option \`$1'
+Try \`$program_name --help' for more information.
+EOF
+    exit 1
+}
+
+# options
+while [[ $# -gt 0 && "x$1" == x--* ]]; do
+    if [[ "x$1" == x--version ]]; then
+	echo "make-jpkg $version"
+	exit 0
+    elif [[ "x$1" == x--help ]]; then
+	print_usage
+	exit 0
+    elif [[ "x$1" == x--full-name ]]; then
+	[ $# -le 1 ] && missing_argument "$1"
+	shift
+	maintainer_name="$1"
+    elif [[ "x$1" == x--email ]]; then
+	[ $# -le 1 ] && missing_argument "$1"
+	shift
+	maintainer_email="$1"
+    elif [[ "x$1" == x--revision ]]; then
+	[ $# -le 1 ] && missing_argument "$1"
+	shift
+	revision="-${1}"
+    elif [[ "x$1" == x--changes ]]; then
+	genchanges="true"
+    else
+	unrecognized_option "$1"
+    fi
+    shift
+done
+
+# last argument
+if [[ $# -ne 1 ]]; then
+    cat >&2 << EOF
+$program_name: missing pathname
+Try \`$program_name --help' for more information.
+EOF
+    exit 1
+fi
+archive="$1"
+
+if [[ ! -e "$archive" ]]; then
+    echo "Error: The file \"$archive\" does not exist."
+    exit 1
+elif [[ ! -r "$archive" ]]; then
+    echo "Error: The file \"$archive\" is not readable."
+    exit 1
+fi
+
+archive_name="$( basename "$archive" )"
+archive_dir="$( cd "$( dirname "$archive" )" ; pwd )"
+archive_path="$archive_dir/$archive_name"
+
+
+# error handling
+
+success=
+failed=
+tmp=
+
+# function is called when script terminates
+function on_exit() {
+    lastcmd="$_"
+    if [[ -z "$success" && -z "$failed" ]]; then
+	cat >&2 << EOF
+
+Aborted ($lastcmd).
+
+EOF
+    fi
+    # remove temporary directory
+    if [ -n "$tmp" -a -d "$tmp" ]; then
+	echo -n "Removing temporary directory: "
+	rm -rf "$tmp"
+	echo "done"
+    fi
+}
+trap on_exit EXIT
+
+# print error message and terminate
+function error_exit() {
+    cat >&2 << EOF
+
+Aborted.
+
+EOF
+    failed=true
+    exit 1
+}
+
+
+
+# The environment variable tmp points to a secure temporary directory.
+# There should be enough free disk space.
+echo -n "Creating temporary directory: "
+tmp="$( mktemp -d -t "$program_name.XXXXXXXXXX" )"
+echo "$tmp"
+
+debian_dir="$tmp/debian"
+install -d -m 755 "$debian_dir"
+
+install_dir="$tmp/install"
+install -d -m 755 "$install_dir"
+
+# load and execute plugins
+echo -n "Loading plugins:"
+cd "$lib_dir"
+files=(*.sh)
+for file in "${files[@]}"; do
+    echo -n " $file"
+    source "$lib_dir/$file"
+done
+
+echo
+
+# get architecture information
+get_architecture
+
+j2se_found=
+for var in ${!j2se_detect_*}; do 
+    eval "\$$var"
+    if [[ "$j2se_found" == "true" ]]; then
+	break;
+    fi
+done
+echo
+
+if [[ -z "$j2se_found" ]]; then
+    echo "No matching plugin was found."
+fi
+
+
+
+### exit
+success=true
+exit 0

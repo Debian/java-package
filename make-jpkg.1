@@ -1,0 +1,82 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH MAKE-JPKG 1 "November 04, 2005"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+make-jpkg \- build Debian packages from Java(TM) 2 binary distributions
+.SH SYNOPSIS
+.B make-jpkg
+[\fIOPTION\fR]... [\fIFILE\fR]
+.SH DESCRIPTION
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
+.\" respectively.
+.PP
+\fBmake-jpkg\fP creates a Debian package from a Java(TM) 2
+distribution. This program works currently with the following Java(TM) 2 REs, SDKs and APIs:
+ Oracle(TM) 1.6 Standard Edition (starting with update 10)
+ Oracle(TM) 1.7 Standard Edition
+.PP
+The following options are recognized:
+.TP
+.B --full-name \fINAME\fR
+full name used in the maintainer field of the package
+.TP
+.B --email \fIEMAIL\fR
+email address used in the maintainer field of the package
+.TP
+.B --changes
+create a .changes file
+.TP
+.B --revision
+add debian revision
+.TP
+.B --help
+display help text and exit
+.TP
+.B --version
+output version information and exit
+.PP
+Download a supported Java(TM) 2 RE or SDK or API tar.gz or self-extracting archive from
+.B http://www.oracle.com/technetwork/java/javase/downloads
+and execute
+.B make-jpkg
+.I file
+with the downloaded file. The program asks the user for additional
+information and creates a Debian binary package in the current
+directory.
+.PP
+The program requires about 200 MB free disk space in a temporary
+directory. The temporary directory defaults to 
+.I /tmp
+but you can specify an alternate directory by setting the environment
+variable \fITMPDIR\fR.
+.SH ENVIRONMENT
+.TP
+.SM TMPDIR
+base directory used for temporary files (defaults to /tmp)
+.TP
+.SM J2SE_PACKAGE_FULL_NAME
+full name used in the maintainer field of the package; if none is supplied
+then the default of "Debian Java Maintainers" is used.
+.TP
+.SM J2SE_PACKAGE_EMAIL
+email address used in the maintainer field of the package; if none is supplied
+the default of "pkg-java-maintainers@lists.alioth.debian.org" is used.
+.SH AUTHOR
+This manual page was written by Hubert Schmid <j2se-package@z42.de>.
+
+It is now maintained by the Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>.

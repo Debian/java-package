@@ -1,0 +1,437 @@
+java-package (0.50) UNRELEASED; urgency=low
+
+  * Java-package reset for reintroduction in debian (removal of all
+    previously supported jvm).
+  * Add support for Oracle Java 6 (update >= 10)
+  * Add support for Oracle Java 7
+
+ -- Cédric Pineau <cedric.pineau@gmail.com>  Thu, 22 Dec 2011 11:42:13 +0100
+
+java-package (0.43) UNRELEASED; urgency=low
+
+  * Remove Java plugins for all browsers (Closes: #367887).
+  * Add support for Sun Java 6 Update XX (Closes: #514364).
+
+ -- Michael Koch <konqueror@gmx.de>  Thu, 17 Sep 2009 13:15:55 +0200
+
+java-package (0.42) unstable; urgency=low
+
+  * Provide java*-runtime-headless and java*-sdk names for generated
+    packages.
+  * Recommend dpkg-dev and gcc. Closes: #281766, #405814.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 02 Aug 2008 12:10:52 +0200
+
+java-package (0.41) unstable; urgency=low
+
+  * Added support for new SUN JDK/JRE for amd64 downloads. Thanks to
+    Artyom Gavrichenkov for the initial patch.
+
+ -- Michael Koch <konqueror@gmx.de>  Fri, 21 Mar 2008 17:20:35 +0100
+
+java-package (0.40) unstable; urgency=low
+
+  * Add support for ibm-java2-sdk-5.0-6.0-linux-$arch.tgz. Closes: #462399
+    Thanks to Evgeni Dobrev for the patch.
+  * Fixed spelling error in long description: debian -> Debian.
+
+ -- Michael Koch <konqueror@gmx.de>  Thu, 24 Jan 2008 22:48:46 +0100
+
+java-package (0.39) unstable; urgency=low
+
+  * Added support for IBM JDK 6.0 final release.
+  * Updated Standard-Version to 3.7.3.
+  * Updated debhelper level to 5.
+
+ -- Michael Koch <konqueror@gmx.de>  Tue, 18 Dec 2007 07:38:34 +0100
+
+java-package (0.38) unstable; urgency=low
+
+  * Mention SUN JDK 6 in REAME.Debian. Closes: #448258.
+  * Fixed typo when creating version number for SUN JDK 6. Closes: #451935.
+  * Fix handling of symlinks for ControlPanel, HtmlConverter and java-rmi.cgi
+    from SUN JDK 6. Closes: #448351.
+
+ -- Michael Koch <konqueror@gmx.de>  Fri, 30 Nov 2007 00:03:50 +0100
+
+java-package (0.37) unstable; urgency=low
+
+  * Added libstdc++5 to Recommends of generated package. Closes: #446334.
+
+ -- Michael Koch <konqueror@gmx.de>  Thu, 25 Oct 2007 22:45:42 +0200
+
+java-package (0.36) unstable; urgency=low
+
+  * Fixed package description to include more supported JDKs.
+    Closes: #447615, #447617.
+
+ -- Michael Koch <konqueror@gmx.de>  Wed, 24 Oct 2007 09:56:52 +0200
+
+java-package (0.35) unstable; urgency=low
+
+  * Use 'date -R' instead of the deprecated '822-date'. Closes: #441229.
+  * Fix generation of .changes file. Closes: #332643.
+    Thanks to Christoph Goehre for the patch.
+  * Add possibility to add a configured revision to the version.
+    Closes: #442246. Thanks to Christoph Goehre again for the patch.
+
+ -- Michael Koch <konqueror@gmx.de>  Fri, 14 Sep 2007 17:28:13 +0200
+
+java-package (0.34) unstable; urgency=low
+
+  * Fixed SUN JDK on amd64. Closes: #439221.
+
+ -- Michael Koch <konqueror@gmx.de>  Fri, 24 Aug 2007 00:41:54 +0200
+
+java-package (0.33) unstable; urgency=low
+
+  * Fixed postinst scripts for SUN JDK 1.4, 5 and 6. Closes: #435632.
+
+ -- Michael Koch <konqueror@gmx.de>  Thu, 02 Aug 2007 18:43:40 +0200
+
+java-package (0.32) unstable; urgency=low
+
+  * Added support for iceweasel. Closes: #433445.
+  * Fix dangling links for SUN Java 5. Closes: #305053.
+  * Depend on libx11-6 and libasound2. Closes: #289004.
+  * Fix building on ia64. Closes: #355465.
+
+ -- Michael Koch <konqueror@gmx.de>  Thu, 19 Jul 2007 22:51:31 +0200
+
+java-package (0.31) unstable; urgency=low
+
+  * Reapplied changes from 0.28 to 0.29. Closes: 322843.
+
+ -- Michael Koch <konqueror@gmx.de>  Tue, 10 Jul 2007 08:16:14 +0200
+
+java-package (0.30) unstable; urgency=low
+
+  * Added support for SUN JDK 6u2 (and following updates).
+  * Added support for ibm-java2-jre-5.0-5.0-linux-ppc.tgz.
+    Thanks to B. Zhang.
+
+ -- Michael Koch <konqueror@gmx.de>  Sun, 08 Jul 2007 09:33:29 +0200
+
+java-package (0.29) unstable; urgency=low
+
+  * Added support for SUN Java 6 and IBM Java 6.
+    Closes: #322843, #402642, #418592, #425508, #430026.
+  * Added myself to Uploaders.
+
+ -- Michael Koch <konqueror@gmx.de>  Tue, 26 Jun 2007 17:40:04 -0100
+
+java-package (0.28) unstable; urgency=low
+
+  * Modified to reflect migration to Subversion
+  * Bumped standards to version 3.7.2, no changes
+  * Corrected test for AMD64 architecture during plug-in detection
+  * Corrected detected version for IBM Java 5 JDK on AMD64 (Closes: #345775)
+  * Repaired alternatives handling for IBM Java 5 JREs and JDKs
+    (Closes: #338569)
+  * Corrected pathing for alternatives installation for Mozilla and
+    Firefox plugins (Closes: #341751)
+  * Relaxed architectural restrictions on plugin alternative 
+    installation for IBM Java 5 JREs and JDKs (Closes: #343837)
+  * Added plugin installation for the new packaging of Firefox 1.5 and
+    later (Closes: #341749)
+  * Modified warning suppression for dh_shlibdeps to accommodate 
+    changes in dpkg-dev (Closes: #354427)
+  * Added quotes to variable tests for maintainer name and email 
+    (Closes: #342623)
+  * Refactored architecture evaluation to eliminate repetition and
+    evaluate DEB_BUILD_GNU_TYPE correctly for i486-linux-gnu
+  * Removed dependency on 'coreutils | stat' from control file, as
+    the dependency is satisfied within essential (Closes: #370002)
+
+ -- Barry Hawkins <barry@alltc.com>  Mon, 26 Jun 2006 11:19:08 -0400
+
+java-package (0.27) unstable; urgency=low
+
+  * Added support for IBM Java2 5.0 JREs and JDKs (Closes: #337129)
+  * Corrected missing alternatives links for all JREs and JDKs
+    (Closes: #317492)
+  * Added conditional wrapping around dh_compress to account for
+    JRE/JDKs that do not ship manpages (Closes: 301738)
+  * Removed java-common from Provides: for JRE and JDK packages.
+
+ -- Barry Hawkins <barry@bytemason.org>  Tue, 08 Nov 2005 12:16:24 -0500
+
+java-package (0.26) unstable; urgency=low
+
+  * Update standards version to 3.6.2
+  * Resolve issues with powerpc-linux support detection (Closes: #317671)
+  * Added support for Blackdown 1.4.2+02 release (Closes: #316831)
+  * Added support for packaging Sun JDK documentation (Closes: #272971)
+  * Modified make-jpkg behavior to default the generated packages' 
+    name and email address for the maintainer to Debian Java Maintainers
+    (Closes: #325554)
+
+ -- Barry Hawkins <barry@bytemason.org>  Thu, 18 Aug 2005 00:43:17 -0400
+
+java-package (0.25) unstable; urgency=low
+
+  * Cope with dpkg's new way of expressing architectures (Closes: #313555)
+  * Re-exec with fakeroot if needed (Closes: #310132)
+
+ -- Jeroen van Wolffelaar <jeroen@wolffelaar.nl>  Sun, 10 Jul 2005 18:50:40 +0200
+
+java-package (0.24) unstable; urgency=low
+
+  * Added plugin alternatives support for i386 IBM JREs and JDKs
+  * Corrected pathing for plugin alternatives to reflect difference in 
+    layout between JREs and JDKs for Sun and Blackdown (Closes: #305219,
+    #301806)
+
+ -- Barry Hawkins <barry@bytemason.org>  Wed, 21 Apr 2005 01:02:03 -0400
+
+java-package (0.23.1) experimental; urgency=low
+
+  * Added architecture-specific pathing for plugin alternatives for 
+    Blackdown 1.3 and 1.4 JREs and JDKs
+
+ -- Barry Hawkins <barry@bytemason.org>  Wed, 06 Apr 2005 00:03:40 -0500
+
+java-package (0.23) unstable; urgency=low
+
+  * Further expanded 1.3.1 Blackdown JRE/JDK support for i386
+  * Added architecture-specific pathing for plugin alternatives for 
+    Sun 1.4 and 1.5 JREs and JDKs (Closes: #301806)
+  * Added recommends for system elements required by applets and 
+    graphical user interface elements (Closes: #300817)
+  * Jeroen van Wolffelaar:
+    + Fixed packages description to not have too long lines, and make the 3
+      items an enumeration
+
+ -- Barry Hawkins <barry@bytemason.org>  Fri, 01 Apr 2005 00:36:40 -0500
+
+java-package (0.22.1) experimental; urgency=low
+
+  * Corrected IBM and Blackdown JRE/JDK file size specifications
+  * Added support for additional 1.3.1 Blackdown JREs and JDKs for i386,
+    powerpc (Closes: #301092)
+  * Added installation of javaws alternative for Sun 1.5 JREs and JDKs 
+    (Closes: #300303)
+
+ -- Barry Hawkins <barry@bytemason.org>  Thu, 24 Mar 2005 13:20:18 -0500
+
+java-package (0.22) unstable; urgency=low
+
+  * Corrected IBM JRE/JDK scripts to accurately reflect the supported 
+    IBM JDKs and JREs in the generated SUPPORTED file
+
+ -- Barry Hawkins <barry@alltc.com>  Fri, 18 Mar 2005 10:21:53 -0500
+
+java-package (0.21) unstable; urgency=low
+
+  * Enable support for IBM JDKs and JREs for x86, amd64, powerpc, 
+    powerpc64, and s390 architectures, based upon a patch by Rico 
+    Schiekel (Closes: #264137)
+  * Enable suppport for Blackdown 1.3.1 JDK and JRE for PowerPC 
+    architecture. (Closes: #296205)
+  * Update documentation and to reflect current supported JDKs and JREs
+
+ -- Barry Hawkins <barry@alltc.com>  Mon, 14 Mar 2005 03:18:39 -0500
+
+java-package (0.20) unstable; urgency=low
+
+  * Make the postinst & rm for generated packages #!/bin/bash, as we use
+    bash-specific features (Closes: #292179)
+  * Drop the df output parsing, use '/usr/bin/stat' instead (Closes: #293487,
+    #289006, #293350)
+  * Drop the now obsolete peer stuff from the source package
+  * Change priorities, 313 for 1.3, 314 for 1.4, etc (Closes: #292451)
+  * Don't dh_strip, fiddling with upstream's binaries apparantly breaks stuff
+    (Closes: #291238)
+
+ -- Jeroen van Wolffelaar <jeroen@wolffelaar.nl>  Tue, 08 Feb 2005 15:04:51 +0100
+
+java-package (0.19) unstable; urgency=low
+
+  The "Joshua Kwan <joshk@debian.org> rocks!" release.
+
+  Joshua Kwan:
+  * Unclutter Debian build system and rework package slightly so that
+    *debian packages are not needed anymore. The necessary files will be
+    included in the generated packages. (Closes: #291145, #289245, #284779)
+  * Add support for Blackdown 1.4.2+01 build. (Closes: #285405)
+  * Fix support for Sun 1.5.0 amd64 builds due to typo. (Closes: #290879)
+  * Mozilla browser plugin name changed in 1.4.2 versions. Detect and correct.
+    (Closes: #273730)
+  * Use --block-size=1M instead of -BM. (Closes: #289005, #291161)
+  * Disable support for Sun JDK 1.3 due to its dependencies on libraries
+    that are simply not available anymore. (Closes: #272972)
+  * Fix up short description a little bit.
+  * Bump Standards-Version to 3.6.1 (no changes)
+  * Be a bit more conservative with the real-root test.
+  * Remove last j2se-package references.
+  * Change Suggests on fakeroot to a Depends because it is worthless both
+    as real root and as a normal user without fakeroot.
+
+  Jeroen van Wolffelaar:
+  * Use DEBFULLNAME, DEBNAME and DEBEMAIL if available, and don't ask for
+    those values in that case. (Closes: #279653)
+  * Updated documentation regarding dropped Sun 1.3 support
+  * Work around multiline df output caused by long device names
+    (Closes: #289006)
+  * Add Replaces: for the generated packages on their *debian counterparts
+
+ -- Jeroen van Wolffelaar <jeroen@wolffelaar.nl>  Tue, 25 Jan 2005 00:05:06 +0100
+
+java-package (0.18) unstable; urgency=low
+
+  * Added myself to Uploaders
+  * Fix security hole (inscure temp file creation) plus lots of needless I/O
+    in free disk checking function
+  * Added support for Sun's JDK/JRE 1.5 patch levels, based on a patch by
+    Peter Marschall <peter@adpm.de> (Closes: #286718, #287857)
+  * Bail out if running as real root (works around the evil parts of Sun's
+    install script that unconditionally writes to /etc, see #266273, #280707)
+  * Fix typo in j2re.sh that apparantly with some versions of
+    bash/dpkg/whatever cause package build failure (Closes: #281780, #282902)
+  * Reduce minimum expected size a bit Sun's 1.5.0 amd64 package, it was set
+    too high (Closes: #284033)
+  * Substitute package version number at build time in the make-jpkg
+    executable (Closes: #282221)
+  * Added a README.Debian explaining the existance of make-jpkg and what
+    binary packages are supported and where to get them. Thanks Thijs
+    Kinkhorst for the draft (Closes: #283362)
+  * Added automatically-generated file SUPPORTED that lists all binary
+    filenames that are supported, thanks Alex Owen <owen@cus.org.uk> for the
+    idea (Closes: #275296)
+
+ -- Jeroen van Wolffelaar <jeroen@wolffelaar.nl>  Mon,  3 Jan 2005 18:47:47 +0100
+
+java-package (0.17) unstable; urgency=low
+
+  * added a patch for detecting the architecture (Closes: #274844,
+    #270949, #271846). This patch should also close this one (Closes:
+    #280685).
+
+ -- Arnaud Vandyck <avdyk@debian.org>  Fri, 12 Nov 2004 17:28:38 +0100
+
+java-package (0.16) unstable; urgency=low
+
+  * added myself as an uploader.
+  * Carlos already closed the support for 1.5 request but it seems he did
+    not upload the package (Closes: #277088).
+
+ -- Arnaud Vandyck <avdyk@debian.org>  Wed, 10 Nov 2004 16:38:44 +0100
+
+java-package (0.15) unstable; urgency=low
+
+  * lib/sun-j2re.sh: Added support for JRE 1.5.0 (aka "Java 5.0").
+  * lib/sun-j2sdk.sh: Added support for Java SDK 1.5.0.
+
+ -- Carlos Laviola <claviola@debian.org>  Mon, 11 Oct 2004 21:08:59 -0300
+
+java-package (0.14) unstable; urgency=low
+
+  * debian/control: Commented out the lines that generate the Debian-specific
+    packages, thus making alternatives available.
+    - Also made all of the generated packages depend on their Debian-specific
+    counterparts by default.  (Closes: #266671)
+
+ -- Carlos Laviola <claviola@debian.org>  Mon, 13 Sep 2004 03:38:31 -0300
+
+java-package (0.13) unstable; urgency=low
+
+  * References to j2se-package are gone.  (Closes: #267642)
+  * Added support for Blackdown Java 1.4.2 RC1 JRE/SDK.  (Closes: #267643)
+
+ -- Carlos Laviola <claviola@debian.org>  Mon, 13 Sep 2004 03:17:54 -0300
+
+java-package (0.12) unstable; urgency=low
+
+  * remove to contrib because this package depend on non-free J2SE.
+
+ -- Takashi Okamoto <tora@debian.org>  Tue,  3 Aug 2004 00:37:13 +0900
+
+java-package (0.11) unstable; urgency=low
+
+  * change package name java-package and the command build package is 
+    make-jpkg.
+
+ -- Takashi Okamoto <tora@debian.org>  Sat, 31 Jul 2004 15:07:36 +0900
+
+java-package (0.10) unstable; urgency=low
+
+  * change package name mpkg-j2se.
+  * not use *-j2[re|sdk]debian package. Instead of this, add package 
+    dependency to generated package. This reduce the installation for 
+    such extra package. 
+  * SUN's jdk1.5 beta2 support.
+
+ -- Takashi Okamoto <tora@debian.org>  Sun, 18 Jul 2004 13:53:36 +0900
+
+java-package (0.9) unstable; urgency=low
+
+  * more generic support for j2re1.3.1/j2sdk1.3.1 from SUN.
+
+  * add alternative for jarsigner (in j2sdk1.4 and j2sdk1.5 from SUN).
+
+ -- Hubert Schmid <ude2@z42.de>  Sun, 23 May 2004 23:35:14 +0200
+
+java-package (0.8) unstable; urgency=low
+
+  * java plugin: support for mozilla-firefox.
+
+ -- Hubert Schmid <ude2@z42.de>  Tue,  4 May 2004 22:39:39 +0200
+
+java-package (0.7) unstable; urgency=low
+
+  * Optionally create .changes file.
+
+  * Add command line options: --help, --version, --full-name,
+    --email, --changes.
+
+  * Add environment variables: J2SE_PACKAGE_FULL_NAME,
+    J2SE_PACKAGE_EMAIL.
+
+ -- Hubert Schmid <ude2@z42.de>  Sat, 27 Mar 2004 23:01:08 +0100
+
+java-package (0.6) unstable; urgency=low
+
+  * More generic support for Java2 1.4.2 from SUN.
+
+ -- Hubert Schmid <ude2@z42.de>  Thu, 11 Mar 2004 20:39:51 +0100
+
+java-package (0.5) unstable; urgency=low
+
+  * NEW: build Blackdown J2RE 1.4.1 (gcc-2.95) and J2SDK 1.4.1 (gcc-2.95).
+
+  * NEW: support for SUN J2RE 1.5.0 beta, SUN J2SDK 1.5.0 beta.
+
+ -- Hubert Schmid <ude2@z42.de>  Sat,  7 Feb 2004 21:57:09 +0100
+
+java-package (0.4) unstable; urgency=low
+
+  * Added support for: SUN J2RE 1.4.2_03, SUN J2SDK 1.4.2_03
+
+ -- Hubert Schmid <ude2@z42.de>  Thu, 15 Jan 2004 22:27:52 +0100
+
+java-package (0.3) unstable; urgency=low
+
+  * Added support for: Blackdown J2RE 1.3, 1.4, J2SDK 1.3, 1.4
+
+  * Removed usage of "du --apparent-size". This should fix a problem
+    with old fileutils.
+
+ -- Hubert Schmid <ude2@z42.de>  Sun,  9 Nov 2003 21:13:38 +0100
+
+java-package (0.2) unstable; urgency=low
+
+  * Added support for: Sun J2RE 1.3, Sun J2SDK 1.3, Sun J2SDK 1.4
+
+  * Moved peer packages into this source package.
+
+ -- Hubert Schmid <ude2@z42.de>  Thu, 30 Oct 2003 00:10:01 +0100
+
+java-package (0.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Hubert Schmid <j2se-package@z42.de>  Sun, 26 Oct 2003 20:06:57 +0100
+
+Local variables:
+mode: debian-changelog
+End:

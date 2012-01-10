@@ -1,0 +1,63 @@
+suffix=j2sdk1.7-oracle
+j2se_base="/usr/lib/jvm/$suffix"
+
+if [ ! -e "$j2se_base/debian/info" ]; then
+    exit 0
+fi
+
+# alternative <program>
+function program_alternative() {
+    local program="$1"
+    update-alternatives \
+	--remove "$program" "$j2se_base/bin/$program"
+}
+
+program_alternative appletviewer
+program_alternative ControlPanel
+program_alternative extcheck
+program_alternative idlj
+program_alternative jar
+program_alternative jarsigner
+program_alternative java
+program_alternative javac
+program_alternative javadoc
+program_alternative javah
+program_alternative javap
+program_alternative java-rmi.cgi
+program_alternative javaws
+program_alternative jconsole
+program_alternative jdb
+program_alternative jinfo
+program_alternative jmap
+program_alternative jps
+program_alternative jsadebugd
+program_alternative jstack
+program_alternative jstat
+program_alternative jstatd
+program_alternative keytool
+program_alternative native2ascii
+program_alternative orbd
+program_alternative pack200
+program_alternative policytool
+program_alternative rmic
+program_alternative rmid
+program_alternative rmiregistry
+program_alternative serialver
+program_alternative servertool
+program_alternative tnameserv
+program_alternative unpack200
+
+# derive the architecture-specific 
+# directory for the plugin
+arch_dir="$(dpkg --print-architecture)"
+
+# assemble the plugin path
+plugin_dir="$j2se_base/jre/lib/$arch_dir"
+
+# iceweasel
+update-alternatives \
+    --remove "iceweasel-javaplugin.so" "$plugin_dir/libnpjp2.so"
+
+# chromium
+update-alternatives \
+    --remove "chromium-javaplugin.so" "$plugin_dir/libnpjp2.so"
