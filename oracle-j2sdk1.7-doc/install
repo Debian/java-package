@@ -1,5 +1,5 @@
 j2se_base="/usr/share/doc/j2sdk1.7-oracle-doc"
-priority=316
+priority=318
 
 if [ ! -e "$j2se_base/debian/info" ]; then
     exit 0

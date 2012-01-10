@@ -1,6 +1,6 @@
 suffix=j2sdk1.7-oracle
 j2se_base="/usr/lib/jvm/$suffix"
-priority=315
+priority=317
 
 if [ ! -e "$j2se_base/debian/info" ]; then
     exit 0
