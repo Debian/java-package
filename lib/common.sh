@@ -1,5 +1,5 @@
 # read_yn <prompt>
-function read_yn() {
+read_yn() {
     local prompt="$1"
     while true; do
 	read -e -n 1 -p "$prompt" reply
@@ -16,7 +16,7 @@ function read_yn() {
 
 
 # diskusage <path>: prints size in MB
-function diskusage() {
+diskusage() {
     local path="$1"
     read size dummy < <( du -sm "$path" )
     echo "$size"
@@ -24,7 +24,7 @@ function diskusage() {
 
 
 # diskfree <minimum size in MB>
-function diskfree() {
+diskfree() {
     local size="$1"
     echo -n "Checking free diskspace:"
 	(( free = `stat -f -c '%a / 2048 * ( %s / 512 )' $tmp ` ))
@@ -51,7 +51,7 @@ EOF
 
 
 # extract_bin <file> <expected_min_size> <dest>
-function extract_bin() {
+extract_bin() {
     local file="$1"
     local expected_min_size="$2"
     local dest="$3"
@@ -129,7 +129,7 @@ EOF
 }
 
 
-function read_maintainer_info() {
+read_maintainer_info() {
     if [ -z "$maintainer_name" ]; then
 	if [ -n "$DEBFULLNAME" ]; then
 		maintainer_name="$DEBFULLNAME"
@@ -181,7 +181,7 @@ EOF
 }
 
 # provide the architecture for evaluation by plugins
-function get_architecture() {
+get_architecture() {
     echo
 
     export DEB_BUILD_ARCH=$(dpkg-architecture -qDEB_BUILD_ARCH)

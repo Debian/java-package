@@ -29,10 +29,7 @@ install: build
 	dh_installdirs
 
 	install -m 755 make-jpkg.out $(B)/usr/bin/make-jpkg
-	cp lib/*.sh lib/*-common $(B)/usr/share/java-package/
-	for dir in $(wildcard oracle-j2*); do \
-		cp -a $$dir $(B)/usr/share/java-package/; \
-	done
+	cp lib/*.sh $(B)/usr/share/java-package/
 	find $(B) -type d -name .svn | xargs -r rm -r
 
 # Generate SUPPORTED

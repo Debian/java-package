@@ -1,5 +1,5 @@
 # Detect product
-function oracle_j2sdk_doc_detect() {
+oracle_j2sdk_doc_detect() {
   local found=
       case "$archive_name" in
 	"jdk-6u"[0-9][0-9]"-apidocs.zip") # SUPPORTED
@@ -27,9 +27,43 @@ EOF
 	    j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
 	    j2se_vendor="oracle"
 	    j2se_title="Java(TM) JDK, Standard Edition, Oracle(TM) Documentation"
+
+	    j2se_install=oracle_j2sdk_doc_install
+	    j2se_remove=oracle_j2sdk_doc_remove
 	    j2sdk_doc_run
 	fi
     fi
 }
 
 j2se_detect_j2sdk_doc_oracle=oracle_j2sdk_doc_detect
+
+oracle_j2sdk_doc_install() {
+	cat << EOF
+if [ ! -e "$javadoc_base$j2se_name" ]; then
+    exit 0
+fi
+
+# Register the documentation in the various documentation systems, i.e. dhelp and dwww.
+if [ "\$1" = configure ] ; then
+    if which install-docs >/dev/null 2>&1; then
+        install-docs -i $javadoc_base$j2se_name
+    fi
+fi
+EOF
+}
+
+oracle_j2sdk_doc_remove() {
+	cat << EOF
+if [ ! -e "$javadoc_base$j2se_name" ]; then
+    exit 0
+fi
+
+# Unregister documentation from the various documentation systems, i.e. dhelp and dwww.
+if [ "\$1" = configure ] ; then
+    if which install-docs >/dev/null 2>&1; then
+        install-docs -r $javadoc_base$j2se_name
+    fi
+fi
+EOF
+}
+

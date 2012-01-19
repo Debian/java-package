@@ -1,17 +1,17 @@
-function j2se_readme() {
+j2se_readme() {
     cat << EOF
 Package for $j2se_title
 ---
 
 This package has been automatically created with java-package ($version). 
 All files from the original distribution should have been installed in
-the directory $j2se_base. Please take a look at this directory for
+the directory $jvm_base$j2se_name. Please take a look at this directory for
 further information.
 
 EOF
 }
 
-function j2se_changelog() {
+j2se_changelog() {
     cat << EOF
 $j2se_package ($j2se_version) unstable; urgency=low
 
@@ -22,7 +22,7 @@ $j2se_package ($j2se_version) unstable; urgency=low
 EOF
 }
 
-function j2se_control() {
+j2se_control() {
     cat << EOF
 Source: $j2se_package
 Section: non-free/devel
@@ -34,13 +34,13 @@ Standards-Version: 3.7.2
 EOF
 }
 
-function j2se_copyright() {
+j2se_copyright() {
     cat << EOF
 ----------------------------------------------------------------------
 
 This file contains a copy of all copyright files found in the original
 distribution. The original copyright files and further information can
-be found in the directory $j2se_base and its
+be found in the directory $jvm_base$j2se_name and its
 subdirectories.
 
 ----------------------------------------------------------------------
@@ -65,17 +65,48 @@ EOF
     )
 }
 
-function j2se_install_scripts() {
+j2se_install_scripts() {
     cat > "$debian_dir/postinst" << EOF
 #!/bin/bash
 
 set -e
 
 if [ "\$1" = configure ]; then
-EOF
-    cat "$lib_dir/install-common" >> "$debian_dir/postinst"
 
-    cat "$lib_dir/$j2se_package/install" >> "$debian_dir/postinst"
+    # Common functions for all install scripts
+
+    # install_alternatives program_base programs
+    install_alternatives() {
+        program_base="\$1"
+        shift
+        for program in \$*; do
+          update-alternatives \\
+	      --install "/usr/bin/\$program" "\$program" "\$program_base/\$program" $j2se_priority \\
+	      --slave "/usr/share/man/man1/\$program.1.gz" "\$program.1.gz" "$jvm_base$j2se_name/man/man1/\$program.1.gz"
+        done
+    }
+
+    # install_alternatives_no_man program_base programs
+    install_no_man_alternatives() {
+        program_base="\$1"
+        shift
+        for program in \$*; do
+          update-alternatives --install "/usr/bin/\$program" "\$program" "\$program_base/\$program" $j2se_priority
+        done
+    }
+
+    # install_browser_plugin link_path link_name plugin_name plugin
+    install_browser_plugin() {
+        local link_path="\$1"
+        local link_name="\$2"
+        local plugin_name="\$3"
+        local plugin="\$4"
+        [ -d "\$link_path" ] || install -d -m 755 "\$link_path"
+        update-alternatives --install "\$link_path/\$link_name" "\$plugin_name" "\$plugin" $j2se_priority
+    }
+
+EOF
+    eval "$j2se_install" >> "$debian_dir/postinst"
 
     cat >> "$debian_dir/postinst" << EOF
 fi
@@ -93,10 +124,27 @@ set -e
 
 case "\$1" in
     remove | deconfigure)
-EOF
-    cat "$lib_dir/remove-common" >> "$debian_dir/prerm"
 
-    cat "$lib_dir/$j2se_package/remove" >> "$debian_dir/prerm"
+    # Common functions for all remove scripts
+
+    # remove_alternatives program_base programs
+    remove_alternatives() {
+        program_base="\$1"
+        shift
+        for program in \$*; do
+          update-alternatives --remove "\$program" "\$program_base/\$program"
+        done
+    }
+
+    # remove_browser_plugin plugin_name plugin
+    remove_browser_plugin() {
+        local plugin_name="\$1"
+        local plugin="\$2"
+        update-alternatives --remove "\$plugin_name" "\$plugin"
+    }
+
+EOF
+    eval "$j2se_remove" >> "$debian_dir/prerm"
 
     cat >> "$debian_dir/prerm" << EOF
     ;;
@@ -109,7 +157,7 @@ EOF
     chmod 755 "$debian_dir/prerm"
 }
 
-function j2se_info() {
+j2se_info() {
     cat << EOF
 version="$version"
 j2se_version="$j2se_version"
@@ -119,7 +167,17 @@ date="$( date +%Y/%m/%d )"
 EOF
 }
 
-function j2se_build() {
+# jinfos prefix program_base programs
+jinfos() {
+    prefix="$1"
+    program_base="$2"
+    shift ; shift
+    for program in $*; do
+      echo "$prefix $program $program_base$program" 
+    done
+}
+
+j2se_build() {
     cd "$tmp"
     echo "Create debian package:"
     
@@ -139,9 +197,9 @@ function j2se_build() {
     # dh_install
     # dh_link
     # Conditionally wrapping this as not all JRE/JDKs have man directories
-    if [ -e "$install_dir/$j2se_base/man" ]; then
+    if [ -e "$install_dir/$jvm_base$j2se_name/man" ]; then
         echo "    dh_compress"
-        dh_compress $( find "$install_dir/$j2se_base/man" -type f ! -name "*.gz" )
+        dh_compress $( find "$install_dir/$jvm_base$j2se_name/man" -type f ! -name "*.gz" )
     fi
     echo "    dh_fixperms"
     dh_fixperms

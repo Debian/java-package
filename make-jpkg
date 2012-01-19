@@ -63,7 +63,7 @@ fi
 
 ### Parse options
 
-function print_usage() {
+print_usage() {
 	cat << EOF
 Usage: $program_name [OPTION]... FILE
 
@@ -80,7 +80,7 @@ $program_name builds Debian packages from Java(TM) 2 binary distributions.
 EOF
 }
 
-function unrecognized_option() {
+unrecognized_option() {
     cat >&2 << EOF
 $program_name: unrecognized option \`$1'
 Try \`$program_name --help' for more information.
@@ -88,7 +88,7 @@ EOF
     exit 1
 }
 
-function missing_argument() {
+missing_argument() {
     cat >&2 << EOF
 $program_name: missing argument for option \`$1'
 Try \`$program_name --help' for more information.
@@ -154,7 +154,7 @@ failed=
 tmp=
 
 # function is called when script terminates
-function on_exit() {
+on_exit() {
     lastcmd="$_"
     if [[ -z "$success" && -z "$failed" ]]; then
 	cat >&2 << EOF
@@ -173,7 +173,7 @@ EOF
 trap on_exit EXIT
 
 # print error message and terminate
-function error_exit() {
+error_exit() {
     cat >&2 << EOF
 
 Aborted.
@@ -210,6 +210,9 @@ echo
 
 # get architecture information
 get_architecture
+
+jvm_base="/usr/lib/jvm/"
+javadoc_base="/usr/share/doc/"
 
 j2se_found=
 for var in ${!j2se_detect_*}; do 
