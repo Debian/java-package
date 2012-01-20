@@ -199,11 +199,10 @@ install -d -m 755 "$install_dir"
 
 # load and execute plugins
 echo -n "Loading plugins:"
-cd "$lib_dir"
-files=(*.sh)
+files=($lib_dir/*.sh)
 for file in "${files[@]}"; do
     echo -n " $file"
-    source "$lib_dir/$file"
+    source "$file"
 done
 
 echo
