@@ -12,7 +12,6 @@ build: build-stamp
 
 build-stamp:
 	dh_testdir
-	# Add here commands to compile the indep part of the package.
 	sed s/@VERSION@/$(VERSION)/ make-jpkg > make-jpkg.out
 	touch $@
 
@@ -27,7 +26,6 @@ install: build
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
-
 	install -m 755 make-jpkg.out $(B)/usr/bin/make-jpkg
 	cp lib/*.sh $(B)/usr/share/java-package/
 	find $(B) -type d -name .svn | xargs -r rm -r
