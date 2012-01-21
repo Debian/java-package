@@ -2,19 +2,23 @@ Source: java-package
 Section: contrib/misc
 Priority: optional
 Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
-Uploaders: Carlos Laviola <claviola@debian.org>, Arnaud Vandyck <avdyk@debian.org>, Jeroen van Wolffelaar <jeroen@wolffelaar.nl>, Barry Hawkins <barry@alltc.com>, Michael Koch <konqueror@gmx.de>
+Uploaders: Cédric Pineau <cedric.pineau@gmail.com>
+Vcs-Git: git://git.debian.org/git/pkg-java/java-package.git
+Vcs-Browser: http://git.debian.org/?p=pkg-java/java-package.git
 Build-Depends: debhelper (>= 5)
-Standards-Version: 3.7.3
+Standards-Version: 3.9.2
 
 Package: java-package
 Architecture: all
-Depends: debhelper, fakeroot, unzip, libx11-6, libasound2
+Depends:  ${misc:Depends}, debhelper, fakeroot, unzip, libx11-6, libasound2
 Recommends: dpkg-dev, gcc
-Description: utility for building Java(TM) 2 related Debian packages
+Suggests: openjdk-6-jre, openjdk-7-jre
+Description: utility for building Java related Debian packages
  This package provides the capability to create a Debian package from
  a Java(TM) 2 distribution by just running make-jpkg <filename>.
  .
- This program currently works with the following Java(TM) 2 Runtime
+ This program currently works with the following Java Runtime
  Environments and Development Kits:
  .
+  * Oracle(TM) 6 Standard Edition
   * Oracle(TM) 7 Standard Edition
