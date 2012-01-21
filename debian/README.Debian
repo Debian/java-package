@@ -4,6 +4,9 @@ java-package
 This package can be used to install various non-free external Java packages
 under Debian.
 
+Please note that Debian recommends the use of openjdk-6-jdk/openjdk-6-jre
+or openjdk-7-jdk/openjdk-7-jre.
+
 It includes the 'make-jpkg' command to do this, see 'man make-jpkg' for more
 information about generating java packages.
 
@@ -20,6 +23,6 @@ Supported packages currently include:
    (Choose tar.gz archives, i586 or amd64, do _not_ choose the RPM!)
 
 All other previously supported jvm (Blackdown, IBM, ..) have been removed and
-will only be added back on users demand
+will only be added back on users demand.
 
  -- Cédric Pineau <cedric.pineau@gmail.com>  Thu, 22 Dec 2011 11:42:13 +0100
