@@ -67,7 +67,7 @@ print_usage() {
 	cat << EOF
 Usage: $program_name [OPTION]... FILE
 
-$program_name builds Debian packages from Java(TM) 2 binary distributions.
+$program_name builds Debian packages from Java binary distributions.
 
   --full-name NAME   full name used in the maintainer field of the package
   --email EMAIL      email address used in the maintainer field of the package
