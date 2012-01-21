@@ -15,10 +15,13 @@ Recommends: dpkg-dev, gcc
 Suggests: openjdk-6-jre, openjdk-7-jre
 Description: utility for building Java related Debian packages
  This package provides the capability to create a Debian package from
- a Java(TM) 2 distribution by just running make-jpkg <filename>.
+ a Java distribution by just running make-jpkg <filename>.
  .
  This program currently works with the following Java Runtime
  Environments and Development Kits:
  .
   * Oracle(TM) 6 Standard Edition
   * Oracle(TM) 7 Standard Edition
+ .
+ Please note that Debian recommends the use of openjdk-6-jdk/openjdk-6-jre
+ or openjdk-7-jdk/openjdk-7-jre. java-package will install non-free packages.
