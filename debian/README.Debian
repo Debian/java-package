@@ -10,6 +10,11 @@ or openjdk-7-jdk/openjdk-7-jre.
 It includes the 'make-jpkg' command to do this, see 'man make-jpkg' for more
 information about generating java packages.
 
+Typical usage consists in
+- downloading one of the java binary archive listed below
+- invoking make-jpkg to build a Debian package from the downloaded archive
+- installing the generated package
+
 Supported packages currently include:
 
  * Oracle :
