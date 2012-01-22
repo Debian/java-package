@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH MAKE-JPKG 1 "November 04, 2005"
+.TH MAKE-JPKG 1 "January 22, 2012"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -25,10 +25,11 @@ make-jpkg \- build Debian packages from Java binary distributions
 .\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
 .\" respectively.
 .PP
-\fBmake-jpkg\fP creates a Debian package from a Java
-distribution. This program works currently with the following Java REs, SDKs and APIs:
- Oracle(TM) 1.6 Standard Edition (starting with update 10)
- Oracle(TM) 1.7 Standard Edition
+\fBmake-jpkg\fP creates a Debian package from the given Java
+distribution FILE.
+This program works currently with the following Java REs, SDKs and APIs archive files:
+ Oracle(TM) 6 Standard Edition (starting with update 10)
+ Oracle(TM) 7 Standard Edition
 .PP
 The following options are recognized:
 .TP
@@ -64,6 +65,19 @@ directory. The temporary directory defaults to
 .I /tmp
 but you can specify an alternate directory by setting the environment
 variable \fITMPDIR\fR.
+.SH EXAMPLE
+To install Oracle(TM) 7 Standard Edition JDK, download a release - 64 bits version of update 2 from http://www.oracle.com/technetwork/java/javase/downloads/jdk-7u2-download-1377129.html in this example - and invoke make-jpkg:
+.IP
+make-jpkg <path_to_download_directory>/jdk-7u2-linux-x64.tar.gz
+.PP
+This generate a Debian package in the current directory, that can be installed using dpkg:
+.IP
+dpkg -i oracle-j2sdk1.7_1.7.0+update2_amd64.deb
+.PP
+When you're done, you can remove initial download as well as generated package:
+.IP
+rm <path_to_download_directory>/jdk-7u2-linux-x64.tar.gz oracle-j2sdk1.7_1.7.0+update2_amd64.deb
+.PP
 .SH ENVIRONMENT
 .TP
 .SM TMPDIR
@@ -76,6 +90,8 @@ then the default of "Debian Java Maintainers" is used.
 .SM J2SE_PACKAGE_EMAIL
 email address used in the maintainer field of the package; if none is supplied
 the default of "pkg-java-maintainers@lists.alioth.debian.org" is used.
+.SH SEE ALSO
+.BR update-java-alternatives(1)
 .SH AUTHOR
 This manual page was written by Hubert Schmid <j2se-package@z42.de>.
 
