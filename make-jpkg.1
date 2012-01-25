@@ -16,7 +16,7 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-make-jpkg \- build Debian packages from Java binary distributions
+make-jpkg \- builds Debian packages from Java binary distributions
 .SH SYNOPSIS
 .B make-jpkg
 [\fIOPTION\fR]... [\fIFILE\fR]
@@ -25,11 +25,15 @@ make-jpkg \- build Debian packages from Java binary distributions
 .\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
 .\" respectively.
 .PP
-\fBmake-jpkg\fP creates a Debian package from the given Java
+\fBmake-jpkg\fP builds a Debian package from the given Java
 distribution FILE.
-This program works currently with the following Java REs, SDKs and APIs archive files:
- Oracle(TM) 6 Standard Edition (starting with update 10)
- Oracle(TM) 7 Standard Edition
+.PP
+Supported java binary distributions currently include:
+  * Oracle (http://www.oracle.com/technetwork/java/javase/downloads) :
+    - The J2SE Development Kit (JDK), version 6 (update >= 10), 7
+    - The J2SE Runtime Environment (JRE), version 6 (update >= 10), 7
+    - The J2SE API Javadoc, version 6 (update >= 10), 7
+  (Choose tar.gz archives or self-extracting archives, do _not_ choose the RPM!)
 .PP
 The following options are recognized:
 .TP
@@ -57,7 +61,7 @@ and execute
 .B make-jpkg
 .I file
 with the downloaded file. The program asks the user for additional
-information and creates a Debian binary package in the current
+information and builds a Debian binary package in the current
 directory.
 .PP
 The program requires about 200 MB free disk space in a temporary
@@ -74,7 +78,7 @@ This generate a Debian package in the current directory, that can be installed u
 .IP
 dpkg -i oracle-j2sdk1.7_1.7.0+update2_amd64.deb
 .PP
-When you're done, you can remove initial download as well as generated package:
+When you're done, you can delete initial download as well as generated package:
 .IP
 rm <path_to_download_directory>/jdk-7u2-linux-x64.tar.gz oracle-j2sdk1.7_1.7.0+update2_amd64.deb
 .PP

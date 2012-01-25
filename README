@@ -1,15 +1,19 @@
 
 * To be done : 
 
-(from Matthias Klose <doko@ubuntu.com>)
-- install into a multiarch location to allow installing the i386 client vm on amd64 and ia64. 
-
-(else)
+- update java-package wiki page : http://wiki.debian.org/JavaPackage?action=edit&editor=text
 - make symbolic links for j2se/jre/bin/* in j2se/bin/ to avoid duplication
 - make symbolic links for j2se/jre/man/man1/* in j2se/man/man1 to avoid duplication
 - make symbolic links for j2se/jre/man/ja_JP.UTF-8 in j2se/man/ja to avoid duplication
+- install into a multiarch location to allow installing the i386 client vm on amd64 and ia64 (Matthias Klose <doko@ubuntu.com>)
 - ? kinit, klist, and ktab not installed; handling of /etc/krb5.conf not addressed
 
+
+
+* Resources :
+
+http://wiki.debian.org/JavaPackage
+http://packages.qa.debian.org/j/java-package.html
 
 
 

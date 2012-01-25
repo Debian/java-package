@@ -1,31 +1,25 @@
 java-package
 ------------
 
-This package can be used to install various non-free external Java packages
-under Debian.
+This package can be used to build Debian packages for various non-free external Java binary distributions.
 
 Please note that Debian recommends the use of openjdk-6-jdk/openjdk-6-jre
 or openjdk-7-jdk/openjdk-7-jre.
 
 It includes the 'make-jpkg' command to do this, see 'man make-jpkg' for more
-information about generating java packages.
+information about building java packages.
 
 Typical usage consists in
 - downloading one of the java binary archive listed below
 - invoking make-jpkg to build a Debian package from the downloaded archive
 - installing the generated package
 
-Supported packages currently include:
-
- * Oracle :
-   - The J2SE Development Kit (JDK), version 6 (update >= 10), 7
-   - The J2SE Runtime Environment (JRE), version 6 (update >= 10), 7
-   - The J2SE API Javadoc, version 6 (update >= 10), 7
-
-   Download: 
-   http://www.oracle.com/technetwork/java/javase/downloads
-   
-   (Choose tar.gz archives, i586 or amd64, do _not_ choose the RPM!)
+Supported java binary distributions currently include:
+  * Oracle (http://www.oracle.com/technetwork/java/javase/downloads) :
+    - The J2SE Development Kit (JDK), version 6 (update >= 10), 7
+    - The J2SE Runtime Environment (JRE), version 6 (update >= 10), 7
+    - The J2SE API Javadoc, version 6 (update >= 10), 7
+  (Choose tar.gz archives or self-extracting archives, do _not_ choose the RPM!)
 
 All other previously supported jvm (Blackdown, IBM, ..) have been removed and
 will only be added back on users demand.

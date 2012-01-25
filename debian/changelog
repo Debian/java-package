@@ -6,6 +6,7 @@ java-package (0.50) UNRELEASED; urgency=low
   * Add support for Oracle Java 7
   * Add support for .jinfo file (update-java-alternatives tool)
   * Use jdk included jre binaries (jdk/jre/bin/*)
+  * Print usage information on install
 
  -- Cédric Pineau <cedric.pineau@gmail.com>  Thu, 22 Dec 2011 11:42:13 +0100
 

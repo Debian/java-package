@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "configure" ]
+then
+	. /usr/share/debconf/confmodule
+	db_input high java-package/postinst-note || true
+	db_go
+fi
+
+exit 0

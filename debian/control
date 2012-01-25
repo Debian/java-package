@@ -10,19 +10,20 @@ Standards-Version: 3.9.2
 
 Package: java-package
 Architecture: all
-Depends:  ${misc:Depends}, debhelper, fakeroot, unzip, libx11-6, libasound2
+Depends:  ${misc:Depends}, debhelper, fakeroot, unzip, libx11-6, libasound2, debconf (>= 0.5) | debconf-2.0
 Recommends: dpkg-dev, gcc
 Suggests: openjdk-6-jre, openjdk-7-jre
 Description: utility for building Java related Debian packages
- This package provides the capability to create a Debian package from
- a Java distribution by just running make-jpkg <java binary archive file>.
+ This package provides the capability to build a Debian package from
+ a Java binary distribution by running make-jpkg <java binary archive file>.
  (with archive files downloaded from providers listed below)
  .
- This program currently works with the following Java Runtime
- Environments and Development Kits:
- .
-  * Oracle(TM) 6 Standard Edition
-  * Oracle(TM) 7 Standard Edition
+ Supported java binary distributions currently include:
+   * Oracle (http://www.oracle.com/technetwork/java/javase/downloads) :
+     - The J2SE Development Kit (JDK), version 6 (update >= 10), 7
+     - The J2SE Runtime Environment (JRE), version 6 (update >= 10), 7
+     - The J2SE API Javadoc, version 6 (update >= 10), 7
+   (Choose tar.gz archives or self-extracting archives, do _not_ choose the RPM!)
  .
  Please note that Debian recommends the use of openjdk-6-jdk/openjdk-6-jre
  or openjdk-7-jdk/openjdk-7-jre. java-package will install non-free packages.

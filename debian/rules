@@ -26,6 +26,7 @@ install: build
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
+	dh_installdebconf
 	install -m 755 make-jpkg.out $(B)/usr/bin/make-jpkg
 	cp lib/*.sh $(B)/usr/share/java-package/
 	find $(B) -type d -name .svn | xargs -r rm -r

@@ -67,7 +67,16 @@ print_usage() {
 	cat << EOF
 Usage: $program_name [OPTION]... FILE
 
-$program_name builds Debian packages from Java binary distributions.
+$program_name builds a Debian package from the given Java binary distribution FILE
+
+Supported java binary distributions currently include:
+  * Oracle (http://www.oracle.com/technetwork/java/javase/downloads) :
+    - The J2SE Development Kit (JDK), version 6 (update >= 10), 7
+    - The J2SE Runtime Environment (JRE), version 6 (update >= 10), 7
+    - The J2SE API Javadoc, version 6 (update >= 10), 7
+  (Choose tar.gz archives or self-extracting archives, do _not_ choose the RPM!)
+
+The following options are recognized:
 
   --full-name NAME   full name used in the maintainer field of the package
   --email EMAIL      email address used in the maintainer field of the package

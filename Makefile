@@ -5,13 +5,11 @@ default: build
 
 .PHONY: build
 build:
-	echo "java-package currently supports the following binary packages:" \
-		> SUPPORTED
+	echo "java-package currently supports the following binary packages:" > SUPPORTED
 	echo >> SUPPORTED
 	echo "(This list is automatically generated, do not edit)" >> SUPPORTED
 	echo >> SUPPORTED
-	grep -h "SUPPORTED$$" $(wildcard lib/*-*.sh) | sed 's/"//g;s/).*//' \
-		>> SUPPORTED
+	grep -h "SUPPORTED$$" $(wildcard lib/*-*.sh) | sed 's/"//g;s/).*//' >> SUPPORTED
 
 .PHONY: clean
 clean:

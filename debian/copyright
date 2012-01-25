@@ -2,8 +2,9 @@ java-package is based upon the j2se-package application originally
 written by Hubert Schmid.
 
 The original source can always be found at:
-http://cvs.alioth.debian.org/cgi-bin/cvsweb.cgi/java-package/?cvsroot=pkg-java
+git://git.debian.org/git/pkg-java/java-package.git
 
+Copyright (C) 2011-2012  Cédric Pineau
 Copyright (C) 2005  Barry Hawkins
 Copyright (C) 2004-2005  Jeroen van Wolffelaar
 Copyright (C) 2003  Hubert Schmid
