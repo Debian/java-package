@@ -9,7 +9,7 @@ oracle_j2re_detect() {
     j2se_arch=${BASH_REMATCH[3]}
     j2se_version=$j2se_release.$j2se_update
     j2se_priority=$((310 + $j2se_release - 1))
-    j2se_expected_min_size=95 #Mb
+    j2se_expected_min_size=85 #Mb
 
     # check if the architecture matches
     let compatible=1
