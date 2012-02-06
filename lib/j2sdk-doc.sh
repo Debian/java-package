@@ -28,8 +28,8 @@ Abstract: This is the API Javadoc provided by the vendor
 Section: Programming
 
 Format: HTML
-Index: /usr/share/doc/j2sdk$j2se_release-$j2se_vendor-doc/index.html
-Files: /usr/share/doc/j2sdk$j2se_release-$j2se_vendor-doc/*.html
+Index: /usr/share/doc/$j2se_vendor-java$j2se_release-doc/index.html
+Files: /usr/share/doc/$j2se_vendor-java$j2se_release-doc/*.html
 
 EOF
 }
