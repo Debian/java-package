@@ -9,11 +9,11 @@ Recommends: netbase, libx11-6 | xlibs, libasound2, libgtk1.2, libstdc++5
 Provides: java-virtual-machine, java-runtime, java2-runtime, java-browser-plugin, java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, java-sdk, java2-sdk, j2sdk$j2se_release, j2re$j2se_release
 Replaces: ${j2se_package}debian
 Description: $j2se_title
- The Java(TM) 2 SDK is a development environment for building
+ The Java(TM) SE JDK is a development environment for building
  applications, applets, and components that can be deployed on the
  Java(TM) platform.
  .
- The Java(TM) 2 SDK software includes tools useful for developing and
+ The Java(TM) SE JDK software includes tools useful for developing and
  testing programs written in the Java programming language and running
  on the Java platform. These tools are designed to be used from the
  command line. Except for appletviewer, these tools do not provide a

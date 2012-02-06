@@ -9,7 +9,7 @@ Recommends: netbase, libx11-6 | xlibs, libasound2, libgtk1.2
 Provides: java-virtual-machine, java-runtime, java2-runtime, java-runtime-headless, java2-runtime-headless, java-browser-plugin, j2re${j2se_release}
 Replaces: ${j2se_package}debian
 Description: $j2se_title
- The Java(TM) 2 Runtime Environment contains the Java virtual machine,
+ The Java(TM) SE Runtime Environment contains the Java virtual machine,
  runtime class libraries, and Java application launcher that are
  necessary to run programs written in the Java progamming language
  (this includes the Java 2 Plug-In for Netscape and Mozilla

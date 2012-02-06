@@ -8,7 +8,7 @@ Recommends:
 Provides: 
 Replaces: 
 Description: $j2se_title
- The Java(TM) 2 SDK is a development environment for building
+ The Java(TM) SE JDK is a development environment for building
  applications, applets, and components that can be deployed on the
  Java(TM) platform.
  .
