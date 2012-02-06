@@ -39,7 +39,7 @@ j2sdk_doc_run() {
     echo
     diskfree "$j2se_required_space"
     read_maintainer_info
-    j2se_package="$j2se_vendor-jdk$j2se_release-doc"
+    j2se_package="$j2se_vendor-java$j2se_release-doc"
     j2se_name="jdk$j2se_release-$j2se_vendor-doc"
     local target="$install_dir$javadoc_base$j2se_name"
     install -d -m 755 "$( dirname "$target" )"

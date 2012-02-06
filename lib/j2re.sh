@@ -26,7 +26,7 @@ j2re_run() {
     echo
     diskfree "$j2se_required_space"
     read_maintainer_info
-    j2se_package="$j2se_vendor-jre$j2se_release"
+    j2se_package="$j2se_vendor-java$j2se_release-jre"
     j2se_name="jre$j2se_release-$j2se_vendor"
     local target="$install_dir$jvm_base$j2se_name"
     install -d -m 755 "$( dirname "$target" )"

@@ -47,7 +47,7 @@ Detected product:
 EOF
 	if read_yn "Is this correct [Y/n]: "; then
 	    j2se_found=true
-	    j2se_release="${j2se_version:0:3}"
+	    j2se_release="${j2se_version:2:1}"
 	    j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
 	    j2se_vendor="oracle"
 	    j2se_title="Java(TM) JDK, Standard Edition, Oracle(TM)"
