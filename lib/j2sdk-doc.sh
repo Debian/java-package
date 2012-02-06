@@ -13,7 +13,7 @@ Description: $j2se_title
  Java(TM) platform.
  .
  This package provides the official API documentation published
- by Sun Microsystems.
+ by Oracle.
  .
  This package has been automatically created with java-package ($version).
 EOF

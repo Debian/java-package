@@ -43,14 +43,14 @@ oracle_j2re_detect() {
 Detected product:
     Java(TM) Runtime Environment (JRE)
     Standard Edition, Version $j2se_version
-    Oracle Microsystems(TM), Inc.
+    Oracle(TM)
 EOF
 	if read_yn "Is this correct [Y/n]: "; then
 	    j2se_found=true
 	    j2se_release="${j2se_version:0:3}"
 	    j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
 	    j2se_vendor="oracle"
-	    j2se_title="Java(TM) JRE, Standard Edition, Oracle Microsystems(TM)"
+	    j2se_title="Java(TM) JRE, Standard Edition, Oracle(TM)"
 
 	    j2se_install=oracle_j2re_install
 	    j2se_remove=oracle_j2re_remove

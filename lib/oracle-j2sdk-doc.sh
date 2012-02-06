@@ -19,7 +19,7 @@ oracle_j2sdk_doc_detect() {
 Detected product:
     Java(TM) Development Kit (JDK) Documentation
     Standard Edition, Version $j2se_version
-    Oracle(TM), Inc.
+    Oracle(TM)
 EOF
 	if read_yn "Is this correct [Y/n]: "; then
 	    j2se_found=true
