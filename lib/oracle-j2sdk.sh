@@ -50,7 +50,7 @@ EOF
 		oracle_jre_bin_jre="javaws policytool"
 		oracle_no_man_jre_bin_jre="ControlPanel"
 		oracle_jre_lib_hl="jexec"
-		oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jconsole jdb jinfo jmap jps jsadebugd jstack jstat jstatd native2ascii rmic serial$
+		oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jconsole jdb jinfo jmap jps jsadebugd jstack jstat jstatd native2ascii rmic serialver"
 		j2sdk_run
 	fi
   fi
