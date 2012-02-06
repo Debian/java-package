@@ -1,53 +1,44 @@
 # Detect product
 j2se_detect_oracle_j2re=oracle_j2re_detect
 oracle_j2re_detect() {
-  local found=
+
+  if [[ $archive_name =~ jre-([0-9]+)u([0-9]+)-linux-(i586|x64)\.(bin|tar\.gz) ]]
+  then
+    j2se_release=${BASH_REMATCH[1]}
+    j2se_update=${BASH_REMATCH[2]}
+    j2se_arch=${BASH_REMATCH[3]}
+    j2se_version=$j2se_release.$j2se_update
+    j2se_priority=$((310 + $j2se_release - 1))
+    j2se_expected_min_size=95 #Mb
+
+    # check if the architecture matches
+    let compatible=1
   
-  case "${DEB_BUILD_ARCH:-$DEB_BUILD_GNU_TYPE}" in
-    i386|i486-linux-gnu)
-      case "$archive_name" in
-	"jre-6u"[0-9][0-9]"-linux-i586.bin") # SUPPORTED
-	    j2se_version=1.6.0+update${archive_name:6:2}${revision}
-	    j2se_expected_min_size=16 #Mb
-	    j2se_priority=314
-	    found=true
-	    ;;
-	"jre-7u"[0-9]"-linux-i586.tar.gz") # SUPPORTED
-	    j2se_version=1.7.0+update${archive_name:6:1}${revision}
-	    j2se_expected_min_size=94 #Mb
-	    j2se_priority=316
-	    found=true
-	    ;;
-      esac
-      ;;
-    amd64|x86_64-linux-gnu)
-      case "$archive_name" in
-	"jre-6u"[0-9][0-9]"-linux-x64.bin") # SUPPORTED
-	    j2se_version=1.6.0+update${archive_name:6:2}${revision}
-	    j2se_expected_min_size=16 #Mb
-	    j2se_priority=314
-	    found=true
-	    ;;
-	"jre-7u"[0-9]"-linux-x64.tar.gz") # SUPPORTED
-	    j2se_version=1.7.0+update${archive_name:6:1}${revision}
-	    j2se_expected_min_size=88 #Mb
-	    j2se_priority=316
-	    found=true
-	    ;;
-      esac
-      ;;
-  esac
-  if [[ -n "$found" ]]; then
+    case "${DEB_BUILD_ARCH:-$DEB_BUILD_GNU_TYPE}" in
+      i386|i486-linux-gnu)
+        if [[ "$j2se_arch" != "i586" ]]; then compatible=0; fi
+        ;;
+      amd64|x86_64-linux-gnu)
+        if [[ "$j2se_arch" != "x64" ]]; then compatible=0; fi
+        ;;
+    esac
+
+    if [[ $compatible == 0 ]]
+    then
+      echo "The archive $archive_name is not supported on the ${DEB_BUILD_ARCH} architecture"
+      return
+    fi
+
+
 	cat << EOF
 
 Detected product:
     Java(TM) Runtime Environment (JRE)
-    Standard Edition, Version $j2se_version
+    Standard Edition, Version $j2se_release Update $j2se_update
     Oracle(TM)
 EOF
 	if read_yn "Is this correct [Y/n]: "; then
 	    j2se_found=true
-	    j2se_release="${j2se_version:2:1}"
 	    j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
 	    j2se_vendor="oracle"
 	    j2se_title="Java(TM) JRE, Standard Edition, Oracle(TM)"
@@ -61,7 +52,7 @@ EOF
 	    oracle_jre_lib_hl="jexec"
 	    j2re_run
 	fi
-    fi
+  fi
 }
 
 oracle_j2re_install() {
