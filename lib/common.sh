@@ -2,15 +2,15 @@
 read_yn() {
     local prompt="$1"
     while true; do
-	read -e -n 1 -p "$prompt" reply
-	case "$reply" in
-	    "" | "y" | "Y")
-		return 0
-		;;
-	    "N" | "n")
-		return 1
-		;;
-	esac
+    read -e -n 1 -p "$prompt" reply
+    case "$reply" in
+        "" | "y" | "Y")
+        return 0
+        ;;
+        "N" | "n")
+        return 1
+        ;;
+    esac
     done
 }
 
@@ -27,12 +27,12 @@ diskusage() {
 diskfree() {
     local size="$1"
     echo -n "Checking free diskspace:"
-	(( free = `stat -f -c '%a / 2048 * ( %s / 512 )' $tmp ` ))
+    (( free = `stat -f -c '%a / 2048 * ( %s / 512 )' $tmp ` ))
 
     if [ "$free" -ge "$size" ]; then
-	echo " done."
+    echo " done."
     else
-	cat >&2 << EOF
+    cat >&2 << EOF
 
 
 WARNING: Possibly not enough free disk space in "$tmp".
@@ -45,7 +45,7 @@ Press Ctrl+C to interrupt, or return to try to continue anyway.
 TMPDIR.
 
 EOF
-	read
+    read
     fi
 }
 
@@ -69,23 +69,23 @@ EOF
     mkdir "$extract_dir"
     cd "$extract_dir"
     echo
-
+    
     local extract_cmd
     case "$archive_path" in
-	*.tar)
-	    extract_cmd="tar xf";;
-	*.tar.bz2)
-	    extract_cmd="tar --bzip2 -xf";;
-	*.tgz|*.tar.gz)
-	    extract_cmd="tar xfz";;
-	*.zip)
-	    extract_cmd="unzip -q";;
-	*)
-	    extract_cmd=sh
+    *.tar)
+        extract_cmd="tar xf";;
+    *.tar.bz2)
+        extract_cmd="tar --bzip2 -xf";;
+    *.tgz|*.tar.gz)
+        extract_cmd="tar xfz";;
+    *.zip)
+        extract_cmd="unzip -q";;
+    *)
+        extract_cmd=sh
     esac
-
+    
     if ! $extract_cmd "$archive_path"; then
-	cat << EOF
+    cat << EOF
 
 WARNING: The package installation script exited with an error
 value. Usually, this means, that the installation failed for some
@@ -96,13 +96,13 @@ Please check if there are any error messages. Press [Return] to
 continue or Ctrl-C to abort.
 
 EOF
-	read
+    read
     fi
     echo
     echo -n "Testing extracted archive..."
     local size="$( diskusage "$extract_dir" )"
     if [ "$size" -lt "$expected_min_size" ]; then
-	cat << EOF
+    cat << EOF
 
 Invalid size ($size MB) of extracted archive. Probably you have not
 enough free disc space in the temporary directory. Note: You can
@@ -110,73 +110,73 @@ specify an alternate directory by setting the environment variable
 TMPDIR.
 
 EOF
-	error_exit
+    error_exit
     else
-	cd "$extract_dir"
-	files=(*)
-	if [ "${#files[*]}" -ne 1 ]; then
-	    cat << EOF
+    cd "$extract_dir"
+    files=(*)
+    if [ "${#files[*]}" -ne 1 ]; then
+        cat << EOF
 
 Expected one file, but found the following ${#files[*]} files:
     ${files[*]}
 
 EOF
-	    error_exit
-	fi
-	mv "$files" "$dest"
-	echo -e " okay.\n"
+        error_exit
+    fi
+    mv "$files" "$dest"
+    echo -e " okay.\n"
     fi
 }
 
 
 read_maintainer_info() {
     if [ -z "$maintainer_name" ]; then
-	if [ -n "$DEBFULLNAME" ]; then
-		maintainer_name="$DEBFULLNAME"
-	elif [ -n "$DEBNAME" ]; then
-		maintainer_name="$DEBNAME"
-	else
-		default_name="$(getent passwd $(id -run) | cut -d: -f5| cut -d, -f1)"
-	
-	cat << EOF
+    if [ -n "$DEBFULLNAME" ]; then
+        maintainer_name="$DEBFULLNAME"
+    elif [ -n "$DEBNAME" ]; then
+        maintainer_name="$DEBNAME"
+    else
+        default_name="$(getent passwd $(id -run) | cut -d: -f5| cut -d, -f1)"
+    
+    cat << EOF
 
 Please enter your full name. This value will be used in the maintainer
 field of the created package.
 
 EOF
 
-	# gecos can be null
-	while [ -z "$maintainer_name" ]; do
-		read -e -p "Full name [$default_name]:" maintainer_name
-		if [ -z "$maintainer_name" ] && [ -n "$default_name" ]; then
-			maintainer_name="$default_name"
-		fi
-	done
-	fi
+    # gecos can be null
+    while [ -z "$maintainer_name" ]; do
+        read -e -p "Full name [$default_name]:" maintainer_name
+        if [ -z "$maintainer_name" ] && [ -n "$default_name" ]; then
+            maintainer_name="$default_name"
+        fi
+    done
     fi
- 
+    fi
+    
     if [ -z "$maintainer_email" ]; then
-	local default_email=
-	if [ -n "$DEBEMAIL" ]; then
-	    maintainer_email="$DEBEMAIL"
-	else 
-	if [ -r "/etc/mailname" ]; then
-	    default_email="$( id -run )@$( cat /etc/mailname )"
-	else
-	    default_email="$( id -run )@$( hostname --fqdn )"
-	fi
-	cat << EOF
+    local default_email=
+    if [ -n "$DEBEMAIL" ]; then
+        maintainer_email="$DEBEMAIL"
+    else 
+    if [ -r "/etc/mailname" ]; then
+        default_email="$( id -run )@$( cat /etc/mailname )"
+    else
+        default_email="$( id -run )@$( hostname --fqdn )"
+    fi
+    cat << EOF
 
 Please enter a valid email address or press return to accept the
 default value. This address will be used in the maintainer field of
 the created package.
 
 EOF
-	read -e -p "Email [$default_email]: " maintainer_email
-	if [ -z "$maintainer_email" ]; then
-	    maintainer_email="$default_email"
-	fi
-	fi
+    read -e -p "Email [$default_email]: " maintainer_email
+    if [ -z "$maintainer_email" ]; then
+        maintainer_email="$default_email"
+    fi
+    fi
     fi
 }
 

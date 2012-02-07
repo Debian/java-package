@@ -40,31 +40,31 @@ if ! dh_testroot >/dev/null 2>&1; then
         echo "Internal error, fakeroot seems to fail faking root" >&2
         exit 1
     fi
-	exec fakeroot "$0" "$@"
+    exec fakeroot "$0" "$@"
 fi
 
 # check whether I'm real root, and bail out if so... ugly, but needed
 if touch /lib/.test 2>/dev/null; then
-	rm -f /lib/.test
-	echo "You are real root -- unfortunately, some Java distributions have" >&2
-	echo "install scripts that directly manipulate /etc, and may cause some" >&2
-	echo "inconsistencies on your system. Instead, you should become a" >&2
-	echo "non-root user and run:" >&2
-	echo >&2
-	echo "fakeroot make-jpkg $@" >&2
-	echo >&2
-	echo "which will allow no damage to be done to your system files and" >&2
-	echo "still permit the Java distribution to successfully extract." >&2
-	echo >&2
-	echo "Aborting." >&2
-	exit 1
+    rm -f /lib/.test
+    echo "You are real root -- unfortunately, some Java distributions have" >&2
+    echo "install scripts that directly manipulate /etc, and may cause some" >&2
+    echo "inconsistencies on your system. Instead, you should become a" >&2
+    echo "non-root user and run:" >&2
+    echo >&2
+    echo "fakeroot make-jpkg $@" >&2
+    echo >&2
+    echo "which will allow no damage to be done to your system files and" >&2
+    echo "still permit the Java distribution to successfully extract." >&2
+    echo >&2
+    echo "Aborting." >&2
+    exit 1
 fi
 
 
 ### Parse options
 
 print_usage() {
-	cat << EOF
+    cat << EOF
 Usage: $program_name [OPTION]... FILE
 
 $program_name builds a Debian package from the given Java binary distribution FILE
@@ -108,27 +108,27 @@ EOF
 # options
 while [[ $# -gt 0 && "x$1" == x--* ]]; do
     if [[ "x$1" == x--version ]]; then
-	echo "make-jpkg $version"
-	exit 0
+    echo "make-jpkg $version"
+    exit 0
     elif [[ "x$1" == x--help ]]; then
-	print_usage
-	exit 0
+    print_usage
+    exit 0
     elif [[ "x$1" == x--full-name ]]; then
-	[ $# -le 1 ] && missing_argument "$1"
-	shift
-	maintainer_name="$1"
+    [ $# -le 1 ] && missing_argument "$1"
+    shift
+    maintainer_name="$1"
     elif [[ "x$1" == x--email ]]; then
-	[ $# -le 1 ] && missing_argument "$1"
-	shift
-	maintainer_email="$1"
+    [ $# -le 1 ] && missing_argument "$1"
+    shift
+    maintainer_email="$1"
     elif [[ "x$1" == x--revision ]]; then
-	[ $# -le 1 ] && missing_argument "$1"
-	shift
-	revision="-${1}"
+    [ $# -le 1 ] && missing_argument "$1"
+    shift
+    revision="-${1}"
     elif [[ "x$1" == x--changes ]]; then
-	genchanges="true"
+    genchanges="true"
     else
-	unrecognized_option "$1"
+    unrecognized_option "$1"
     fi
     shift
 done
@@ -166,7 +166,7 @@ tmp=
 on_exit() {
     lastcmd="$_"
     if [[ -z "$success" && -z "$failed" ]]; then
-	cat >&2 << EOF
+    cat >&2 << EOF
 
 Aborted ($lastcmd).
 
@@ -174,9 +174,9 @@ EOF
     fi
     # remove temporary directory
     if [ -n "$tmp" -a -d "$tmp" ]; then
-	echo -n "Removing temporary directory: "
-	rm -rf "$tmp"
-	echo "done"
+    echo -n "Removing temporary directory: "
+    rm -rf "$tmp"
+    echo "done"
     fi
 }
 trap on_exit EXIT
@@ -226,7 +226,7 @@ j2se_found=
 for var in ${!j2se_detect_*}; do 
     eval "\$$var"
     if [[ "$j2se_found" == "true" ]]; then
-	break;
+    break;
     fi
 done
 echo

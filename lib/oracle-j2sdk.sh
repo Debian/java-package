@@ -37,27 +37,27 @@ Detected product:
     Standard Edition, Version $j2se_release Update $j2se_update
     Oracle(TM)
 EOF
-	if read_yn "Is this correct [Y/n]: "; then
-		j2se_found=true
-		j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
-		j2se_vendor="oracle"
-		j2se_title="Java(TM) JDK, Standard Edition, Oracle(TM)"
+    if read_yn "Is this correct [Y/n]: "; then
+      j2se_found=true
+      j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
+      j2se_vendor="oracle"
+      j2se_title="Java(TM) JDK, Standard Edition, Oracle(TM)"
 
-		j2se_install=oracle_j2sdk_install
-		j2se_remove=oracle_j2sdk_remove
-		j2se_jinfo=oracle_j2sdk_jinfo
-		oracle_jre_bin_hl="java javaws keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
-		oracle_jre_bin_jre="javaws policytool"
-		oracle_no_man_jre_bin_jre="ControlPanel"
-		oracle_jre_lib_hl="jexec"
-		oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jconsole jdb jinfo jmap jps jsadebugd jstack jstat jstatd native2ascii rmic serialver"
-		j2sdk_run
-	fi
+      j2se_install=oracle_j2sdk_install
+      j2se_remove=oracle_j2sdk_remove
+      j2se_jinfo=oracle_j2sdk_jinfo
+      oracle_jre_bin_hl="java javaws keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
+      oracle_jre_bin_jre="javaws policytool"
+      oracle_no_man_jre_bin_jre="ControlPanel"
+      oracle_jre_lib_hl="jexec"
+      oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jconsole jdb jinfo jmap jps jsadebugd jstack jstat jstatd native2ascii rmic serialver"
+      j2sdk_run
+    fi
   fi
 }
 
 oracle_j2sdk_install() {
-	cat << EOF
+    cat << EOF
 if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
 fi
@@ -75,7 +75,7 @@ EOF
 }
 
 oracle_j2sdk_remove() {
-	cat << EOF
+    cat << EOF
 if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
 fi

@@ -30,33 +30,33 @@ oracle_j2re_detect() {
     fi
 
 
-	cat << EOF
+    cat << EOF
 
 Detected product:
     Java(TM) Runtime Environment (JRE)
     Standard Edition, Version $j2se_release Update $j2se_update
     Oracle(TM)
 EOF
-	if read_yn "Is this correct [Y/n]: "; then
-	    j2se_found=true
-	    j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
-	    j2se_vendor="oracle"
-	    j2se_title="Java(TM) JRE, Standard Edition, Oracle(TM)"
+    if read_yn "Is this correct [Y/n]: "; then
+      j2se_found=true
+      j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
+      j2se_vendor="oracle"
+      j2se_title="Java(TM) JRE, Standard Edition, Oracle(TM)"
 
-	    j2se_install=oracle_j2re_install
-	    j2se_remove=oracle_j2re_remove
-	    j2se_jinfo=oracle_j2re_jinfo
-	    oracle_jre_bin_hl="java javaws keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
-	    oracle_jre_bin_jre="javaws policytool"
-	    oracle_no_man_jre_bin_jre="ControlPanel"
-	    oracle_jre_lib_hl="jexec"
-	    j2re_run
-	fi
+      j2se_install=oracle_j2re_install
+      j2se_remove=oracle_j2re_remove
+      j2se_jinfo=oracle_j2re_jinfo
+      oracle_jre_bin_hl="java javaws keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
+      oracle_jre_bin_jre="javaws policytool"
+      oracle_no_man_jre_bin_jre="ControlPanel"
+      oracle_jre_lib_hl="jexec"
+      j2re_run
+    fi
   fi
 }
 
 oracle_j2re_install() {
-	cat << EOF
+    cat << EOF
 if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
 fi
@@ -73,7 +73,7 @@ EOF
 }
 
 oracle_j2re_remove() {
-	cat << EOF
+    cat << EOF
 if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
 fi

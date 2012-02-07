@@ -81,8 +81,8 @@ if [ "\$1" = configure ]; then
         shift
         for program in \$*; do
           update-alternatives \\
-	      --install "/usr/bin/\$program" "\$program" "\$program_base/\$program" $j2se_priority \\
-	      --slave "/usr/share/man/man1/\$program.1.gz" "\$program.1.gz" "$jvm_base$j2se_name/man/man1/\$program.1.gz"
+          --install "/usr/bin/\$program" "\$program" "\$program_base/\$program" $j2se_priority \\
+          --slave "/usr/share/man/man1/\$program.1.gz" "\$program.1.gz" "$jvm_base$j2se_name/man/man1/\$program.1.gz"
         done
     }
 
