@@ -182,7 +182,7 @@ j2se_build() {
     echo "Create debian package:"
     
     #export DH_VERBOSE=1
-    export DH_COMPAT=4
+    export DH_COMPAT=7
     export DH_OPTIONS=--tmpdir="$install_dir"
 
     echo "    dh_testdir"

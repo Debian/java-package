@@ -1,4 +1,4 @@
-java-package (0.50) UNRELEASED; urgency=low
+java-package (0.50) unstable; urgency=low
 
   * Java-package reset for reintroduction in debian (removal of all
     previously supported jvm, global refactoring).
@@ -8,14 +8,17 @@ java-package (0.50) UNRELEASED; urgency=low
   * Use jdk included jre binaries (jdk/jre/bin/*)
   * Print usage information on install
 
- -- Cédric Pineau <cedric.pineau@gmail.com>  Thu, 22 Dec 2011 11:42:13 +0100
-
-java-package (0.43) UNRELEASED; urgency=low
-
+  [ Sylvestre Ledru ]
+  * Long description removed
+  * debian-rules-missing-recommended-target removed
+  * maintainer-script-lacks-debhelper-token removed
+  * Declare the debian/compat to 7 to avoid warnings
+  
+  [ Michael Kock ]
   * Remove Java plugins for all browsers (Closes: #367887).
   * Add support for Sun Java 6 Update XX (Closes: #514364).
 
- -- Michael Koch <konqueror@gmx.de>  Thu, 17 Sep 2009 13:15:55 +0200
+ -- Cédric Pineau <cedric.pineau@gmail.com>  Thu, 22 Dec 2011 11:42:13 +0100
 
 java-package (0.42) unstable; urgency=low
 

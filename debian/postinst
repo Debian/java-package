@@ -9,4 +9,6 @@ then
 	db_go
 fi
 
+#DEBHELPER#
+
 exit 0

@@ -8,7 +8,9 @@
 VERSION := $(shell head -n 1 $(CURDIR)/debian/changelog | sed 's/.*(//;s/).*//')
 B := $(CURDIR)/debian/java-package
 
-build: build-stamp 
+build: build-arch build-indep
+build-arch: build-stamp
+build-indep: build-stamp
 
 build-stamp:
 	dh_testdir
