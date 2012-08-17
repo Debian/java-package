@@ -2,7 +2,9 @@ java-package (0.51) unstable; urgency=low
 
   * Add firefox-javaplugin.so alternative Closes: #673670
   * Add java6-{runtime|sdk|...} to the provides line in generated packages Closes: #684993
-  
+  * Add java6-{runtime|sdk|...} to the provides line in generated packages Closes: #684993
+  * Drop installation debconf note Closes: #685082
+
   [Emmanuel Bourg]
   * Improved detection of the JRE/JDK version (supports 2 digits Java 7 updates)
   * Brand and naming cleanup
