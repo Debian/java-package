@@ -2,7 +2,7 @@
 j2se_detect_oracle_j2sdk=oracle_j2sdk_detect
 oracle_j2sdk_detect() {
 
-  if [[ $archive_name =~ jdk-([0-9]+)u([0-9]+)-linux-(i586|x64)\.(bin|tar\.gz) ]]
+  if [[ $archive_name =~ jdk-([0-9]+)u([0-9]+)-linux-(i586|x64|amd64)\.(bin|tar\.gz) ]]
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[2]}
@@ -19,7 +19,7 @@ oracle_j2sdk_detect() {
         if [[ "$j2se_arch" != "i586" ]]; then compatible=0; fi
         ;;
       amd64|x86_64-linux-gnu)
-        if [[ "$j2se_arch" != "x64" ]]; then compatible=0; fi
+        if [[ "$j2se_arch" != "x64" && "$j2se_arch" != "amd64" ]]; then compatible=0; fi
         ;;
     esac
 
