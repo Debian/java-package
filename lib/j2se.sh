@@ -80,9 +80,11 @@ if [ "\$1" = configure ]; then
         program_base="\$1"
         shift
         for program in \$*; do
-          update-alternatives \\
-          --install "/usr/bin/\$program" "\$program" "\$program_base/\$program" $j2se_priority \\
-          --slave "/usr/share/man/man1/\$program.1.gz" "\$program.1.gz" "$jvm_base$j2se_name/man/man1/\$program.1.gz"
+          if [[ -f "\$program_base/\$program" ]]; then
+            update-alternatives \\
+            --install "/usr/bin/\$program" "\$program" "\$program_base/\$program" $j2se_priority \\
+            --slave "/usr/share/man/man1/\$program.1.gz" "\$program.1.gz" "$jvm_base$j2se_name/man/man1/\$program.1.gz"
+          fi
         done
     }
 
@@ -91,7 +93,9 @@ if [ "\$1" = configure ]; then
         program_base="\$1"
         shift
         for program in \$*; do
-          update-alternatives --install "/usr/bin/\$program" "\$program" "\$program_base/\$program" $j2se_priority
+          if [[ -f "\$program_base/\$program" ]]; then
+            update-alternatives --install "/usr/bin/\$program" "\$program" "\$program_base/\$program" $j2se_priority
+          fi
         done
     }
 
@@ -102,7 +106,9 @@ if [ "\$1" = configure ]; then
         local plugin_name="\$3"
         local plugin="\$4"
         [ -d "\$link_path" ] || install -d -m 755 "\$link_path"
-        update-alternatives --install "\$link_path/\$link_name" "\$plugin_name" "\$plugin" $j2se_priority
+        if [[ -f "\$plugin" ]]; then
+          update-alternatives --install "\$link_path/\$link_name" "\$plugin_name" "\$plugin" $j2se_priority
+        fi
     }
 
 EOF
