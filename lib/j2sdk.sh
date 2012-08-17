@@ -6,7 +6,7 @@ Package: $j2se_package
 Architecture: any
 Depends: \${shlibs:Depends}
 Recommends: netbase, libx11-6 | xlibs, libasound2, libgtk1.2, libstdc++5
-Provides: java-virtual-machine, java-runtime, java2-runtime, java6-runtime, java-browser-plugin, java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, java6-runtime-headless, java-sdk, java2-sdk, java6-sdk, j2sdk$j2se_release, j2re$j2se_release
+Provides: java-virtual-machine, java-runtime, java2-runtime, java5-runtime, java6-runtime, java-browser-plugin, java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, java5-runtime-headless, java6-runtime-headless, java-sdk, java2-sdk, java5-sdk, java6-sdk, j2sdk$j2se_release, j2re$j2se_release
 Replaces: ${j2se_package}debian
 Description: $j2se_title
  The Java(TM) SE JDK is a development environment for building
