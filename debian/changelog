@@ -1,7 +1,7 @@
 java-package (0.51) unstable; urgency=low
 
-  * Add firefox-javaplugin.so alternative Closes: #673670
-  * Add java5 and 6-{runtime|sdk|...} to the provides line in generated packages Closes: #684993
+  * Add firefox-javaplugin.so alternative Closes: #673670 and LP: #1024368
+  * Add java5 and 6-{runtime|sdk|...} to the provides line in generated packages Closes: #684993 and LP: #995655
   * Drop installation debconf note Closes: #685082
   * Correct handling of amd64 in oracle-jdk6.1->4 and improve error message when used with unknown archives
   * Add support for earlier oracle-jdk6 version
