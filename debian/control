@@ -10,8 +10,7 @@ Standards-Version: 3.9.2
 
 Package: java-package
 Architecture: all
-Depends:  ${misc:Depends}, debhelper, fakeroot, unzip, libx11-6, libasound2,
- debconf (>= 0.5) | debconf-2.0
+Depends:  ${misc:Depends}, debhelper, fakeroot, unzip, libx11-6, libasound2
 Recommends: dpkg-dev, gcc
 Suggests: openjdk-6-jre, openjdk-7-jre
 Description: Utility for creating Java Debian packages
