@@ -1,3 +1,9 @@
+java-package (0.52) UNRELEASED; urgency=low
+
+  * Add {mozilla,firefox}-javaplugin.so for update-java-alternatives.
+
+ -- Gabriele Giacone <1o5g4r8o@gmail.com>  Wed, 29 Aug 2012 20:02:25 +0200
+
 java-package (0.51) unstable; urgency=low
 
   * Add firefox-javaplugin.so alternative Closes: #673670 and LP: #1024368

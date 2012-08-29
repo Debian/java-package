@@ -105,5 +105,7 @@ EOF
     jinfos "hl" $jvm_base$j2se_name/lib/ $oracle_jre_lib_hl
     echo "plugin iceweasel-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
     echo "plugin chromium-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
+    echo "plugin mozilla-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
+    echo "plugin firefox-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
 }
 
