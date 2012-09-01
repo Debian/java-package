@@ -1,8 +1,11 @@
 java-package (0.52) unstable; urgency=low
 
+  * Fix lintian errors and warnings
+  * Close unreproductible bug; Closes: #685075
+
   [ Gabriele Giacone ]
   * Add {mozilla,firefox}-javaplugin.so for update-java-alternatives.
-  * Fix plugin directories. Closes #686216
+  * Fix plugin directories. Closes: #686216
 
  -- Cédric Pineau <cedric.pineau@gmail.com>  Sat, 01 Sep 2012 16:57:08 +0200
 

@@ -6,7 +6,7 @@ Uploaders: Cédric Pineau <cedric.pineau@gmail.com>
 Vcs-Git: git://git.debian.org/git/pkg-java/java-package.git
 Vcs-Browser: http://git.debian.org/?p=pkg-java/java-package.git
 Build-Depends: debhelper (>= 5)
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 
 Package: java-package
 Architecture: all
