@@ -219,6 +219,9 @@ echo
 # get architecture information
 get_architecture
 
+# get browser plugin directories
+get_browser_plugin_dirs
+
 jvm_base="/usr/lib/jvm/"
 javadoc_base="/usr/share/doc/"
 

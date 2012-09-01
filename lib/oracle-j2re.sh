@@ -67,10 +67,9 @@ install_no_man_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
 install_no_man_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
 
 plugin_dir="$jvm_base$j2se_name/lib/$DEB_BUILD_ARCH"
-install_browser_plugin "/usr/lib/iceweasel/plugins" "libjavaplugin.so" "iceweasel-javaplugin.so" "\$plugin_dir/libnpjp2.so"
-install_browser_plugin "/usr/lib/chromium/plugins" "libjavaplugin.so" "chromium-javaplugin.so" "\$plugin_dir/libnpjp2.so"
-install_browser_plugin "/usr/lib/mozilla/plugins" "libjavaplugin.so" "mozilla-javaplugin.so" "\$plugin_dir/libnpjp2.so"
-install_browser_plugin "/usr/lib/firefox/plugins" "libjavaplugin.so" "firefox-javaplugin.so" "\$plugin_dir/libnpjp2.so"
+for b in $browser_plugin_dirs;do
+    install_browser_plugin "/usr/lib/\$b/plugins" "libjavaplugin.so" "\$b-javaplugin.so" "\$plugin_dir/libnpjp2.so"
+done
 EOF
 }
 
@@ -86,10 +85,9 @@ remove_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
 remove_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
 
 plugin_dir="$jvm_base$j2se_name/lib/$DEB_BUILD_ARCH"
-remove_browser_plugin "iceweasel-javaplugin.so" "\$plugin_dir/libnpjp2.so"
-remove_browser_plugin "chromium-javaplugin.so" "\$plugin_dir/libnpjp2.so"
-remove_browser_plugin "mozilla-javaplugin.so" "\$plugin_dir/libnpjp2.so"
-remove_browser_plugin "firefox-javaplugin.so" "\$plugin_dir/libnpjp2.so"
+for b in $browser_plugin_dirs;do
+    remove_browser_plugin "\$b-javaplugin.so" "\$plugin_dir/libnpjp2.so"
+done
 EOF
 }
 
@@ -103,9 +101,8 @@ EOF
     jinfos "jre" $jvm_base$j2se_name/bin/ $oracle_jre_bin_jre
     jinfos "jre" $jvm_base$j2se_name/bin/ $oracle_no_man_jre_bin_jre
     jinfos "hl" $jvm_base$j2se_name/lib/ $oracle_jre_lib_hl
-    echo "plugin iceweasel-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
-    echo "plugin chromium-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
-    echo "plugin mozilla-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
-    echo "plugin firefox-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
+    for b in $browser_plugin_dirs;do
+        echo "plugin $b-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
+    done
 }
 
