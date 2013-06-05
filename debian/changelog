@@ -1,15 +1,23 @@
 java-package (0.52) unstable; urgency=low
 
+  [ Sylvestre Ledru ]
+  * Team upload
+  * Ack the NMU of David Prévot (thanks!)
+  * Standards-Version updated to version 3.9.4
+  * Remove obsolete variable from the changelog
+  * Add support of ARM upstream binary by James Page and Matthias Vill.
+    Thanks guys! (Closes: #687375)
+
+  [ Cédric Pineau ]
   * Fix lintian errors and warnings
-  * Close unreproductible bug; Closes: #685075
 
   [ Gabriele Giacone ]
   * Add {mozilla,firefox}-javaplugin.so for update-java-alternatives.
   * Fix plugin directories. Closes: #686216
 
- -- Cédric Pineau <cedric.pineau@gmail.com>  Sat, 01 Sep 2012 16:57:08 +0200
+ -- Sylvestre Ledru <sylvestre@debian.org>  Wed, 05 Jun 2013 13:43:55 +0200
 
-java-package (0.51) unstable; urgency=low
+java-package (0.51~exp1) experimental; urgency=low
 
   * Add firefox-javaplugin.so alternative Closes: #673670 and LP: #1024368
   * Add java5 and 6-{runtime|sdk|...} to the provides line in generated packages Closes: #684993 and LP: #995655
@@ -26,6 +34,20 @@ java-package (0.51) unstable; urgency=low
   * Add mozilla-javaplugin.so alternative
 
  -- Cédric Pineau <cedric.pineau@gmail.com>  Sat, 18 Aug 2012 11:00:34 +0200
+
+java-package (0.50+nmu2) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Allow two digits in Java 7 updates. Closes: #597294, #698108
+
+ -- David Prévot <taffit@debian.org>  Tue, 15 Jan 2013 15:06:26 -0400
+
+java-package (0.50+nmu1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Drop installation debconf note. Closes: #685082
+
+ -- David Prévot <taffit@debian.org>  Thu, 06 Sep 2012 18:38:03 -0400
 
 java-package (0.50) unstable; urgency=low
 
@@ -466,7 +488,3 @@ java-package (0.1) unstable; urgency=low
   * Initial Release.
 
  -- Hubert Schmid <j2se-package@z42.de>  Sun, 26 Oct 2003 20:06:57 +0100
-
-Local variables:
-mode: debian-changelog
-End:
