@@ -1,12 +1,23 @@
 
 j2sdk_control() {
     j2se_control
+    java_browser_plugin="java-browser-plugin, "
+    depends="\${shlibs:Depends}"
+    if [ "${DEB_BUILD_ARCH:0:3}" = "arm" ]; then
+        # ARM is only softfloat ATM so if building on armhf
+        # force the dependencies to pickup cross platform fu
+        if [ "${DEB_BUILD_ARCH}" == "armhf" ]; then
+            depends="libc6-armel, libsfgcc1, libsfstdc++6"
+        fi
+        # No browser on ARM yet
+        java_browser_plugin=""
+    fi
     cat << EOF
 Package: $j2se_package
 Architecture: any
-Depends: \${shlibs:Depends}
+Depends: $depends
 Recommends: netbase, libx11-6 | xlibs, libasound2, libgtk1.2, libstdc++5
-Provides: java-virtual-machine, java-runtime, java2-runtime, java5-runtime, java6-runtime, java-browser-plugin, java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, java5-runtime-headless, java6-runtime-headless, java-sdk, java2-sdk, java5-sdk, java6-sdk, j2sdk$j2se_release, j2re$j2se_release
+Provides: java-virtual-machine, java-runtime, java2-runtime, $java_browser_plugin java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, java-sdk, java2-sdk, j2sdk$j2se_release, j2re$j2se_release
 Replaces: ${j2se_package}debian
 Description: $j2se_title
  The Java(TM) SE JDK is a development environment for building
