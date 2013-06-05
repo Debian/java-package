@@ -2,6 +2,7 @@ java-package (0.52) unstable; urgency=low
 
   [ Sylvestre Ledru ]
   * Team upload
+  * Upload to unstable
   * Ack the NMU of David Prévot (thanks!)
   * Standards-Version updated to version 3.9.4
   * Remove obsolete variable from the changelog
@@ -19,6 +20,19 @@ java-package (0.52) unstable; urgency=low
   [ Gabriele Giacone ]
   * Add {mozilla,firefox}-javaplugin.so for update-java-alternatives.
   * Fix plugin directories. Closes: #686216
+
+  [ Emmanuel Bourg ]
+  * Switched to the 3.0 (native) package format
+  * debian/control: Use canonical URLs for the Vcs-* fields
+  * debian/copyright: Switched to the Machine-readable format 1.0
+  * Updated the manpages to reflect the latest naming changes
+  * Removed the unused provided dependencies (j2sdk<version>, j2re<version>)
+  * Provide the java<version-1>-runtime and java<version-2>-runtime dependencies
+    (Closes: #691063)
+  * Provide the java<version>-sdk dependencies to match the openjdk package
+  * Use the upstream versioning scheme (i.e 7u13 instead of 7.13)
+    to match the convention used by the new openjdk packages
+  * Renamed the script files (j2sdk->jdk, j2re->jre, j2se->javase)
 
  -- Sylvestre Ledru <sylvestre@debian.org>  Wed, 05 Jun 2013 13:43:55 +0200
 
