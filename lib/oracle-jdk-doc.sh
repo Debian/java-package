@@ -5,7 +5,7 @@ oracle_j2sdk_doc_detect() {
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[2]}
-    j2se_version=$j2se_release.$j2se_update
+    j2se_version=${j2se_release}u${j2se_update}
     
     case "$j2se_release" in
     6) # JDK 6

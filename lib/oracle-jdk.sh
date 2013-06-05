@@ -7,7 +7,7 @@ oracle_j2sdk_detect() {
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[2]}
     j2se_arch=${BASH_REMATCH[3]}
-    j2se_version=$j2se_release.$j2se_update
+    j2se_version=${j2se_release}u${j2se_update}
     j2se_priority=$((310 + $j2se_release))
     j2se_expected_min_size=130 #Mb
 
