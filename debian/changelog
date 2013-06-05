@@ -7,6 +7,11 @@ java-package (0.52) unstable; urgency=low
   * Remove obsolete variable from the changelog
   * Add support of ARM upstream binary by James Page and Matthias Vill.
     Thanks guys! (Closes: #687375)
+  * Change the installation path from
+    /usr/lib/jvm/jdk-6.38-oracle-x64 or /usr/lib/jvm/jdk-7.10-oracle-x64
+    to
+    /usr/lib/jvm/jdk-6-oracle-x64 and /usr/lib/jvm/jdk-7-oracle-x64
+    Thanks to Constantin Makshin for the patch (Closes: #696227)
 
   [ Cédric Pineau ]
   * Fix lintian errors and warnings
