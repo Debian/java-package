@@ -235,7 +235,8 @@ done
 echo
 
 if [[ -z "$j2se_found" ]]; then
-    echo "No matching packaging method was found for $archive_name. Please make sure you are using a tar.gz or self-extracting archive"
+    echo "No matching packaging method was found for $archive_name."
+    echo "Please make sure you are using a tar.gz or a self-extracting archive"
 fi
 
 
