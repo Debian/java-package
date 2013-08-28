@@ -11,22 +11,29 @@ oracle_j2re_detect() {
     j2se_arch=${BASH_REMATCH[4]}
     if [[ $j2se_update != "" ]]
     then
-      j2se_type="Update"
+      j2se_version_name="$j2se_release Update $j2se_update"
       j2se_version=${j2se_release}u${j2se_update}
     else
-      j2se_type=""
+      j2se_version_name="$j2se_release GA"
       j2se_version=${j2se_release}
     fi
   fi
 
   # Early Access Release (jre-8-ea-bin-b103-linux-x64-15_aug_2013.tar.gz)
-  if [[ $archive_name =~ jre-([0-9]+)-ea-bin-(b[0-9]+)-linux-(i586|x64|amd64).*\.(bin|tar\.gz) ]]
+  if [[ $archive_name =~ jre-([0-9]+)(u([0-9]+))?-(ea|fcs)-bin-(b[0-9]+)-linux-(i586|x64|amd64).*\.(bin|tar\.gz) ]]
   then
     j2se_release=${BASH_REMATCH[1]}
-    j2se_update=${BASH_REMATCH[2]}
-    j2se_arch=${BASH_REMATCH[3]}
-    j2se_type="Early Access Release"
-    j2se_version=${j2se_release}~ea-build-${j2se_update}
+    j2se_update=${BASH_REMATCH[3]}
+    j2se_build=${BASH_REMATCH[5]}
+    j2se_arch=${BASH_REMATCH[6]}
+    if [[ $j2se_update != "" ]]
+    then
+      j2se_version_name="$j2se_release Update $j2se_update Early Access Release Build $j2se_build"
+      j2se_version=${j2se_release}u${j2se_update}~ea-build-${j2se_update}
+    else
+      j2se_version_name="$j2se_release Early Access Release Build $j2se_build"
+      j2se_version=${j2se_release}~ea-build-${j2se_update}
+    fi
   fi
 
   if [[ $j2se_release > 0 ]]
@@ -57,7 +64,7 @@ oracle_j2re_detect() {
 
 Detected product:
     Java(TM) Runtime Environment (JRE)
-    Standard Edition, Version $j2se_release $j2se_type $j2se_update
+    Standard Edition, Version $j2se_version_name
     Oracle(TM)
 EOF
     if read_yn "Is this correct [Y/n]: "; then
