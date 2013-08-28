@@ -2,6 +2,7 @@ java-package (0.53) UNRELEASED; urgency=low
 
   * Team upload.
   * Added support for early access releases (Closes: #721136)
+  * Added support for GA releases
 
  -- Emmanuel Bourg <ebourg@apache.org>  Wed, 28 Aug 2013 19:34:41 +0200
 

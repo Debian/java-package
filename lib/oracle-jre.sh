@@ -3,14 +3,20 @@ j2se_detect_oracle_j2re=oracle_j2re_detect
 oracle_j2re_detect() {
   j2se_release=0
 
-  # Update (jre-7u13-linux-x64.tar.gz)
-  if [[ $archive_name =~ jre-([0-9]+)u([0-9]+)-linux-(i586|x64|amd64)\.(bin|tar\.gz) ]]
+  # Update or GA release (jre-7u13-linux-x64.tar.gz)
+  if [[ $archive_name =~ jre-([0-9]+)(u([0-9]+))?-linux-(i586|x64|amd64)\.(bin|tar\.gz) ]]
   then
     j2se_release=${BASH_REMATCH[1]}
-    j2se_update=${BASH_REMATCH[2]}
-    j2se_arch=${BASH_REMATCH[3]}
-    j2se_type="Update"
-    j2se_version=${j2se_release}u${j2se_update}
+    j2se_update=${BASH_REMATCH[3]}
+    j2se_arch=${BASH_REMATCH[4]}
+    if [[ $j2se_update != "" ]]
+    then
+      j2se_type="Update"
+      j2se_version=${j2se_release}u${j2se_update}
+    else
+      j2se_type=""
+      j2se_version=${j2se_release}
+    fi
   fi
 
   # Early Access Release (jre-8-ea-bin-b103-linux-x64-15_aug_2013.tar.gz)
