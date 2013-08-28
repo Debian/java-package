@@ -1,19 +1,36 @@
 # Detect product
 j2se_detect_oracle_j2sdk=oracle_j2sdk_detect
 oracle_j2sdk_detect() {
+  j2se_release=0
 
+  # Update (jdk-7u15-linux-i586.tar.gz)
   if [[ $archive_name =~ jdk-([0-9]+)u([0-9]+)-linux-(i586|x64|amd64)\.(bin|tar\.gz) ]]
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[2]}
     j2se_arch=${BASH_REMATCH[3]}
+    j2se_type="Update"
     j2se_version=${j2se_release}u${j2se_update}
+  fi
+
+  # Early Access Release (jdk-8-ea-bin-b103-linux-i586-15_aug_2013.tar.gz)
+  if [[ $archive_name =~ jdk-([0-9]+)-ea-bin-(b[0-9]+)-linux-(i586|x64|amd64).*\.(bin|tar\.gz) ]]
+  then
+    j2se_release=${BASH_REMATCH[1]}
+    j2se_update=${BASH_REMATCH[2]}
+    j2se_arch=${BASH_REMATCH[3]}
+    j2se_type="Early Access Release"
+    j2se_version=${j2se_release}~ea-build-${j2se_update}
+  fi
+
+  if [[ $j2se_release > 0 ]]
+  then
     j2se_priority=$((310 + $j2se_release))
     j2se_expected_min_size=130 #Mb
 
     # check if the architecture matches
     let compatible=1
-  
+
     case "${DEB_BUILD_ARCH:-$DEB_BUILD_GNU_TYPE}" in
       i386|i486-linux-gnu)
         if [[ "$j2se_arch" != "i586" ]]; then compatible=0; fi
@@ -50,7 +67,7 @@ oracle_j2sdk_detect() {
 
 Detected product:
     Java(TM) Development Kit (JDK)
-    Standard Edition, Version $j2se_release Update $j2se_update
+    Standard Edition, Version $j2se_release $j2se_type $j2se_update
     Oracle(TM)
 EOF
     if read_yn "Is this correct [Y/n]: "; then

@@ -1,3 +1,10 @@
+java-package (0.53) UNRELEASED; urgency=low
+
+  * Team upload.
+  * Added support for early access releases (Closes: #721136)
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Wed, 28 Aug 2013 19:34:41 +0200
+
 java-package (0.52) unstable; urgency=low
 
   [ Sylvestre Ledru ]
