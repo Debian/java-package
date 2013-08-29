@@ -6,7 +6,6 @@ Architecture: any
 Depends: 
 Recommends: 
 Provides: 
-Replaces: 
 Description: $j2se_title
  The Java(TM) SE JDK is a development environment for building
  applications, applets, and components that can be deployed on the
