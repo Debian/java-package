@@ -7,6 +7,7 @@ java-package (0.53) UNRELEASED; urgency=low
     - no longer recommend openjdk-6
     - mention the compatibility with Java 8
   * Removed 'Replaces: ${j2se_package}debian' from the generated control file
+  * Adjusted the disk space required to unpack the Java 8 documentation
 
  -- Emmanuel Bourg <ebourg@apache.org>  Wed, 28 Aug 2013 19:34:41 +0200
 

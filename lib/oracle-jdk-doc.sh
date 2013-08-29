@@ -6,14 +6,18 @@ oracle_j2sdk_doc_detect() {
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[2]}
     j2se_version=${j2se_release}u${j2se_update}
-    
+
     case "$j2se_release" in
     6) # JDK 6
       j2se_expected_min_size=44 #Mb
       ;;
-    *) # JDK 7 and higher
+    7) # JDK 7
       j2se_expected_min_size=290 #Mb
       ;;
+    *) # JDK 8 and higher
+      j2se_expected_min_size=320 #Mb
+      ;;
+
     esac
 
     cat << EOF
