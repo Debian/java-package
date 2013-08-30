@@ -3,7 +3,7 @@ java-package (0.53) UNRELEASED; urgency=low
   * Team upload.
   * Added support for early access releases (Closes: #721136)
   * Added support for GA and FCS releases
-  * Updated the package description:
+  * Updated the package description and debian/README.Debian:
     - no longer recommend openjdk-6
     - mention the compatibility with Java 8
   * Removed 'Replaces: ${j2se_package}debian' from the generated control file
