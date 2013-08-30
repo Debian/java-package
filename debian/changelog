@@ -102,7 +102,7 @@ java-package (0.50) unstable; urgency=low
   * maintainer-script-lacks-debhelper-token removed
   * Declare the debian/compat to 7 to avoid warnings
   
-  [ Michael Kock ]
+  [ Michael Koch ]
   * Remove Java plugins for all browsers (Closes: #367887).
   * Add support for Sun Java 6 Update XX (Closes: #514364).
 
