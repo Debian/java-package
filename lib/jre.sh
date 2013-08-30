@@ -5,7 +5,7 @@ j2re_control() {
 Package: $j2se_package
 Architecture: any
 Depends: \${shlibs:Depends}
-Recommends: netbase, libx11-6 | xlibs, libasound2
+Recommends: netbase
 Provides: java-virtual-machine, java-runtime, java2-runtime, java${j2se_release}-runtime, java$((${j2se_release}-1))-runtime, java$((${j2se_release}-2))-runtime, java-runtime-headless, java2-runtime-headless, java${j2se_release}-runtime-headless, java$((${j2se_release}-1))-runtime-headless, java$((${j2se_release}-2))-runtime-headless, java-browser-plugin
 Description: $j2se_title
  The Java(TM) SE Runtime Environment contains the Java virtual machine,

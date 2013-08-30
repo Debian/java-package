@@ -15,6 +15,9 @@ java-package (0.53) UNRELEASED; urgency=low
     control file (used by the now unsupported IBM JDK 5)
   * Removed the recommended dependency on libgtk1.2 from the generated
     control file (removed from Squeeze)
+  * Removed the recommended dependency on libx11-6 and libasound2 from
+    the generated control file (these dependencies are already injected
+    by dh_shlibdeps)
 
  -- Emmanuel Bourg <ebourg@apache.org>  Wed, 28 Aug 2013 19:34:41 +0200
 
