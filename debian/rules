@@ -26,7 +26,7 @@ clean:
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k
+	dh_prep
 	dh_installdirs
 	install -m 755 make-jpkg.out $(B)/usr/bin/make-jpkg
 	cp lib/*.sh $(B)/usr/share/java-package/

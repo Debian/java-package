@@ -9,6 +9,8 @@ java-package (0.53) UNRELEASED; urgency=low
   * Removed 'Replaces: ${j2se_package}debian' from the generated control file
   * Adjusted the disk space required to unpack the Java 8 documentation
   * Updated the manpages for Java 8
+  * Updated debhelper level to 7
+  * debian/rules: Use dh_prep instead of dh_clean -k
 
  -- Emmanuel Bourg <ebourg@apache.org>  Wed, 28 Aug 2013 19:34:41 +0200
 
