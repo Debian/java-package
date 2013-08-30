@@ -11,6 +11,8 @@ java-package (0.53) UNRELEASED; urgency=low
   * Updated the manpages for Java 8
   * Updated debhelper level to 7
   * debian/rules: Use dh_prep instead of dh_clean -k
+  * Removed the recommended dependency on libstdc++5 from the generated
+    control file (used by the now unsupported IBM JDK 5)
 
  -- Emmanuel Bourg <ebourg@apache.org>  Wed, 28 Aug 2013 19:34:41 +0200
 
