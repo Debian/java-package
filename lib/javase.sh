@@ -241,8 +241,10 @@ j2se_build() {
     fi
     cat << EOF
 
-The Debian package has been created in the current directory. You can
-install the package as root (e.g. dpkg -i $deb_filename). 
+The Debian package has been created in the current directory.
+You can install the package as root with:
+
+    dpkg -i $deb_filename
 
 EOF
 }
