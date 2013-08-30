@@ -3,6 +3,8 @@ java-package (0.53) UNRELEASED; urgency=low
   * Team upload.
   * Added support for early access releases (Closes: #721136)
   * Added support for GA and FCS releases
+  * Excluded the fxavcodecplugin libraries used by JavaFX from the dependency
+    calculation performed by dh_shlibdeps to avoid errors (Closes: #687075)
   * Updated the package description and debian/README.Debian:
     - no longer recommend openjdk-6
     - mention the compatibility with Java 8

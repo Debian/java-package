@@ -221,7 +221,7 @@ j2se_build() {
         fi
     done
     # suppress some warnings
-    dh_shlibdeps -l"$ldpath" 2>&1 | 
+    dh_shlibdeps --exclude=fxavcodecplugin -l"$ldpath" 2>&1 |
     { grep -v "warning: format of \`NEEDED lib.*\.so' not recognized" >&2 || true; }
     echo "    dh_gencontrol"
     dh_gencontrol
