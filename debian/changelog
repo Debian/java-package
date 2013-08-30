@@ -20,6 +20,8 @@ java-package (0.53) UNRELEASED; urgency=low
     by dh_shlibdeps)
   * Removed the references to "Java 2" from the description of the generated
     JRE package
+  * Changed the short description of the generate packages to match
+    the official name
 
  -- Emmanuel Bourg <ebourg@apache.org>  Wed, 28 Aug 2013 19:34:41 +0200
 
