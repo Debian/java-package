@@ -10,11 +10,10 @@ Provides: java-virtual-machine, java-runtime, java2-runtime, java${j2se_release}
 Description: $j2se_title
  The Java(TM) SE Runtime Environment contains the Java virtual machine,
  runtime class libraries, and Java application launcher that are
- necessary to run programs written in the Java progamming language
- (this includes the Java 2 Plug-In for Netscape and Mozilla
- browsers). It is not a development environment and doesn't contain
- development tools such as compilers or debuggers. For development
- tools, see the Java 2 SDK, Standard Edition.
+ necessary to run programs written in the Java programming language.
+ It is not a development environment and does not contain development
+ tools such as compilers or debuggers.  For development tools, see the
+ Java SE Development Kit (JDK).
  .
  This package has been automatically created with java-package ($version).
 EOF

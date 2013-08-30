@@ -18,6 +18,8 @@ java-package (0.53) UNRELEASED; urgency=low
   * Removed the recommended dependency on libx11-6 and libasound2 from
     the generated control file (these dependencies are already injected
     by dh_shlibdeps)
+  * Removed the references to "Java 2" from the description of the generated
+    JRE package
 
  -- Emmanuel Bourg <ebourg@apache.org>  Wed, 28 Aug 2013 19:34:41 +0200
 
