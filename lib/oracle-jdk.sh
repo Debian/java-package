@@ -93,17 +93,18 @@ EOF
       j2se_remove=oracle_j2sdk_remove
       j2se_jinfo=oracle_j2sdk_jinfo
       if [ "${DEB_BUILD_ARCH:0:3}" = "arm" ]; then
-   	    oracle_jre_bin_hl="java keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
+        # javaws is not available for ARM
+        oracle_jre_bin_hl="java keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
         oracle_jre_bin_jre="policytool"
       else
         oracle_jre_bin_hl="java javaws keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
         oracle_jre_bin_jre="javaws policytool"
       fi
       if [ "${DEB_BUILD_ARCH:0:3}" != "arm" ]; then
-   	    oracle_no_man_jre_bin_jre="ControlPanel"
+        oracle_no_man_jre_bin_jre="ControlPanel"
       fi
       oracle_jre_lib_hl="jexec"
-      oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jconsole jdb jinfo jmap jps jsadebugd jstack jstat jstatd native2ascii rmic serialver"
+      oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jcmd jconsole jdb jdeps jhat jinfo jmap jps jrunscript jsadebugd jstack jstat jstatd native2ascii rmic schemagen serialver wsgen wsimport xjc"
       j2sdk_run
     fi
   fi
@@ -127,7 +128,7 @@ install_alternatives $jvm_base$j2se_name/bin $oracle_bin_jdk
 if [ "${DEB_BUILD_ARCH:0:3}" != "arm" ]; then
 plugin_dir="$jvm_base$j2se_name/jre/lib/$DEB_BUILD_ARCH"
 for b in $browser_plugin_dirs;do
-	    install_browser_plugin "/usr/lib/\$b/plugins" "libjavaplugin.so" "\$b-javaplugin.so" "\$plugin_dir/libnpjp2.so"
+    install_browser_plugin "/usr/lib/\$b/plugins" "libjavaplugin.so" "\$b-javaplugin.so" "\$plugin_dir/libnpjp2.so"
 done
 fi
 EOF

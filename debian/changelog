@@ -3,6 +3,8 @@ java-package (0.54) unstable; urgency=medium
   * Team upload.
   * Added support for ARM VFP/hard-float JDK releases.
     Thanks to Christopher Huhn <C.Huhn@gsi.de> (Closes: #724455)
+  * Added more command line tool alternatives: jcmd, jdeps, jhat, jrunscript,
+    schemagen, wsgen, wsimport and xjc
   * Standards-Version updated to 3.9.5 (no changes)
   * Removed the suggested dependency on openjdk-6-jre
 
