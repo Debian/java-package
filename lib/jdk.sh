@@ -3,7 +3,7 @@ j2sdk_control() {
     j2se_control
     java_browser_plugin="java-browser-plugin, "
     depends="\${shlibs:Depends}"
-    if [ "${DEB_BUILD_ARCH:0:3}" = "arm" ]; then
+    if [ "${DEB_BUILD_ARCH:0:3}" = "arm" -a "${j2se_arch}" != "arm-vfp-hflt" ]; then
         # ARM is only softfloat ATM so if building on armhf
         # force the dependencies to pickup cross platform fu
         if [ "${DEB_BUILD_ARCH}" == "armhf" ]; then

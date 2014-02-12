@@ -4,7 +4,7 @@ oracle_j2sdk_detect() {
   j2se_release=0
 
   # Update or GA release (jdk-7u15-linux-i586.tar.gz)
-  if [[ $archive_name =~ jdk-([0-9]+)(u([0-9]+))?-linux-(i586|x64|amd64)\.(bin|tar\.gz) ]]
+  if [[ $archive_name =~ jdk-([0-9]+)(u([0-9]+))?-linux-(i586|x64|amd64|arm-vfp-hflt)\.(bin|tar\.gz) ]]
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[3]}
@@ -20,12 +20,12 @@ oracle_j2sdk_detect() {
   fi
 
   # Early Access Release (jdk-8-ea-bin-b103-linux-i586-15_aug_2013.tar.gz)
-  if [[ $archive_name =~ jdk-([0-9]+)(u([0-9]+))?-(ea|fcs)-bin-(b[0-9]+)-linux-(i586|x64|amd64).*\.(bin|tar\.gz) ]]
+  if [[ $archive_name =~ jdk-([0-9]+)(u([0-9]+))?-(ea|fcs)(-bin)?-(b[0-9]+)-linux-(i586|x64|amd64|arm-vfp-hflt).*\.(bin|tar\.gz) ]]
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[3]}
-    j2se_build=${BASH_REMATCH[5]}
-    j2se_arch=${BASH_REMATCH[6]}
+    j2se_build=${BASH_REMATCH[6]}
+    j2se_arch=${BASH_REMATCH[7]}
     if [[ $j2se_update != "" ]]
     then
       j2se_version_name="$j2se_release Update $j2se_update Early Access Release Build $j2se_build"
