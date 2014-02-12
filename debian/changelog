@@ -3,6 +3,7 @@ java-package (0.54) UNRELEASED; urgency=medium
   * Team upload.
   * Added support for ARM VFP/hard-float JDK releases.
     Thanks to Christopher Huhn <C.Huhn@gsi.de> (Closes: #724455)
+  * Standards-Version updated to 3.9.5 (no changes)
 
  -- Emmanuel Bourg <ebourg@apache.org>  Wed, 12 Feb 2014 12:14:36 +0100
 
