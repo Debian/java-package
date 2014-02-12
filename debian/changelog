@@ -1,11 +1,12 @@
-java-package (0.54) UNRELEASED; urgency=medium
+java-package (0.54) unstable; urgency=medium
 
   * Team upload.
   * Added support for ARM VFP/hard-float JDK releases.
     Thanks to Christopher Huhn <C.Huhn@gsi.de> (Closes: #724455)
   * Standards-Version updated to 3.9.5 (no changes)
+  * Removed the suggested dependency on openjdk-6-jre
 
- -- Emmanuel Bourg <ebourg@apache.org>  Wed, 12 Feb 2014 12:14:36 +0100
+ -- Emmanuel Bourg <ebourg@apache.org>  Wed, 12 Feb 2014 12:33:50 +0100
 
 java-package (0.53) unstable; urgency=low
 
