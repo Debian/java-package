@@ -7,8 +7,9 @@ java-package (0.54) unstable; urgency=medium
     schemagen, wsgen, wsimport and xjc
   * Standards-Version updated to 3.9.5 (no changes)
   * Removed the suggested dependency on openjdk-6-jre
+  * Switch to debhelper level 9
 
- -- Emmanuel Bourg <ebourg@apache.org>  Wed, 12 Feb 2014 12:33:50 +0100
+ -- Emmanuel Bourg <ebourg@apache.org>  Mon, 24 Mar 2014 18:44:58 +0100
 
 java-package (0.53) unstable; urgency=low
 
