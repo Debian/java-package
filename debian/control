@@ -10,7 +10,8 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-java/java-package.git
 
 Package: java-package
 Architecture: all
-Depends: ${misc:Depends}, debhelper, fakeroot, unzip, libx11-6, libasound2
+Depends: ${misc:Depends}, debhelper, fakeroot, unzip, libx11-6, libasound2,
+ lsb-release
 Recommends: dpkg-dev, gcc
 Suggests: openjdk-7-jre
 Description: Utility for creating Java Debian packages
