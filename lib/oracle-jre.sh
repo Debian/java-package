@@ -12,10 +12,10 @@ oracle_j2re_detect() {
     if [[ $j2se_update != "" ]]
     then
       j2se_version_name="$j2se_release Update $j2se_update"
-      j2se_version=${j2se_release}u${j2se_update}
+      j2se_version=${j2se_release}u${j2se_update}${revision}
     else
       j2se_version_name="$j2se_release GA"
-      j2se_version=${j2se_release}
+      j2se_version=${j2se_release}${revision}
     fi
   fi
 
@@ -29,10 +29,10 @@ oracle_j2re_detect() {
     if [[ $j2se_update != "" ]]
     then
       j2se_version_name="$j2se_release Update $j2se_update Early Access Release Build $j2se_build"
-      j2se_version=${j2se_release}u${j2se_update}~ea-build-${j2se_build}
+      j2se_version=${j2se_release}u${j2se_update}~ea-build-${j2se_build}${revision}
     else
       j2se_version_name="$j2se_release Early Access Release Build $j2se_build"
-      j2se_version=${j2se_release}~ea-build-${j2se_build}
+      j2se_version=${j2se_release}~ea-build-${j2se_build}${revision}
     fi
   fi
 
