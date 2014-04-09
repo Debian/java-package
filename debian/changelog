@@ -2,6 +2,8 @@ java-package (0.55) UNRELEASED; urgency=medium
 
   * Team upload.
   * Add lsb-release to Depends (used in make-jpkg).
+  * Apply patch to honor --revision argument.
+    Thanks to Alberto Caso Palomino. (Closes: #743919)
 
  -- tony mancill <tmancill@debian.org>  Mon, 07 Apr 2014 21:26:36 -0700
 
