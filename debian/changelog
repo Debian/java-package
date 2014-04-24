@@ -8,6 +8,7 @@ java-package (0.55) UNRELEASED; urgency=medium
 
   [ Emmanuel Bourg ]
   * Bumped the Standards-Version of the generated package to 3.9.5
+  * Use debhelper level 9 in the generated package
 
  -- tony mancill <tmancill@debian.org>  Mon, 07 Apr 2014 21:26:36 -0700
 

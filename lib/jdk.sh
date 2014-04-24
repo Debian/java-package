@@ -44,7 +44,7 @@ j2sdk_run() {
     install -d -m 755 "$( dirname "$target" )"
     extract_bin "$archive_path" "$j2se_expected_min_size" "$target"
     rm -rf "$target/.systemPrefs"
-    echo "7" > "$debian_dir/compat"
+    echo "9" > "$debian_dir/compat"
     j2se_readme > "$debian_dir/README.Debian"
     j2se_changelog > "$debian_dir/changelog"
     j2sdk_control > "$debian_dir/control"

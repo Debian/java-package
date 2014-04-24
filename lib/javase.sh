@@ -28,7 +28,7 @@ Source: $j2se_package
 Section: non-free/devel
 Priority: optional
 Maintainer: $maintainer_name <$maintainer_email>
-Build-Depends: debhelper (>= 4.0.0)
+Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.5
 
 EOF
@@ -188,7 +188,6 @@ j2se_build() {
     echo "Create debian package:"
 
     #export DH_VERBOSE=1
-    export DH_COMPAT=7
     export DH_OPTIONS=--tmpdir="$install_dir"
 
     echo "    dh_testdir"
