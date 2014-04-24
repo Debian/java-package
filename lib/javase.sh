@@ -3,7 +3,7 @@ j2se_readme() {
 Package for $j2se_title
 ---
 
-This package has been automatically created with java-package ($version). 
+This package has been automatically created with java-package ($version).
 All files from the original distribution should have been installed in
 the directory $jvm_base$j2se_name. Please take a look at this directory for
 further information.
@@ -45,7 +45,7 @@ subdirectories.
 
 ----------------------------------------------------------------------
 EOF
-    ( 
+    (
     cd "$install_dir"
     find * -type f -iname copyright |
     while read file; do
@@ -122,7 +122,7 @@ fi
 exit 0
 EOF
     chmod 755 "$debian_dir/postinst"
-    
+
     cat > "$debian_dir/prerm" << EOF
 #!/bin/bash
 
@@ -186,7 +186,7 @@ jinfos() {
 j2se_build() {
     cd "$tmp"
     echo "Create debian package:"
-    
+
     #export DH_VERBOSE=1
     export DH_COMPAT=7
     export DH_OPTIONS=--tmpdir="$install_dir"
@@ -232,7 +232,7 @@ j2se_build() {
     local deb_filename="$( echo "${j2se_package}_"*.deb )"
     echo "    copy $deb_filename into directory $working_dir/"
     cp "$deb_filename" "$working_dir/"
-    if [ -n "$genchanges" ]; then 
+    if [ -n "$genchanges" ]; then
         echo "    dpkg-genchanges"
         local changes_filename="${deb_filename%.deb}.changes"
         dpkg-genchanges -b -u. > "$changes_filename"

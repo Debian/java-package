@@ -74,8 +74,8 @@ oracle_j2sdk_detect() {
       echo "The archive $archive_name is not supported on the ${DEB_BUILD_ARCH} architecture"
       return
     fi
-    
-    
+
+
     cat << EOF
 
 Detected product:

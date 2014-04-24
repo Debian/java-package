@@ -69,7 +69,7 @@ EOF
     mkdir "$extract_dir"
     cd "$extract_dir"
     echo
-    
+
     local extract_cmd
     case "$archive_path" in
     *.tar)
@@ -83,7 +83,7 @@ EOF
     *)
         extract_cmd=sh
     esac
-    
+
     if ! $extract_cmd "$archive_path"; then
     cat << EOF
 
@@ -137,7 +137,7 @@ read_maintainer_info() {
         maintainer_name="$DEBNAME"
     else
         default_name="$(getent passwd $(id -run) | cut -d: -f5| cut -d, -f1)"
-    
+
     cat << EOF
 
 Please enter your full name. This value will be used in the maintainer
@@ -154,12 +154,12 @@ EOF
     done
     fi
     fi
-    
+
     if [ -z "$maintainer_email" ]; then
     local default_email=
     if [ -n "$DEBEMAIL" ]; then
         maintainer_email="$DEBEMAIL"
-    else 
+    else
     if [ -r "/etc/mailname" ]; then
         default_email="$( id -run )@$( cat /etc/mailname )"
     else
@@ -187,9 +187,9 @@ get_architecture() {
     export DEB_BUILD_ARCH=$(dpkg-architecture -qDEB_BUILD_ARCH)
 
     export DEB_BUILD_GNU_TYPE=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE)
-    
+
     echo "Detected Debian build architecture: ${DEB_BUILD_ARCH:-N/A}"
-    
+
     echo "Detected Debian GNU type: ${DEB_BUILD_GNU_TYPE:-N/A}"
 }
 

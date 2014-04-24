@@ -1,5 +1,5 @@
 
-* To be done : 
+* To be done :
 
 - update java-package wiki page : http://wiki.debian.org/JavaPackage?action=edit&editor=text
 - make symbolic links for j2se/jre/bin/* in j2se/bin/ to avoid duplication

@@ -15,8 +15,8 @@ lib_dir="/usr/share/java-package"
 [ "$J2SE_PACKAGE_LIBDIR" ] && lib_dir="$J2SE_PACKAGE_LIBDIR"
 
 # If a default has been set for either of the
-# environment variables, use it; otherwise, 
-# default to the name and email used by the 
+# environment variables, use it; otherwise,
+# default to the name and email used by the
 # Debian Java Maintainers project.
 if [ -z "$J2SE_PACKAGE_FULL_NAME" ]; then
     maintainer_name="Debian Java Maintainers"
@@ -226,7 +226,7 @@ jvm_base="/usr/lib/jvm/"
 javadoc_base="/usr/share/doc/"
 
 j2se_found=
-for var in ${!j2se_detect_*}; do 
+for var in ${!j2se_detect_*}; do
     eval "\$$var"
     if [[ "$j2se_found" == "true" ]]; then
     break;

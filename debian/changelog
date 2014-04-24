@@ -138,7 +138,7 @@ java-package (0.50) unstable; urgency=low
   * debian-rules-missing-recommended-target removed
   * maintainer-script-lacks-debhelper-token removed
   * Declare the debian/compat to 7 to avoid warnings
-  
+
   [ Michael Koch ]
   * Remove Java plugins for all browsers (Closes: #367887).
   * Add support for Sun Java 6 Update XX (Closes: #514364).
@@ -261,13 +261,13 @@ java-package (0.28) unstable; urgency=low
     (Closes: #338569)
   * Corrected pathing for alternatives installation for Mozilla and
     Firefox plugins (Closes: #341751)
-  * Relaxed architectural restrictions on plugin alternative 
+  * Relaxed architectural restrictions on plugin alternative
     installation for IBM Java 5 JREs and JDKs (Closes: #343837)
   * Added plugin installation for the new packaging of Firefox 1.5 and
     later (Closes: #341749)
-  * Modified warning suppression for dh_shlibdeps to accommodate 
+  * Modified warning suppression for dh_shlibdeps to accommodate
     changes in dpkg-dev (Closes: #354427)
-  * Added quotes to variable tests for maintainer name and email 
+  * Added quotes to variable tests for maintainer name and email
     (Closes: #342623)
   * Refactored architecture evaluation to eliminate repetition and
     evaluate DEB_BUILD_GNU_TYPE correctly for i486-linux-gnu
@@ -293,7 +293,7 @@ java-package (0.26) unstable; urgency=low
   * Resolve issues with powerpc-linux support detection (Closes: #317671)
   * Added support for Blackdown 1.4.2+02 release (Closes: #316831)
   * Added support for packaging Sun JDK documentation (Closes: #272971)
-  * Modified make-jpkg behavior to default the generated packages' 
+  * Modified make-jpkg behavior to default the generated packages'
     name and email address for the maintainer to Debian Java Maintainers
     (Closes: #325554)
 
@@ -309,7 +309,7 @@ java-package (0.25) unstable; urgency=low
 java-package (0.24) unstable; urgency=low
 
   * Added plugin alternatives support for i386 IBM JREs and JDKs
-  * Corrected pathing for plugin alternatives to reflect difference in 
+  * Corrected pathing for plugin alternatives to reflect difference in
     layout between JREs and JDKs for Sun and Blackdown (Closes: #305219,
     #301806)
 
@@ -317,7 +317,7 @@ java-package (0.24) unstable; urgency=low
 
 java-package (0.23.1) experimental; urgency=low
 
-  * Added architecture-specific pathing for plugin alternatives for 
+  * Added architecture-specific pathing for plugin alternatives for
     Blackdown 1.3 and 1.4 JREs and JDKs
 
  -- Barry Hawkins <barry@bytemason.org>  Wed, 06 Apr 2005 00:03:40 -0500
@@ -325,9 +325,9 @@ java-package (0.23.1) experimental; urgency=low
 java-package (0.23) unstable; urgency=low
 
   * Further expanded 1.3.1 Blackdown JRE/JDK support for i386
-  * Added architecture-specific pathing for plugin alternatives for 
+  * Added architecture-specific pathing for plugin alternatives for
     Sun 1.4 and 1.5 JREs and JDKs (Closes: #301806)
-  * Added recommends for system elements required by applets and 
+  * Added recommends for system elements required by applets and
     graphical user interface elements (Closes: #300817)
   * Jeroen van Wolffelaar:
     + Fixed packages description to not have too long lines, and make the 3
@@ -340,24 +340,24 @@ java-package (0.22.1) experimental; urgency=low
   * Corrected IBM and Blackdown JRE/JDK file size specifications
   * Added support for additional 1.3.1 Blackdown JREs and JDKs for i386,
     powerpc (Closes: #301092)
-  * Added installation of javaws alternative for Sun 1.5 JREs and JDKs 
+  * Added installation of javaws alternative for Sun 1.5 JREs and JDKs
     (Closes: #300303)
 
  -- Barry Hawkins <barry@bytemason.org>  Thu, 24 Mar 2005 13:20:18 -0500
 
 java-package (0.22) unstable; urgency=low
 
-  * Corrected IBM JRE/JDK scripts to accurately reflect the supported 
+  * Corrected IBM JRE/JDK scripts to accurately reflect the supported
     IBM JDKs and JREs in the generated SUPPORTED file
 
  -- Barry Hawkins <barry@alltc.com>  Fri, 18 Mar 2005 10:21:53 -0500
 
 java-package (0.21) unstable; urgency=low
 
-  * Enable support for IBM JDKs and JREs for x86, amd64, powerpc, 
-    powerpc64, and s390 architectures, based upon a patch by Rico 
+  * Enable support for IBM JDKs and JREs for x86, amd64, powerpc,
+    powerpc64, and s390 architectures, based upon a patch by Rico
     Schiekel (Closes: #264137)
-  * Enable suppport for Blackdown 1.3.1 JDK and JRE for PowerPC 
+  * Enable suppport for Blackdown 1.3.1 JDK and JRE for PowerPC
     architecture. (Closes: #296205)
   * Update documentation and to reflect current supported JDKs and JREs
 
@@ -479,7 +479,7 @@ java-package (0.12) unstable; urgency=low
 
 java-package (0.11) unstable; urgency=low
 
-  * change package name java-package and the command build package is 
+  * change package name java-package and the command build package is
     make-jpkg.
 
  -- Takashi Okamoto <tora@debian.org>  Sat, 31 Jul 2004 15:07:36 +0900
@@ -487,9 +487,9 @@ java-package (0.11) unstable; urgency=low
 java-package (0.10) unstable; urgency=low
 
   * change package name mpkg-j2se.
-  * not use *-j2[re|sdk]debian package. Instead of this, add package 
-    dependency to generated package. This reduce the installation for 
-    such extra package. 
+  * not use *-j2[re|sdk]debian package. Instead of this, add package
+    dependency to generated package. This reduce the installation for
+    such extra package.
   * SUN's jdk1.5 beta2 support.
 
  -- Takashi Okamoto <tora@debian.org>  Sun, 18 Jul 2004 13:53:36 +0900
