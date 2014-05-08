@@ -31,6 +31,7 @@ else
 fi
 
 genchanges=""
+build_source=""
 
 ### check for run in fakeroot
 
@@ -82,6 +83,7 @@ The following options are recognized:
   --email EMAIL      email address used in the maintainer field of the package
   --changes          create a .changes file
   --revision         add debian revision
+  --source           build a source package instead of a binary deb package
 
   --help             display this help and exit
   --version          output version information and exit
@@ -127,6 +129,8 @@ while [[ $# -gt 0 && "x$1" == x--* ]]; do
     revision="-${1}"
     elif [[ "x$1" == x--changes ]]; then
     genchanges="true"
+    elif [[ "x$1" == x--source ]]; then
+    build_source="true"
     else
     unrecognized_option "$1"
     fi

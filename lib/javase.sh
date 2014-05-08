@@ -197,21 +197,36 @@ jinfos() {
 }
 
 j2se_build() {
-    cd "$package_dir"
-    echo "Create debian package:"
+    if [ -n "$build_source" ]; then
+        local source_dir=${j2se_package}-${j2se_version}
+        echo "    copy ${source_dir} into directory $working_dir/"
+        rm -rf "$working_dir/${source_dir}"
+        cp -r "$package_dir" "$working_dir/${source_dir}"
+        cat << EOF
 
+The Debian source package has been created in the current directory.
+You can build the package with:
+
+    cd ${source_dir}
     dpkg-buildpackage -b -uc -us
-    cd "$tmp"
-    local deb_filename="$( echo "${j2se_package}_"*.deb )"
-    echo "    copy $deb_filename into directory $working_dir/"
-    cp "$deb_filename" "$working_dir/"
-    if [ -n "$genchanges" ]; then
-        echo "    dpkg-genchanges"
-        local changes_filename="${deb_filename%.deb}.changes"
-        echo "    copy $changes_filename into directory $working_dir/"
-        cp "$changes_filename" "$working_dir/"
-    fi
-    cat << EOF
+
+EOF
+    else
+        cd "$package_dir"
+        echo "Create debian package:"
+
+        dpkg-buildpackage -b -uc -us
+        cd "$tmp"
+        local deb_filename="$( echo "${j2se_package}_"*.deb )"
+        echo "    copy $deb_filename into directory $working_dir/"
+        cp "$deb_filename" "$working_dir/"
+        if [ -n "$genchanges" ]; then
+            echo "    dpkg-genchanges"
+            local changes_filename="${deb_filename%.deb}.changes"
+            echo "    copy $changes_filename into directory $working_dir/"
+            cp "$changes_filename" "$working_dir/"
+        fi
+        cat << EOF
 
 The Debian package has been created in the current directory.
 You can install the package as root with:
@@ -219,4 +234,5 @@ You can install the package as root with:
     dpkg -i $deb_filename
 
 EOF
+    fi
 }
