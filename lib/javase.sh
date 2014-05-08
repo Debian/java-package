@@ -7,7 +7,6 @@ This package has been automatically created with java-package ($version).
 All files from the original distribution should have been installed in
 the directory $jvm_base$j2se_name. Please take a look at this directory for
 further information.
-
 EOF
 }
 
@@ -18,7 +17,6 @@ $j2se_package ($j2se_version) unstable; urgency=low
   * This package was created with java-package ($version).
 
  -- $maintainer_name <$maintainer_email>  $( date -R )
-
 EOF
 }
 
