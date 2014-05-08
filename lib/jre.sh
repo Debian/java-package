@@ -35,6 +35,8 @@ j2re_run() {
     j2se_changelog > "$debian_dir/changelog"
     j2re_control > "$debian_dir/control"
     j2se_copyright > "$debian_dir/copyright"
+    j2se_rules > "$debian_dir/rules"
+    chmod +x "$debian_dir/rules"
     j2se_install_scripts
     install -d "$target/debian"
     j2se_info > "$target/debian/info"

@@ -50,6 +50,8 @@ j2sdk_doc_run() {
     j2sdk_doc_control > "$debian_dir/control"
     j2se_copyright > "$debian_dir/copyright"
     j2sdk_doc_doc-base > "$debian_dir/$j2se_package.doc-base"
+    j2se_rules > "$debian_dir/rules"
+    chmod +x "$debian_dir/rules"
     j2se_install_scripts
     install -d "$target/debian"
     j2se_info > "$target/debian/info"

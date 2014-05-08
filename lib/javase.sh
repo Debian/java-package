@@ -65,6 +65,15 @@ EOF
     )
 }
 
+j2se_rules() {
+    cat << EOF
+#!/usr/bin/make -f
+
+%:
+	dh \$@
+EOF
+}
+
 j2se_install_scripts() {
     cat > "$debian_dir/postinst" << EOF
 #!/bin/bash
