@@ -10,6 +10,13 @@ java-package (0.55) UNRELEASED; urgency=medium
   * Bumped the Standards-Version of the generated package to 3.9.5
   * Use debhelper level 9 in the generated package
 
+  [ Benjamin Drung ]
+  * Add a debian/rules file to the generated source package.
+  * Use dpkg-buildpackage to build the guest package.
+  * Add ${misc:Depends} to the guest dependency.
+  * Add --source option to build a source package instead of a binary deb
+    package. (Closes: #745762)
+
  -- tony mancill <tmancill@debian.org>  Mon, 07 Apr 2014 21:26:36 -0700
 
 java-package (0.54) unstable; urgency=medium
