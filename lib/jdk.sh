@@ -15,7 +15,7 @@ j2sdk_control() {
     cat << EOF
 Package: $j2se_package
 Architecture: any
-Depends: $depends
+Depends: \${misc:Depends}, $depends
 Recommends: netbase
 Provides: java-virtual-machine, java-runtime, java2-runtime, java${j2se_release}-runtime, java$((${j2se_release}-1))-runtime, java$((${j2se_release}-2))-runtime, $java_browser_plugin java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, java${j2se_release}-runtime-headless, java$((${j2se_release}-1))-runtime-headless, java$((${j2se_release}-2))-runtime-headless, java-sdk, java2-sdk, java$((${j2se_release}-2))-sdk, java$((${j2se_release}-1))-sdk, java${j2se_release}-sdk
 Description: $j2se_title

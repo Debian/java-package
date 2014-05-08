@@ -3,9 +3,7 @@ j2sdk_doc_control() {
     cat << EOF
 Package: $j2se_package
 Architecture: any
-Depends: 
-Recommends: 
-Provides: 
+Depends: \${misc:Depends}
 Description: $j2se_title
  The Java(TM) SE JDK is a development environment for building
  applications, applets, and components that can be deployed on the
