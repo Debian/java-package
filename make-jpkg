@@ -200,11 +200,11 @@ echo -n "Creating temporary directory: "
 tmp="$( mktemp -d -t "$program_name.XXXXXXXXXX" )"
 echo "$tmp"
 
-debian_dir="$tmp/debian"
-install -d -m 755 "$debian_dir"
+package_dir="$tmp/package"
+install -d -m 755 "$package_dir"
 
-install_dir="$tmp/install"
-install -d -m 755 "$install_dir"
+debian_dir="$package_dir/debian"
+install -d -m 755 "$debian_dir"
 
 # load and execute plugins
 echo -n "Loading plugins:"

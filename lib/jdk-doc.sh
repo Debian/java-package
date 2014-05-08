@@ -40,7 +40,7 @@ j2sdk_doc_run() {
     read_maintainer_info
     j2se_package="$j2se_vendor-java$j2se_release-doc"
     j2se_name="jdk$j2se_release-$j2se_vendor-doc"
-    local target="$install_dir$javadoc_base$j2se_name"
+    local target="$package_dir/$j2se_name"
     install -d -m 755 "$( dirname "$target" )"
     extract_bin "$archive_path" "$j2se_expected_min_size" "$target"
     rm -rf "$target/.systemPrefs"
@@ -49,6 +49,7 @@ j2sdk_doc_run() {
     j2se_changelog > "$debian_dir/changelog"
     j2sdk_doc_control > "$debian_dir/control"
     j2se_copyright > "$debian_dir/copyright"
+    echo "$j2se_name $javadoc_base" > "$debian_dir/install"
     j2sdk_doc_doc-base > "$debian_dir/$j2se_package.doc-base"
     j2se_rules > "$debian_dir/rules"
     chmod +x "$debian_dir/rules"

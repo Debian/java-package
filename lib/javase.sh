@@ -46,12 +46,12 @@ subdirectories.
 ----------------------------------------------------------------------
 EOF
     (
-    cd "$install_dir"
-    find * -type f -iname copyright |
+    cd "$package_dir"
+    find * -type f -iname copyright ! -path debian/copyright |
     while read file; do
         cat << EOF
 
-File: /$file
+File: $jvm_base$file
 
 ----------------------------------------------------------------------
 
@@ -71,6 +71,12 @@ j2se_rules() {
 
 %:
 	dh \$@
+
+override_dh_compress:
+	dh_compress \$(shell find $j2se_name/man/ -type f ! -name '*.gz' -printf '${jvm_base##/}/%p\n')
+
+override_dh_shlibdeps:
+	dh_shlibdeps --exclude=fxavcodecplugin -l\$(shell find $j2se_name -type f -name '*.so*' -printf '${jvm_base##/}/%h\n' | sort -u | tr '\n' ':' | sed 's/:\$\$//')
 EOF
 }
 
@@ -193,57 +199,17 @@ jinfos() {
 }
 
 j2se_build() {
-    cd "$tmp"
+    cd "$package_dir"
     echo "Create debian package:"
 
-    #export DH_VERBOSE=1
-    export DH_OPTIONS=--tmpdir="$install_dir"
-
-    echo "    dh_testdir"
-    dh_testdir
-    echo "    dh_testroot"
-    dh_testroot
-    echo "    dh_installchangelogs"
-    dh_installchangelogs
-    # Problem: dh_installchangelogs thinks this is a native package.
-    echo "    dh_installdocs"
-    dh_installdocs
-    # dh_install
-    # dh_link
-    # Conditionally wrapping this as not all JRE/JDKs have man directories
-    if [ -e "$install_dir/$jvm_base$j2se_name/man" ]; then
-        echo "    dh_compress"
-        dh_compress $( find "$install_dir/$jvm_base$j2se_name/man" -type f ! -name "*.gz" )
-    fi
-    echo "    dh_fixperms"
-    dh_fixperms
-    echo "    dh_installdeb"
-    dh_installdeb
-    echo "    dh_shlibdeps"
-    ldpath=
-    for dir in $( find "$install_dir" -type f -name "*.so*" -printf "%h\n" | sort -u ); do
-        if [[ -z "$ldpath" ]]; then
-            ldpath="$dir"
-        else
-            ldpath="$ldpath:$dir"
-        fi
-    done
-    # suppress some warnings
-    dh_shlibdeps --exclude=fxavcodecplugin -l"$ldpath" 2>&1 |
-    { grep -v "warning: format of \`NEEDED lib.*\.so' not recognized" >&2 || true; }
-    echo "    dh_gencontrol"
-    dh_gencontrol
-    echo "    dh_md5sums"
-    dh_md5sums
-    echo "    dh_builddeb"
-    dh_builddeb --destdir="$tmp"
+    dpkg-buildpackage -b -uc -us
+    cd "$tmp"
     local deb_filename="$( echo "${j2se_package}_"*.deb )"
     echo "    copy $deb_filename into directory $working_dir/"
     cp "$deb_filename" "$working_dir/"
     if [ -n "$genchanges" ]; then
         echo "    dpkg-genchanges"
         local changes_filename="${deb_filename%.deb}.changes"
-        dpkg-genchanges -b -u. > "$changes_filename"
         echo "    copy $changes_filename into directory $working_dir/"
         cp "$changes_filename" "$working_dir/"
     fi

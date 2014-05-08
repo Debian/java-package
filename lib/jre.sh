@@ -26,7 +26,7 @@ j2re_run() {
     read_maintainer_info
     j2se_package="$j2se_vendor-java$j2se_release-jre"
     j2se_name="jre-$j2se_release-$j2se_vendor-$j2se_arch"
-    local target="$install_dir$jvm_base$j2se_name"
+    local target="$package_dir/$j2se_name"
     install -d -m 755 "$( dirname "$target" )"
     extract_bin "$archive_path" "$j2se_expected_min_size" "$target"
     rm -rf "$target/.systemPrefs"
@@ -35,11 +35,13 @@ j2re_run() {
     j2se_changelog > "$debian_dir/changelog"
     j2re_control > "$debian_dir/control"
     j2se_copyright > "$debian_dir/copyright"
+    echo "$j2se_name $jvm_base" > "$debian_dir/install"
     j2se_rules > "$debian_dir/rules"
     chmod +x "$debian_dir/rules"
     j2se_install_scripts
     install -d "$target/debian"
     j2se_info > "$target/debian/info"
-    eval "$j2se_jinfo" > "$install_dir$jvm_base.$j2se_name.jinfo"
+    eval "$j2se_jinfo" > "$package_dir/.$j2se_name.jinfo"
+    echo ".$j2se_name.jinfo $jvm_base" >> "$debian_dir/install"
     j2se_build
 }
