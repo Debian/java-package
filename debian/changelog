@@ -1,4 +1,4 @@
-java-package (0.55) UNRELEASED; urgency=medium
+java-package (0.55) unstable; urgency=medium
 
   [ tony mancill ]
   * Team upload.
@@ -16,8 +16,12 @@ java-package (0.55) UNRELEASED; urgency=medium
   * Add ${misc:Depends} to the guest dependency.
   * Add --source option to build a source package instead of a binary deb
     package. (Closes: #745762)
+  * Replace lsb_release call by dpkg-vendor call.
+  * Convert copyright file content to UTF-8 for guest debian/copyright.
+  * Remove trailing spaces from copyright file.
+  * Create build depends for JDK guest package.
 
- -- tony mancill <tmancill@debian.org>  Mon, 07 Apr 2014 21:26:36 -0700
+ -- Benjamin Drung <benjamin.drung@profitbricks.com>  Tue, 17 Jun 2014 20:41:39 +0200
 
 java-package (0.54) unstable; urgency=medium
 
