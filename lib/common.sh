@@ -195,7 +195,7 @@ get_architecture() {
 
 # get browser plugin directories
 get_browser_plugin_dirs() {
-    if [ $(lsb_release --id --short) = Ubuntu ]; then
+    if dpkg-vendor --derives-from Ubuntu; then
         export browser_plugin_dirs="xulrunner-addons firefox iceape iceweasel mozilla midbrowser xulrunner"
     else
         export browser_plugin_dirs=mozilla

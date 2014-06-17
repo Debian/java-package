@@ -15,7 +15,6 @@ Depends: debhelper (>= 9),
          fakeroot,
          libasound2,
          libx11-6,
-         lsb-release,
          unzip,
          ${misc:Depends}
 Recommends: gcc
