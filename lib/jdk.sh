@@ -1,5 +1,9 @@
 
 j2sdk_control() {
+    build_depends="libasound2, libgl1-mesa-glx, libgtk2.0-0, libxslt1.1, libxtst6, libxxf86vm1"
+    if test "$j2se_release" = 8; then
+        build_depends="$build_depends, libavcodec53, libavformat53"
+    fi
     j2se_control
     java_browser_plugin="java-browser-plugin, "
     depends="\${shlibs:Depends}"

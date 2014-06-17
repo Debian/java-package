@@ -21,12 +21,15 @@ EOF
 }
 
 j2se_control() {
+    if test -n "$build_depends"; then
+        build_depends=", $build_depends"
+    fi
     cat << EOF
 Source: $j2se_package
 Section: non-free/devel
 Priority: optional
 Maintainer: $maintainer_name <$maintainer_email>
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper (>= 9)${build_depends}
 Standards-Version: 3.9.5
 
 EOF
