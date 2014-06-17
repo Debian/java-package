@@ -49,13 +49,13 @@ j2sdk_run() {
     j2se_changelog > "$debian_dir/changelog"
     j2sdk_control > "$debian_dir/control"
     j2se_copyright > "$debian_dir/copyright"
-    echo "$j2se_name $jvm_base" > "$debian_dir/install"
     j2se_rules > "$debian_dir/rules"
     chmod +x "$debian_dir/rules"
     j2se_install_scripts
     install -d "$target/debian"
     j2se_info > "$target/debian/info"
     eval "$j2se_jinfo" > "$package_dir/.$j2se_name.jinfo"
-    echo ".$j2se_name.jinfo $jvm_base" >> "$debian_dir/install"
+    echo ".$j2se_name.jinfo $jvm_base" > "$debian_dir/install"
+    echo "$j2se_name $jvm_base" >> "$debian_dir/install"
     j2se_build
 }
