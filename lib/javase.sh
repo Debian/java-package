@@ -77,7 +77,7 @@ override_dh_compress:
 	dh_compress \$(shell find $j2se_name/man/ -type f ! -name '*.gz' -printf '${jvm_base##/}/%p\n')
 
 override_dh_shlibdeps:
-	dh_shlibdeps --exclude=fxavcodecplugin -l\$(shell find $j2se_name -type f -name '*.so*' -printf '${jvm_base##/}/%h\n' | sort -u | tr '\n' ':' | sed 's/:\$\$//')
+	dh_shlibdeps --exclude=fxavcodecplugin --exclude=avplugin -l\$(shell find $j2se_name -type f -name '*.so*' -printf '${jvm_base##/}/%h\n' | sort -u | tr '\n' ':' | sed 's/:\$\$//')
 EOF
 }
 
