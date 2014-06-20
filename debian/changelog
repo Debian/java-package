@@ -1,3 +1,12 @@
+java-package (0.56) unstable; urgency=medium
+
+  * Team upload.
+  * Do not Build-Depends libavcodec53 and libavformat53 for Java 8.
+    Thanks to Chris Jester-Young for the patch. (Closes: #751974)
+  * Set the urcency of the guest package to medium.
+
+ -- Benjamin Drung <benjamin.drung@profitbricks.com>  Fri, 20 Jun 2014 11:10:45 +0200
+
 java-package (0.55) unstable; urgency=medium
 
   [ tony mancill ]
