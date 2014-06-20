@@ -12,7 +12,7 @@ EOF
 
 j2se_changelog() {
     cat << EOF
-$j2se_package ($j2se_version) unstable; urgency=low
+$j2se_package ($j2se_version) unstable; urgency=medium
 
   * This package was created with java-package ($version).
 
