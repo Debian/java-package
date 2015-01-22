@@ -72,9 +72,9 @@ $program_name builds a Debian package from the given Java binary distribution FI
 
 Supported java binary distributions currently include:
   * Oracle (http://www.oracle.com/technetwork/java/javase/downloads) :
-    - The Java Development Kit (JDK), version 6 and 7
-    - The Java Runtime Environment (JRE), version 6 and 7
-    - The Java API Javadoc, version 6 and 7
+    - The Java Development Kit (JDK), version 6, 7 and 8
+    - The Java Runtime Environment (JRE), version 6, 7 and 8
+    - The Java API Javadoc, version 6, 7 and 8
   (Choose tar.gz archives or self-extracting archives, do _not_ choose the RPM!)
 
 The following options are recognized:
