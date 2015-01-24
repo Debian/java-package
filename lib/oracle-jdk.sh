@@ -104,7 +104,7 @@ EOF
         oracle_no_man_jre_bin_jre="ControlPanel"
       fi
       oracle_jre_lib_hl="jexec"
-      oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jcmd jconsole jdb jdeps jhat jinfo jmap jps jrunscript jsadebugd jstack jstat jstatd native2ascii rmic schemagen serialver wsgen wsimport xjc"
+      oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jcmd jconsole jdb jdeps jhat jinfo jmap jmc jps jrunscript jsadebugd jstack jstat jstatd jvisualvm native2ascii rmic schemagen serialver wsgen wsimport xjc"
       j2sdk_run
     fi
   fi
