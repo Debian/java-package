@@ -1,12 +1,17 @@
 
 j2re_control() {
     j2se_control
+    for i in `seq 5 ${j2se_release}`;
+    do
+        provides_runtime="${provides_runtime} java${i}-runtime,"
+        provides_headless="${provides_headless} java${i}-runtime-headless,"
+    done
     cat << EOF
 Package: $j2se_package
 Architecture: any
 Depends: \${misc:Depends}, \${shlibs:Depends}
 Recommends: netbase
-Provides: java-virtual-machine, java-runtime, java2-runtime, java${j2se_release}-runtime, java$((${j2se_release}-1))-runtime, java$((${j2se_release}-2))-runtime, java-runtime-headless, java2-runtime-headless, java${j2se_release}-runtime-headless, java$((${j2se_release}-1))-runtime-headless, java$((${j2se_release}-2))-runtime-headless, java-browser-plugin
+Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime java-runtime-headless, java2-runtime-headless, $provides_headless java-browser-plugin
 Description: $j2se_title
  The Java(TM) SE Runtime Environment contains the Java virtual machine,
  runtime class libraries, and Java application launcher that are

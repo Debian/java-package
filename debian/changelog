@@ -2,6 +2,8 @@ java-package (0.57) UNRELEASED; urgency=medium
 
   * Team upload.
   * Include Java 8 in the help message of make-jpkg (Closes: #775977)
+  * Provide all runtimes since Java 5, thanks to Laurens Blankers
+    (Closes: #775987)
   * Standards-Version updated to 3.9.6 (no changes)
 
  -- Emmanuel Bourg <ebourg@apache.org>  Thu, 22 Jan 2015 09:41:39 +0100

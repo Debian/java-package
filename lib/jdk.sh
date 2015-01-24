@@ -13,12 +13,18 @@ j2sdk_control() {
         # No browser on ARM yet
         java_browser_plugin=""
     fi
+    for i in `seq 5 ${j2se_release}`;
+    do
+        provides_runtime="${provides_runtime} java${i}-runtime,"
+        provides_headless="${provides_headless} java${i}-runtime-headless,"
+        provides_sdk="${provides_sdk} java${i}-sdk,"
+    done
     cat << EOF
 Package: $j2se_package
 Architecture: any
 Depends: \${misc:Depends}, $depends
 Recommends: netbase
-Provides: java-virtual-machine, java-runtime, java2-runtime, java${j2se_release}-runtime, java$((${j2se_release}-1))-runtime, java$((${j2se_release}-2))-runtime, $java_browser_plugin java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, java${j2se_release}-runtime-headless, java$((${j2se_release}-1))-runtime-headless, java$((${j2se_release}-2))-runtime-headless, java-sdk, java2-sdk, java$((${j2se_release}-2))-sdk, java$((${j2se_release}-1))-sdk, java${j2se_release}-sdk
+Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime $java_browser_plugin java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, $provides_headless java-sdk, java2-sdk, $provides_sdk
 Description: $j2se_title
  The Java(TM) SE JDK is a development environment for building
  applications, applets, and components that can be deployed on the
