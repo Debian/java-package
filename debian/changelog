@@ -1,4 +1,4 @@
-java-package (0.57) UNRELEASED; urgency=medium
+java-package (0.57) experimental; urgency=medium
 
   * Team upload.
   * Include Java 8 in the help message of make-jpkg (Closes: #775977)
@@ -8,7 +8,7 @@ java-package (0.57) UNRELEASED; urgency=medium
     (Closes: #676877)
   * Standards-Version updated to 3.9.6 (no changes)
 
- -- Emmanuel Bourg <ebourg@apache.org>  Thu, 22 Jan 2015 09:41:39 +0100
+ -- Emmanuel Bourg <ebourg@apache.org>  Sun, 25 Jan 2015 00:02:59 +0100
 
 java-package (0.56) unstable; urgency=medium
 
