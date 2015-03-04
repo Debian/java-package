@@ -1,3 +1,10 @@
+java-package (0.58) UNRELEASED; urgency=medium
+
+  * Removed the generated package mistakenly included in the source package
+    (Closes: #779727)
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Thu, 05 Mar 2015 00:09:05 +0100
+
 java-package (0.57) experimental; urgency=medium
 
   * Team upload.
