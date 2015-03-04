@@ -79,14 +79,15 @@ Supported java binary distributions currently include:
 
 The following options are recognized:
 
-  --full-name NAME   full name used in the maintainer field of the package
-  --email EMAIL      email address used in the maintainer field of the package
-  --changes          create a .changes file
-  --revision         add debian revision
-  --source           build a source package instead of a binary deb package
+  --full-name NAME     full name used in the maintainer field of the package
+  --email EMAIL        email address used in the maintainer field of the package
+  --changes            create a .changes file
+  --revision           add debian revision
+  --source             build a source package instead of a binary deb package
+  --with-system-certs  integrate with the system's keystore
 
-  --help             display this help and exit
-  --version          output version information and exit
+  --help               display this help and exit
+  --version            output version information and exit
 
 EOF
 }
@@ -131,6 +132,8 @@ while [[ $# -gt 0 && "x$1" == x--* ]]; do
     genchanges="true"
     elif [[ "x$1" == x--source ]]; then
     build_source="true"
+    elif [[ "x$1" == x--with-system-certs ]]; then
+    create_cert_softlinks="true"
     else
     unrecognized_option "$1"
     fi

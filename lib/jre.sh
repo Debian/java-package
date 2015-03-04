@@ -1,6 +1,9 @@
 
 j2re_control() {
     j2se_control
+    if [ "$create_cert_softlinks" == "true" ]; then
+        depends="ca-certificates-java"
+    fi
     for i in `seq 5 ${j2se_release}`;
     do
         provides_runtime="${provides_runtime} java${i}-runtime,"
@@ -9,7 +12,7 @@ j2re_control() {
     cat << EOF
 Package: $j2se_package
 Architecture: any
-Depends: \${misc:Depends}, \${shlibs:Depends}
+Depends: \${misc:Depends}, \${shlibs:Depends}, $depends
 Recommends: netbase
 Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime java-runtime-headless, java2-runtime-headless, $provides_headless java-browser-plugin
 Description: $j2se_title

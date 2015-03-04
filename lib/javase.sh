@@ -126,8 +126,16 @@ if [ "\$1" = configure ]; then
           update-alternatives --install "\$link_path/\$link_name" "\$plugin_name" "\$plugin" $j2se_priority
         fi
     }
-
 EOF
+    if [ "$create_cert_softlinks" == "true" ];then
+        cat >> "$debian_dir/postinst" << EOF
+    for subdir in lib/security jre/lib/security;do
+        if [ -f $jvm_base$j2se_name/\$subdir/cacerts ]; then
+            ln -sf /etc/ssl/certs/java/cacerts $jvm_base$j2se_name/\$subdir/cacerts
+        fi
+    done
+EOF
+    fi
     eval "$j2se_install" >> "$debian_dir/postinst"
 
     cat >> "$debian_dir/postinst" << EOF

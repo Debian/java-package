@@ -52,6 +52,11 @@ add debian revision
 .B --source
 build a source package instead of a binary deb package
 .TP
+.B --with-system-certs
+Replace the JVMs keystore with a softlink to the system's keystore,
+(/etc/ssl/certs/java/cacerts) which is managed automatically by the
+ca-certificates and ca-certificates-java packages.
+.TP
 .B --help
 display help text and exit
 .TP

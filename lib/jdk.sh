@@ -13,6 +13,9 @@ j2sdk_control() {
         # No browser on ARM yet
         java_browser_plugin=""
     fi
+    if [ "$create_cert_softlinks" == "true" ]; then
+        depends="$depends, ca-certificates-java"
+    fi
     for i in `seq 5 ${j2se_release}`;
     do
         provides_runtime="${provides_runtime} java${i}-runtime,"

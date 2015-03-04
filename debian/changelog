@@ -1,5 +1,9 @@
 java-package (0.58) UNRELEASED; urgency=medium
 
+  [ Francesc Zacarias ]
+  * New --with-system-certs option to use the system keystore (Closes: #776395)
+
+  [ Emmanuel Bourg ]
   * Removed the generated package mistakenly included in the source package
     (Closes: #779727)
 
