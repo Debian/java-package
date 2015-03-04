@@ -1,4 +1,4 @@
-java-package (0.58) UNRELEASED; urgency=medium
+java-package (0.58) experimental; urgency=medium
 
   [ Francesc Zacarias ]
   * New --with-system-certs option to use the system keystore (Closes: #776395)
