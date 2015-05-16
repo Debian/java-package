@@ -1,3 +1,14 @@
+java-package (0.59) UNRELEASED; urgency=medium
+
+  * Team upload.
+  * Upload to unstable.
+  * Add following dependencies to address build failures for dpkg-shlibdeps
+    errors during make-jpkg of JDK/JRE:
+    libgl1-mesa-glx libfontconfig1 libxslt1.1 libxtst6 libxxf86vm1 libgtk2.0-0
+    (Closes: #782132)
+
+ -- tony mancill <tmancill@debian.org>  Sat, 16 May 2015 13:46:27 -0700
+
 java-package (0.58) experimental; urgency=medium
 
   [ Francesc Zacarias ]

@@ -14,7 +14,13 @@ Depends: debhelper (>= 9),
          dpkg-dev,
          fakeroot,
          libasound2,
+         libfontconfig1,
+         libgl1-mesa-glx,
+         libgtk2.0-0,
          libx11-6,
+         libxslt1.1,
+         libxtst6,
+         libxxf86vm1,
          unzip,
          ${misc:Depends}
 Recommends: gcc
