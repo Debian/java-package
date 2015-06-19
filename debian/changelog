@@ -1,3 +1,10 @@
+java-package (0.60) UNRELEASED; urgency=medium
+
+  * Team upload.
+  * Update the package long description.
+
+ -- tony mancill <tmancill@debian.org>  Thu, 18 Jun 2015 22:00:02 -0700
+
 java-package (0.59) unstable; urgency=medium
 
   * Team upload.
