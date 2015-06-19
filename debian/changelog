@@ -2,6 +2,8 @@ java-package (0.60) UNRELEASED; urgency=medium
 
   * Team upload.
   * Update the package long description.
+  * Add build-essential as a dependency and drop the (now redundant)
+    recommends on gcc.  (Closes: #787809)
 
  -- tony mancill <tmancill@debian.org>  Thu, 18 Jun 2015 22:00:02 -0700
 
