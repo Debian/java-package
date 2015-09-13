@@ -18,7 +18,7 @@ read_yn() {
 # diskusage <path>: prints size in MB
 diskusage() {
     local path="$1"
-    read size dummy < <( du -sm "$path" )
+    read size dummy < <( du -sm --apparent-size "$path" )
     echo "$size"
 }
 
