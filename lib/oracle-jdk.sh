@@ -101,7 +101,7 @@ EOF
         oracle_jre_bin_jre="javaws policytool"
       fi
       if [ "${DEB_BUILD_ARCH:0:3}" != "arm" ]; then
-        oracle_no_man_jre_bin_jre="ControlPanel"
+        oracle_no_man_jre_bin_jre="ControlPanel jcontrol"
       fi
       oracle_jre_lib_hl="jexec"
       oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jcmd jconsole jdb jdeps jhat jinfo jmap jmc jps jrunscript jsadebugd jstack jstat jstatd jvisualvm native2ascii rmic schemagen serialver wsgen wsimport xjc"

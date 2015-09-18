@@ -78,7 +78,7 @@ EOF
       j2se_jinfo=oracle_j2re_jinfo
       oracle_jre_bin_hl="java javaws keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
       oracle_jre_bin_jre="javaws policytool"
-      oracle_no_man_jre_bin_jre="ControlPanel"
+      oracle_no_man_jre_bin_jre="ControlPanel jcontrol"
       oracle_jre_lib_hl="jexec"
       j2re_run
     fi
