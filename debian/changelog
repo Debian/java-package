@@ -7,6 +7,7 @@ java-package (0.60) UNRELEASED; urgency=medium
 
   [ Emmanuel Bourg ]
   * Added jcontrol to the command line alternatives (Closes: #799370)
+  * Fixed the detection of the latest Java 8 documentation archives.
 
  -- tony mancill <tmancill@debian.org>  Thu, 18 Jun 2015 22:00:02 -0700
 

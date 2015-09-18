@@ -3,7 +3,7 @@ oracle_j2sdk_doc_detect() {
   j2se_release=0
 
   # Update or GA release (jdk-7u25-apidocs.zip)
-  if [[ $archive_name =~ jdk-([0-9]+)(u([0-9]+))?-apidocs\.zip ]]
+  if [[ $archive_name =~ jdk-([0-9]+)(u([0-9]+))?-(apidocs|docs-all)\.zip ]]
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[3]}
