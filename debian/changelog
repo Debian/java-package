@@ -11,6 +11,7 @@ java-package (0.60) UNRELEASED; urgency=medium
   * Fixed the dh_shlibdeps error when generating a documentation package
     (Closes: #753071)
   * Changed the architecture of the documentation packages from any to all.
+  * Changed the section of the documentation packages to non-free/doc
 
  -- tony mancill <tmancill@debian.org>  Thu, 18 Jun 2015 22:00:02 -0700
 
