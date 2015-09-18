@@ -49,7 +49,7 @@ j2sdk_doc_run() {
     j2se_copyright > "$debian_dir/copyright"
     echo "$j2se_name $javadoc_base" > "$debian_dir/install"
     j2sdk_doc_doc-base > "$debian_dir/$j2se_package.doc-base"
-    j2se_rules > "$debian_dir/rules"
+    j2se_doc_rules > "$debian_dir/rules"
     chmod +x "$debian_dir/rules"
     j2se_install_scripts
     install -d "$target/debian"
