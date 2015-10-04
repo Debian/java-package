@@ -1,9 +1,6 @@
 java-package (0.60) UNRELEASED; urgency=medium
 
   * Team upload.
-  * Update the package long description.
-  * Add build-essential as a dependency and drop the (now redundant)
-    recommends on gcc.  (Closes: #787809)
 
   [ Emmanuel Bourg ]
   * Added jcontrol to the command line alternatives (Closes: #799370)
@@ -13,7 +10,14 @@ java-package (0.60) UNRELEASED; urgency=medium
   * Changed the architecture of the documentation packages from any to all.
   * Changed the section of the documentation packages to non-free/doc
 
- -- tony mancill <tmancill@debian.org>  Thu, 18 Jun 2015 22:00:02 -0700
+  [ tony mancill ]
+  * Update the package long description.
+  * Add build-essential as a dependency and drop the (now redundant)
+    recommends on gcc. (Closes: #787809)
+  * Use du --apparent-size when checking the size of the unpacked
+    distribution. (Closes: #794401)
+
+ -- tony mancill <tony@boson>  Sat, 03 Oct 2015 22:19:27 -0700
 
 java-package (0.59) unstable; urgency=medium
 
