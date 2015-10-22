@@ -89,6 +89,8 @@ The following options are recognized:
   --source             build a source package instead of a binary deb package
   --with-system-certs  integrate with the system's keystore
   --jce-policy FILE    Replace cryptography files with versions from FILE
+  --without-alternatives
+                       build a package that does not install alternatives
 
   --help               display this help and exit
   --version            output version information and exit
@@ -150,6 +152,8 @@ while [[ $# -gt 0 && "x$1" == x--* ]]; do
     build_source="true"
     elif [[ "x$1" == x--with-system-certs ]]; then
     create_cert_softlinks="true"
+    elif [[ "x$1" == x--without-alternatives ]]; then
+    without_alternatives="true"
     else
     unrecognized_option "$1"
     fi

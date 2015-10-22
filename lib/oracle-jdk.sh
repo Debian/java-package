@@ -118,13 +118,15 @@ if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
 fi
 
-install_alternatives $jvm_base$j2se_name/jre/bin $oracle_jre_bin_hl
-install_alternatives $jvm_base$j2se_name/jre/bin $oracle_jre_bin_jre
-if [ -n "$oracle_no_man_jre_bin_jre" ]; then
-    install_no_man_alternatives $jvm_base$j2se_name/jre/bin $oracle_no_man_jre_bin_jre
+if [ "x$without_alternatives" == "x" ]; then
+    install_alternatives $jvm_base$j2se_name/jre/bin $oracle_jre_bin_hl
+    install_alternatives $jvm_base$j2se_name/jre/bin $oracle_jre_bin_jre
+    if [ -n "$oracle_no_man_jre_bin_jre" ]; then
+        install_no_man_alternatives $jvm_base$j2se_name/jre/bin $oracle_no_man_jre_bin_jre
+    fi
+    install_no_man_alternatives $jvm_base$j2se_name/jre/lib $oracle_jre_lib_hl
+    install_alternatives $jvm_base$j2se_name/bin $oracle_bin_jdk
 fi
-install_no_man_alternatives $jvm_base$j2se_name/jre/lib $oracle_jre_lib_hl
-install_alternatives $jvm_base$j2se_name/bin $oracle_bin_jdk
 
 # No plugin for ARM architecture yet
 if [ "${DEB_BUILD_ARCH:0:3}" != "arm" ]; then
@@ -142,13 +144,15 @@ if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
 fi
 
-remove_alternatives $jvm_base$j2se_name/jre/bin $oracle_jre_bin_hl
-remove_alternatives $jvm_base$j2se_name/jre/bin $oracle_jre_bin_jre
-if [ -n "$oracle_no_man_jre_bin_jre" ]; then
-    remove_alternatives $jvm_base$j2se_name/jre/bin $oracle_no_man_jre_bin_jre
+if [ "x$without_alternatives" == "x" ]; then
+    remove_alternatives $jvm_base$j2se_name/jre/bin $oracle_jre_bin_hl
+    remove_alternatives $jvm_base$j2se_name/jre/bin $oracle_jre_bin_jre
+    if [ -n "$oracle_no_man_jre_bin_jre" ]; then
+        remove_alternatives $jvm_base$j2se_name/jre/bin $oracle_no_man_jre_bin_jre
+    fi
+    remove_alternatives $jvm_base$j2se_name/jre/lib $oracle_jre_lib_hl
+    remove_alternatives $jvm_base$j2se_name/bin $oracle_bin_jdk
 fi
-remove_alternatives $jvm_base$j2se_name/jre/lib $oracle_jre_lib_hl
-remove_alternatives $jvm_base$j2se_name/bin $oracle_bin_jdk
 
 # No plugin for ARM architecture yet
 if [ "${DEB_BUILD_ARCH:0:3}" != "arm" ]; then
