@@ -38,7 +38,7 @@ j2sdk_doc_run() {
     diskfree "$j2se_required_space"
     read_maintainer_info
     get_distribution
-    j2se_package="$j2se_vendor-java$j2se_release-doc"
+    j2se_package="$j2se_vendor-java$j2se_release-doc$package_suffix"
     j2se_name="$j2se_package"
     local target="$package_dir/$j2se_name"
     install -d -m 755 "$( dirname "$target" )"
