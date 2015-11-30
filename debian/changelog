@@ -1,4 +1,4 @@
-java-package (0.60) UNRELEASED; urgency=medium
+java-package (0.60) unstable; urgency=medium
 
   * Team upload.
 
@@ -19,7 +19,7 @@ java-package (0.60) UNRELEASED; urgency=medium
   * Use du --apparent-size when checking the size of the unpacked
     distribution. (Closes: #794401)
 
- -- tony mancill <tony@boson>  Sat, 03 Oct 2015 22:19:27 -0700
+ -- Emmanuel Bourg <ebourg@apache.org>  Mon, 30 Nov 2015 14:23:05 +0100
 
 java-package (0.59) unstable; urgency=medium
 
