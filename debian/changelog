@@ -9,6 +9,8 @@ java-package (0.60) UNRELEASED; urgency=medium
     (Closes: #753071)
   * Changed the architecture of the documentation packages from any to all.
   * Changed the section of the documentation packages to non-free/doc
+  * Disabled dh_strip_nondeterminism when generating the Java packages
+    to speed up the build
 
   [ tony mancill ]
   * Update the package long description.

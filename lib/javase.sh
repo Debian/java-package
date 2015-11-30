@@ -78,6 +78,9 @@ override_dh_compress:
 
 override_dh_shlibdeps:
 	dh_shlibdeps --exclude=fxavcodecplugin --exclude=avplugin -l\$(shell find $j2se_name -type f -name '*.so*' -printf '${jvm_base##/}/%h\n' | sort -u | tr '\n' ':' | sed 's/:\$\$//')
+
+override_dh_strip_nondeterminism:
+	# Disable dh_strip_nondeterminism to speed up the build
 EOF
 }
 
@@ -88,6 +91,8 @@ j2se_doc_rules() {
 %:
 	dh \$@
 
+override_dh_strip_nondeterminism:
+	# Disable dh_strip_nondeterminism to speed up the build
 EOF
 }
 
