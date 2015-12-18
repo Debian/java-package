@@ -35,7 +35,7 @@ java-package (0.60) unstable; urgency=medium
   * Changed the architecture of the documentation packages from any to all.
   * Changed the section of the documentation packages to non-free/doc
   * Disabled dh_strip_nondeterminism when generating the Java packages
-    to speed up the build
+    to speed up the build and fix a corruption issue (Closes: #806463)
 
   [ tony mancill ]
   * Update the package long description.
