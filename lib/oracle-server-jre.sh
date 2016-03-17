@@ -1,10 +1,10 @@
 # Detect product
-j2se_detect_oracle_j2re=oracle_j2re_detect
-oracle_j2re_detect() {
+j2se_detect_oracle_server_j2re=oracle_server_j2re_detect
+oracle_server_j2re_detect() {
   j2se_release=0
 
-  # Update or GA release (jre-7u13-linux-x64.tar.gz)
-  if [[ $archive_name =~ ^jre-([0-9]+)(u([0-9]+))?-linux-(i586|x64|amd64)\.(bin|tar\.gz) ]]
+  # Update or GA release (server-jre-8u74-linux-x64.tar.gz)
+  if [[ $archive_name =~ server-jre-([0-9]+)(u([0-9]+))?-linux-(i586|x64|amd64)\.(bin|tar\.gz) ]]
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[3]}
@@ -20,7 +20,7 @@ oracle_j2re_detect() {
   fi
 
   # Early Access Release (jre-8-ea-bin-b103-linux-x64-15_aug_2013.tar.gz)
-  if [[ $archive_name =~ ^jre-([0-9]+)(u([0-9]+))?-(ea|fcs)-bin-(b[0-9]+)-linux-(i586|x64|amd64).*\.(bin|tar\.gz) ]]
+  if [[ $archive_name =~ server-jre-([0-9]+)(u([0-9]+))?-(ea|fcs)-bin-(b[0-9]+)-linux-(i586|x64|amd64).*\.(bin|tar\.gz) ]]
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[3]}
@@ -63,7 +63,7 @@ oracle_j2re_detect() {
     cat << EOF
 
 Detected product:
-    Java(TM) Runtime Environment (JRE)
+    Server Java(TM) Runtime Environment (JRE)
     Standard Edition, Version $j2se_version_name
     Oracle(TM)
 EOF
@@ -71,23 +71,22 @@ EOF
       j2se_found=true
       j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
       j2se_vendor="oracle"
-      j2se_title="Java™ Platform, Standard Edition $j2se_release Runtime Environment"
+      j2se_title="Java™ Platform, Standard Edition $j2se_release Server Runtime Environment"
 
-      j2se_install=oracle_j2re_install
-      j2se_remove=oracle_j2re_remove
-      j2se_jinfo=oracle_j2re_jinfo
-      j2se_control=oracle_j2re_control
-      oracle_jre_bin_hl="java javaws keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
-      oracle_jre_bin_jre="javaws policytool"
-      oracle_no_man_jre_bin_jre="ControlPanel jcontrol"
+      j2se_install=oracle_server_j2re_install
+      j2se_remove=oracle_server_j2re_remove
+      j2se_jinfo=oracle_server_j2re_jinfo
+      j2se_control=oracle_server_j2re_control
+      oracle_jre_bin_hl="java keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
+      oracle_jre_bin_jre="policytool"
       oracle_jre_lib_hl="jexec"
-      j2se_package="$j2se_vendor-java$j2se_release-jre"
+      j2se_package="$j2se_vendor-java$j2se_release-server-jre"
       j2se_run
     fi
   fi
 }
 
-oracle_j2re_install() {
+oracle_server_j2re_install() {
     cat << EOF
 if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
@@ -95,17 +94,11 @@ fi
 
 install_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_hl
 install_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_jre
-install_no_man_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
 install_no_man_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
-
-plugin_dir="$jvm_base$j2se_name/lib/$DEB_BUILD_ARCH"
-for b in $browser_plugin_dirs;do
-    install_browser_plugin "/usr/lib/\$b/plugins" "libjavaplugin.so" "\$b-javaplugin.so" "\$plugin_dir/libnpjp2.so"
-done
 EOF
 }
 
-oracle_j2re_remove() {
+oracle_server_j2re_remove() {
     cat << EOF
 if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
@@ -113,17 +106,11 @@ fi
 
 remove_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_hl
 remove_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_jre
-remove_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
 remove_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
-
-plugin_dir="$jvm_base$j2se_name/lib/$DEB_BUILD_ARCH"
-for b in $browser_plugin_dirs;do
-    remove_browser_plugin "\$b-javaplugin.so" "\$plugin_dir/libnpjp2.so"
-done
 EOF
 }
 
-oracle_j2re_jinfo() {
+oracle_server_j2re_jinfo() {
     cat << EOF
 name=$j2se_name
 priority=$j2se_priority
@@ -131,21 +118,16 @@ section=main
 EOF
     jinfos "hl" $jvm_base$j2se_name/bin/ $oracle_jre_bin_hl
     jinfos "jre" $jvm_base$j2se_name/bin/ $oracle_jre_bin_jre
-    jinfos "jre" $jvm_base$j2se_name/bin/ $oracle_no_man_jre_bin_jre
     jinfos "hl" $jvm_base$j2se_name/lib/ $oracle_jre_lib_hl
-    for b in $browser_plugin_dirs;do
-        echo "plugin $b-javaplugin.so $jvm_base$j2se_name/lib/$DEB_BUILD_ARCH/libnpjp2.so"
-    done
 }
 
-oracle_j2re_control() {
+oracle_server_j2re_control() {
     j2se_control
     if [ "$create_cert_softlinks" == "true" ]; then
         depends="ca-certificates-java"
     fi
     for i in `seq 5 ${j2se_release}`;
     do
-        provides_runtime="${provides_runtime} java${i}-runtime,"
         provides_headless="${provides_headless} java${i}-runtime-headless,"
     done
     cat << EOF
@@ -153,14 +135,14 @@ Package: $j2se_package
 Architecture: $j2se_debian_arch
 Depends: \${misc:Depends}, \${shlibs:Depends}, $depends
 Recommends: netbase
-Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime java-runtime-headless, java2-runtime-headless, $provides_headless java-browser-plugin
+Provides: java-runtime-headless, java2-runtime-headless, $provides_headless
 Description: $j2se_title
- The Java(TM) SE Runtime Environment contains the Java virtual machine,
- runtime class libraries, and Java application launcher that are
- necessary to run programs written in the Java programming language.
- It is not a development environment and does not contain development
- tools such as compilers or debuggers.  For development tools, see the
- Java SE Development Kit (JDK).
+ The Java(TM) SE Server Runtime Environment contains the Java virtual machine,
+ runtime class libraries, and Java application launcher that are necessary to
+ run programs written in the Java programming language. It includes tools for
+ JVM monitoring and tools commonly required for server applications, but does
+ not include browser integration (the Java plug-in), auto-update, nor an
+ installer.
  .
  This package has been automatically created with java-package ($version).
 EOF
