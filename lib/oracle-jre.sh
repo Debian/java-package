@@ -150,7 +150,7 @@ oracle_j2re_control() {
     done
     cat << EOF
 Package: $j2se_package
-Architecture: any
+Architecture: $j2se_debian_arch
 Depends: \${misc:Depends}, \${shlibs:Depends}, $depends
 Recommends: netbase
 Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime java-runtime-headless, java2-runtime-headless, $provides_headless java-browser-plugin
