@@ -30,7 +30,7 @@ Section: non-free/devel
 Priority: optional
 Maintainer: $maintainer_name <$maintainer_email>
 Build-Depends: debhelper (>= 9)${build_depends}
-Standards-Version: 3.9.5
+Standards-Version: 3.9.7
 
 EOF
 }
