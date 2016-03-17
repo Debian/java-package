@@ -92,6 +92,7 @@ EOF
       j2se_install=oracle_j2sdk_install
       j2se_remove=oracle_j2sdk_remove
       j2se_jinfo=oracle_j2sdk_jinfo
+      j2se_control=oracle_j2sdk_control
       if [ "${DEB_BUILD_ARCH:0:3}" = "arm" ]; then
         # javaws is not available for ARM
         oracle_jre_bin_hl="java keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
@@ -105,7 +106,8 @@ EOF
       fi
       oracle_jre_lib_hl="jexec"
       oracle_bin_jdk="appletviewer extcheck idlj jar jarsigner javac javadoc javah javap jcmd jconsole jdb jdeps jhat jinfo jmap jmc jps jrunscript jsadebugd jstack jstat jstatd jvisualvm native2ascii rmic schemagen serialver wsgen wsimport xjc"
-      j2sdk_run
+      j2se_package="$j2se_vendor-java$j2se_release-jdk"
+      j2se_run
     fi
   fi
 }
@@ -176,4 +178,48 @@ EOF
             echo "plugin iceweasel-javaplugin.so $jvm_base$j2se_name/jre/lib/$DEB_BUILD_ARCH/libnpjp2.so"
         done
     fi
+}
+
+oracle_j2sdk_control() {
+    build_depends="libasound2, libgl1-mesa-glx, libgtk2.0-0, libxslt1.1, libxtst6, libxxf86vm1"
+    j2se_control
+    java_browser_plugin="java-browser-plugin, "
+    depends="\${shlibs:Depends}"
+    if [ "${DEB_BUILD_ARCH:0:3}" = "arm" -a "${j2se_arch}" != "arm-vfp-hflt" ]; then
+        # ARM is only softfloat ATM so if building on armhf
+        # force the dependencies to pickup cross platform fu
+        if [ "${DEB_BUILD_ARCH}" == "armhf" ]; then
+            depends="libc6-armel, libsfgcc1, libsfstdc++6"
+        fi
+        # No browser on ARM yet
+        java_browser_plugin=""
+    fi
+    if [ "$create_cert_softlinks" == "true" ]; then
+        depends="$depends, ca-certificates-java"
+    fi
+    for i in `seq 5 ${j2se_release}`;
+    do
+        provides_runtime="${provides_runtime} java${i}-runtime,"
+        provides_headless="${provides_headless} java${i}-runtime-headless,"
+        provides_sdk="${provides_sdk} java${i}-sdk,"
+    done
+    cat << EOF
+Package: $j2se_package
+Architecture: any
+Depends: \${misc:Depends}, $depends
+Recommends: netbase
+Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime $java_browser_plugin java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, $provides_headless java-sdk, java2-sdk, $provides_sdk
+Description: $j2se_title
+ The Java(TM) SE JDK is a development environment for building
+ applications, applets, and components that can be deployed on the
+ Java(TM) platform.
+ .
+ The Java(TM) SE JDK software includes tools useful for developing and
+ testing programs written in the Java programming language and running
+ on the Java platform. These tools are designed to be used from the
+ command line. Except for appletviewer, these tools do not provide a
+ graphical user interface.
+ .
+ This package has been automatically created with java-package ($version).
+EOF
 }

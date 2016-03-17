@@ -76,11 +76,13 @@ EOF
       j2se_install=oracle_j2re_install
       j2se_remove=oracle_j2re_remove
       j2se_jinfo=oracle_j2re_jinfo
+      j2se_control=oracle_j2re_control
       oracle_jre_bin_hl="java javaws keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200 policytool"
       oracle_jre_bin_jre="javaws policytool"
       oracle_no_man_jre_bin_jre="ControlPanel jcontrol"
       oracle_jre_lib_hl="jexec"
-      j2re_run
+      j2se_package="$j2se_vendor-java$j2se_release-jre"
+      j2se_run
     fi
   fi
 }
@@ -136,3 +138,30 @@ EOF
     done
 }
 
+oracle_j2re_control() {
+    j2se_control
+    if [ "$create_cert_softlinks" == "true" ]; then
+        depends="ca-certificates-java"
+    fi
+    for i in `seq 5 ${j2se_release}`;
+    do
+        provides_runtime="${provides_runtime} java${i}-runtime,"
+        provides_headless="${provides_headless} java${i}-runtime-headless,"
+    done
+    cat << EOF
+Package: $j2se_package
+Architecture: any
+Depends: \${misc:Depends}, \${shlibs:Depends}, $depends
+Recommends: netbase
+Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime java-runtime-headless, java2-runtime-headless, $provides_headless java-browser-plugin
+Description: $j2se_title
+ The Java(TM) SE Runtime Environment contains the Java virtual machine,
+ runtime class libraries, and Java application launcher that are
+ necessary to run programs written in the Java programming language.
+ It is not a development environment and does not contain development
+ tools such as compilers or debuggers.  For development tools, see the
+ Java SE Development Kit (JDK).
+ .
+ This package has been automatically created with java-package ($version).
+EOF
+}
