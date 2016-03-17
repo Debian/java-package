@@ -269,7 +269,15 @@ j2se_run() {
     echo
     diskfree "$j2se_required_space"
     read_maintainer_info
-    j2se_name="jre-$j2se_release-$j2se_vendor-$j2se_arch"
+    case "${j2se_arch}" in
+      i586)
+        j2se_debian_arch=i386
+        ;;
+      amd64|x64)
+        j2se_debian_arch=amd64
+        ;;
+    esac
+    j2se_name="$j2se_package-$j2se_debian_arch"
     local target="$package_dir/$j2se_name"
     install -d -m 755 "$( dirname "$target" )"
     extract_bin "$archive_path" "$j2se_expected_min_size" "$target"
