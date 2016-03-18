@@ -81,6 +81,7 @@ EOF
       oracle_jre_bin_jre="policytool"
       oracle_jre_lib_hl="jexec"
       j2se_package="$j2se_vendor-java$j2se_release-server-jre"
+      exlude_libs="appletviewer libawt_xawt.so libsplashscreen.so policytool"
       j2se_run
     fi
   fi

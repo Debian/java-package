@@ -70,6 +70,18 @@ j2se_rules() {
     cat << EOF
 #!/usr/bin/make -f
 
+# Exclude libraries that pull in ALSA or OpenGL which are not needed in normal operation
+EXCLUDE_LIBS = \\
+	--exclude=avplugin \\
+	--exclude=fxavcodecplugin \\
+	--exclude=libjsoundalsa.so \\
+EOF
+    for lib in $exlude_libs; do
+        printf '\t--exclude=%s \\\n' "$lib"
+    done
+    cat << EOF
+	\$(NULL)
+
 %:
 	dh \$@
 
@@ -77,7 +89,7 @@ override_dh_compress:
 	dh_compress \$(shell find $j2se_name/man/ -type f ! -name '*.gz' -printf '${jvm_base##/}/%p\n')
 
 override_dh_shlibdeps:
-	dh_shlibdeps --exclude=fxavcodecplugin --exclude=avplugin -l\$(shell find $j2se_name -type f -name '*.so*' -printf '${jvm_base##/}/%h\n' | sort -u | tr '\n' ':' | sed 's/:\$\$//')
+	dh_shlibdeps \$(EXCLUDE_LIBS) -l\$(shell find $j2se_name -type f -name '*.so*' -printf '${jvm_base##/}/%h\n' | sort -u | tr '\n' ':' | sed 's/:\$\$//')
 
 override_dh_strip_nondeterminism:
 	# Disable dh_strip_nondeterminism to speed up the build
