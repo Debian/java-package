@@ -71,7 +71,7 @@ EOF
       j2se_found=true
       j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
       j2se_vendor="oracle"
-      j2se_title="Java™ Platform, Standard Edition $j2se_release Runtime Environment"
+      j2se_title="Java Platform, Standard Edition $j2se_release Runtime Environment"
 
       j2se_install=oracle_j2re_install
       j2se_remove=oracle_j2re_remove
