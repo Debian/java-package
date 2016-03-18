@@ -5,8 +5,8 @@ Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.or
 Uploaders: Cédric Pineau <cedric.pineau@gmail.com>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.7
-Vcs-Git: git://anonscm.debian.org/pkg-java/java-package.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-java/java-package.git
+Vcs-Git: https://anonscm.debian.org/git/pkg-java/java-package.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-java/java-package.git
 
 Package: java-package
 Architecture: all
