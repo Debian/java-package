@@ -1,3 +1,13 @@
+java-package (0.61) unstable; urgency=medium
+
+  * Team upload.
+  * Bump Standards-Version to 3.9.7 (no changes)
+  * Use package name plus architecture as directory in /usr/lib/jvm
+  * Add support for server JRE (Closes: #776389)
+  * Update Vcs-Browser and Vcs-Git to use HTTPS
+
+ -- Benjamin Drung <benjamin.drung@profitbricks.com>  Fri, 18 Mar 2016 17:50:51 +0100
+
 java-package (0.60) unstable; urgency=medium
 
   * Team upload.
