@@ -128,6 +128,15 @@ EOF
     fi
 }
 
+extract_jce() {
+  local zip_file="$1"
+  local dest_dir="$2"
+
+  echo "Installing unlimited strength cryptography files using $zip_file"
+  for f in {US_export,local}_policy.jar; do
+    unzip -o -j -d "$dest_dir" "$zip_file" "*/$f"
+  done
+}
 
 read_maintainer_info() {
     if [ -z "$maintainer_name" ]; then
