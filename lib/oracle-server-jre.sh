@@ -114,7 +114,7 @@ EOF
 oracle_server_j2re_jinfo() {
     cat << EOF
 name=$j2se_name
-priority=$j2se_priority
+priority=${priority_override:-$j2se_priority}
 section=main
 EOF
     jinfos "hl" $jvm_base$j2se_name/bin/ $oracle_jre_bin_hl

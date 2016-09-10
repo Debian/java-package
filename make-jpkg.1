@@ -46,6 +46,12 @@ email address used in the maintainer field of the package
 .B --distribution \fIDISTRIBUTION\fR
 distribution to use in the debian changelog for the resulting package
 .TP
+.B --priority \fIPRIORITY\fR
+numeric priority for use by \fBupdate-alternatives\fP.  This overrides the default
+priority, which is intentionally lower than that of the Debian-provided OpenJDK
+packages.  Only use this option if the generated package should be considered higher
+priority by \fBupdate-alternatives\fP.
+.TP
 .B --changes
 create a .changes file
 .TP

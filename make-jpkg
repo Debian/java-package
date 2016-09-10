@@ -82,7 +82,8 @@ The following options are recognized:
 
   --full-name NAME     full name used in the maintainer field of the package
   --email EMAIL        email address used in the maintainer field of the package
-  --distribution       Define the distribution to use in the changelog
+  --distribution DIST  Define the distribution to use in the changelog
+  --priority PRIORITY  Override default package priority
   --changes            create a .changes file
   --revision           add debian revision
   --source             build a source package instead of a binary deb package
@@ -135,6 +136,10 @@ while [[ $# -gt 0 && "x$1" == x--* ]]; do
     [ $# -le 1 ] && missing_argument "$1"
     shift
     distribution="$1"
+    elif [[ "x$1" == x--priority ]]; then
+    [ $# -le 1 ] && missing_argument "$1"
+    shift
+    priority_override="$1"
     elif [[ "x$1" == x--revision ]]; then
     [ $# -le 1 ] && missing_argument "$1"
     shift
