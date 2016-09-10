@@ -294,6 +294,9 @@ j2se_run() {
     local target="$package_dir/$j2se_name"
     install -d -m 755 "$( dirname "$target" )"
     extract_bin "$archive_path" "$j2se_expected_min_size" "$target"
+    if [[ -n "$jce_archive" ]]; then
+      extract_jce "$jce_path" "$target/jre/lib/security"
+    fi
     rm -rf "$target/.systemPrefs"
     echo "9" > "$debian_dir/compat"
     j2se_readme > "$debian_dir/README.Debian"

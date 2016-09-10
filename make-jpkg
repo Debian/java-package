@@ -32,6 +32,7 @@ fi
 
 genchanges=""
 build_source=""
+jce_archive=""
 
 ### check for run in fakeroot
 
@@ -79,6 +80,8 @@ Supported java binary distributions currently include:
 
 The following options are recognized:
 
+  --jce-policy FILE    Replace cryptography files with unlimited strength versions
+                       from downloaded archive
   --full-name NAME     full name used in the maintainer field of the package
   --email EMAIL        email address used in the maintainer field of the package
   --changes            create a .changes file
@@ -117,6 +120,10 @@ while [[ $# -gt 0 && "x$1" == x--* ]]; do
     elif [[ "x$1" == x--help ]]; then
     print_usage
     exit 0
+    elif [[ "x$1" == x--jce-policy ]]; then
+    [ $# -le 1 ] && missing_argument "$1"
+    shift
+    jce_archive="$1"
     elif [[ "x$1" == x--full-name ]]; then
     [ $# -le 1 ] && missing_argument "$1"
     shift
@@ -167,6 +174,9 @@ archive_name="$( basename "$archive" )"
 archive_dir="$( cd "$( dirname "$archive" )" ; pwd )"
 archive_path="$archive_dir/$archive_name"
 
+jce_name="$( basename "$jce_archive" )"
+jce_dir="$( cd "$( dirname "$jce_archive" )" ; pwd )"
+jce_path="$jce_dir/$jce_name"
 
 # error handling
 
