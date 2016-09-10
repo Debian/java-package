@@ -12,7 +12,7 @@ EOF
 
 j2se_changelog() {
     cat << EOF
-$j2se_package ($j2se_version) unstable; urgency=medium
+$j2se_package ($j2se_version) $target_distribution; urgency=medium
 
   * This package was created with java-package ($version).
 
@@ -281,6 +281,7 @@ j2se_run() {
     echo
     diskfree "$j2se_required_space"
     read_maintainer_info
+    get_distribution
     case "${j2se_arch}" in
       i586)
         j2se_debian_arch=i386

@@ -85,6 +85,7 @@ The following options are recognized:
   --revision           add debian revision
   --source             build a source package instead of a binary deb package
   --with-system-certs  integrate with the system's keystore
+  --distribution       Define the distribution to use in the changelog
 
   --help               display this help and exit
   --version            output version information and exit
@@ -124,6 +125,10 @@ while [[ $# -gt 0 && "x$1" == x--* ]]; do
     [ $# -le 1 ] && missing_argument "$1"
     shift
     maintainer_email="$1"
+    elif [[ "x$1" == x--distribution ]]; then
+    [ $# -le 1 ] && missing_argument "$1"
+    shift
+    distribution="$1"
     elif [[ "x$1" == x--revision ]]; then
     [ $# -le 1 ] && missing_argument "$1"
     shift

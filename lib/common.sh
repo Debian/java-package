@@ -202,3 +202,10 @@ get_browser_plugin_dirs() {
     fi
 }
 
+get_distribution() {
+    if [ -n "$distribution" ]; then
+      target_distribution="$distribution"
+    else
+      target_distribution="unstable"
+    fi
+}
