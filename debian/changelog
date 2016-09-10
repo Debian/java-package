@@ -1,3 +1,12 @@
+java-package (0.62) UNRELEASED; urgency=medium
+
+  * Team upload.
+  * Bump Standards-Version to 3.9.8 (no changes)
+  * Add --distribution option to override hard-coded value of unstable.
+    Thank you to Martin Gerhard Loschwitz for the patch. (Closes: #819537)
+
+ -- tony mancill <tmancill@debian.org>  Sat, 10 Sep 2016 10:01:07 -0700
+
 java-package (0.61) unstable; urgency=medium
 
   * Team upload.
