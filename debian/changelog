@@ -1,4 +1,4 @@
-java-package (0.62) UNRELEASED; urgency=medium
+java-package (0.62) unstable; urgency=medium
 
   * Team upload.
   * Bump Standards-Version to 3.9.8 (no changes)
@@ -7,9 +7,11 @@ java-package (0.62) UNRELEASED; urgency=medium
   * Add --jce-policy <policy.zip> option to build with JCE policy file.
     Thank you to Alex Brown for the patch. (Closes: #833301)
   * Freshen the manpage example for JDK 8.
-  * Add --jce-policy option to manpage.
+  * Implement --priority <priority> option. (Closes: #820857)
+  * Bump Standards-Version of generated source package to 3.9.8.
+  * Generated JDK/JRE packages now depend on java-common (Closes: #799974)
 
- -- tony mancill <tmancill@debian.org>  Sat, 10 Sep 2016 10:01:07 -0700
+ -- tony mancill <tmancill@debian.org>  Sat, 10 Sep 2016 17:39:56 -0700
 
 java-package (0.61) unstable; urgency=medium
 
