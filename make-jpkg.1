@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH MAKE-JPKG 1 "January 22, 2012"
+.TH MAKE-JPKG 1 "September 10, 2016"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -75,23 +75,23 @@ with the downloaded file. The program asks the user for additional
 information and builds a Debian binary package in the current
 directory.
 .PP
-The program requires about 200 MB free disk space in a temporary
+The program requires about 400 MB free disk space in a temporary
 directory. The temporary directory defaults to
 .I /tmp
 but you can specify an alternate directory by setting the environment
 variable \fITMPDIR\fR.
 .SH EXAMPLE
-To install Oracle(TM) 7 Standard Edition JDK, download a release - 64 bits version of update 2 from http://www.oracle.com/technetwork/java/javase/downloads/jdk-7u2-download-1377129.html in this example - and invoke make-jpkg:
+To install Oracle(TM) 8 Standard Edition JDK, download a release from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html and invoke make-jpkg, for example:
 .IP
-make-jpkg <path_to_download_directory>/jdk-7u2-linux-x64.tar.gz
+make-jpkg <path_to_download_directory>/jdk-8u102-linux-x64.tar.gz
 .PP
 This generate a Debian package in the current directory, that can be installed using dpkg:
 .IP
-dpkg \-i oracle-java7-jdk_7u2_amd64.deb
+dpkg \-i oracle-java8-jdk_8u102_amd64.deb
 .PP
 When you're done, you can delete initial download as well as generated package:
 .IP
-rm <path_to_download_directory>/jdk-7u2-linux-x64.tar.gz oracle-java7-jdk_7u2_amd64.deb
+rm <path_to_download_directory>/jdk-8u102-linux-x64.tar.gz oracle-java8-jdk_8u102_amd64.deb
 .PP
 .SH ENVIRONMENT
 .TP
