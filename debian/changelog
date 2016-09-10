@@ -4,6 +4,8 @@ java-package (0.62) UNRELEASED; urgency=medium
   * Bump Standards-Version to 3.9.8 (no changes)
   * Add --distribution option to override hard-coded value of unstable.
     Thank you to Martin Gerhard Loschwitz for the patch. (Closes: #819537)
+  * Add --jce-policy <policy.zip> option to build with JCE policy file.
+    Thank you to Alex Brown for the patch. (Closes: #833301)
 
  -- tony mancill <tmancill@debian.org>  Sat, 10 Sep 2016 10:01:07 -0700
 
