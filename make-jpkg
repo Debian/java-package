@@ -80,15 +80,14 @@ Supported java binary distributions currently include:
 
 The following options are recognized:
 
-  --jce-policy FILE    Replace cryptography files with unlimited strength versions
-                       from downloaded archive
   --full-name NAME     full name used in the maintainer field of the package
   --email EMAIL        email address used in the maintainer field of the package
+  --distribution       Define the distribution to use in the changelog
   --changes            create a .changes file
   --revision           add debian revision
   --source             build a source package instead of a binary deb package
   --with-system-certs  integrate with the system's keystore
-  --distribution       Define the distribution to use in the changelog
+  --jce-policy FILE    Replace cryptography files with versions from FILE
 
   --help               display this help and exit
   --version            output version information and exit
