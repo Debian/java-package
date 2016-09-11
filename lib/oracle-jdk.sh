@@ -206,7 +206,7 @@ oracle_j2sdk_control() {
     cat << EOF
 Package: $j2se_package
 Architecture: $j2se_debian_arch
-Depends: \${misc:Depends}, $depends
+Depends: \${misc:Depends}, java-common, $depends
 Recommends: netbase
 Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime $java_browser_plugin java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, $provides_headless java-sdk, java2-sdk, $provides_sdk
 Description: $j2se_title
