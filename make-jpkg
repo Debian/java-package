@@ -80,6 +80,8 @@ Supported java binary distributions currently include:
 
 The following options are recognized:
 
+  --jce-policy FILE    Replace cryptography files with unlimited strength versions
+                       from downloaded archive
   --full-name NAME     full name used in the maintainer field of the package
   --email EMAIL        email address used in the maintainer field of the package
   --distribution DIST  Define the distribution to use in the changelog
