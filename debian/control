@@ -24,7 +24,7 @@ Depends: debhelper (>= 9),
          libxxf86vm1,
          unzip,
          ${misc:Depends}
-Suggests: openjdk-7-jre
+Suggests: openjdk-8-jre
 Description: Utility for creating Java Debian packages
  This package provides the capability to build a Debian package from
  a Java binary distribution by running make-jpkg <java binary archive file>.

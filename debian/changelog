@@ -1,3 +1,10 @@
+java-package (0.63) UNRELEASED; urgency=medium
+
+  * Team upload.
+  * Suggest openjdk-8-jre instead of openjdk-7-jre
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Wed, 04 Jan 2017 16:07:59 +0100
+
 java-package (0.62) unstable; urgency=medium
 
   * Team upload.
