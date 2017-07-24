@@ -70,6 +70,14 @@ ca-certificates and ca-certificates-java packages.
 Replace cryptography files with versions
 from the specified JCE_POLICY_FILE.
 .TP
+.B --without-alternatives
+Build a package that does not install alternatives.
+This will remove the postinst hooks that install update-alternative symlinks.
+.TP
+.B --package-suffix \fISUFFIX\fR
+Build a package that has the given suffix.
+Adds the suffix to the generated package name and the appropriate install directories.
+.TP
 .B --help
 display help text and exit
 .TP

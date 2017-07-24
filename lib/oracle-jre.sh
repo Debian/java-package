@@ -81,7 +81,7 @@ EOF
       oracle_jre_bin_jre="javaws policytool"
       oracle_no_man_jre_bin_jre="ControlPanel jcontrol"
       oracle_jre_lib_hl="jexec"
-      j2se_package="$j2se_vendor-java$j2se_release-jre"
+      j2se_package="$j2se_vendor-java$j2se_release-jre$package_suffix"
       j2se_run
     fi
   fi
@@ -93,10 +93,12 @@ if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
 fi
 
-install_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_hl
-install_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_jre
-install_no_man_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
-install_no_man_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
+if [ "x$without_alternatives" == "x" ]; then
+    install_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_hl
+    install_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_jre
+    install_no_man_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
+    install_no_man_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
+fi
 
 plugin_dir="$jvm_base$j2se_name/lib/$DEB_BUILD_ARCH"
 for b in $browser_plugin_dirs;do
@@ -111,10 +113,12 @@ if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
 fi
 
-remove_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_hl
-remove_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_jre
-remove_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
-remove_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
+if [ "x$without_alternatives" == "x" ]; then
+    remove_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_hl
+    remove_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_jre
+    remove_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
+    remove_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
+fi
 
 plugin_dir="$jvm_base$j2se_name/lib/$DEB_BUILD_ARCH"
 for b in $browser_plugin_dirs;do
