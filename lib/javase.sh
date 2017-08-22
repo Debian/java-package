@@ -295,7 +295,8 @@ j2se_run() {
     install -d -m 755 "$( dirname "$target" )"
     extract_bin "$archive_path" "$j2se_expected_min_size" "$target"
     if [[ -n "$jce_archive" ]]; then
-      extract_jce "$jce_path" "$target/jre/lib/security"
+      local security_dir="$( find $target -iname US_export_policy.jar -or -iname local_policy.jar -exec dirname {} \; -quit )"
+      extract_jce "$jce_path" "$security_dir"
     fi
     rm -rf "$target/.systemPrefs"
     echo "9" > "$debian_dir/compat"
