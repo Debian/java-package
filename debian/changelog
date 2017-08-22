@@ -1,3 +1,9 @@
+java-package (0.63-1verify0) UNRELEASED; urgency=medium
+
+  * Apply fix for Debian bug #843172
+
+ -- Doug Neal <doug.neal@digital.cabinet-office.gov.uk>  Tue, 22 Aug 2017 14:04:45 +0100
+
 java-package (0.63) UNRELEASED; urgency=medium
 
   * Team upload.
