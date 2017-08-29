@@ -89,6 +89,7 @@ The following options are recognized:
   --source             build a source package instead of a binary deb package
   --with-system-certs  integrate with the system's keystore
   --jce-policy FILE    Replace cryptography files with versions from FILE
+  --no-validate        No asking stdout validate
 
   --help               display this help and exit
   --version            output version information and exit
@@ -115,43 +116,45 @@ EOF
 # options
 while [[ $# -gt 0 && "x$1" == x--* ]]; do
     if [[ "x$1" == x--version ]]; then
-    echo "make-jpkg $version"
-    exit 0
+        echo "make-jpkg $version"
+        exit 0
     elif [[ "x$1" == x--help ]]; then
-    print_usage
-    exit 0
+        print_usage
+        exit 0
     elif [[ "x$1" == x--jce-policy ]]; then
-    [ $# -le 1 ] && missing_argument "$1"
-    shift
-    jce_archive="$1"
+        [ $# -le 1 ] && missing_argument "$1"
+        shift
+        jce_archive="$1"
     elif [[ "x$1" == x--full-name ]]; then
-    [ $# -le 1 ] && missing_argument "$1"
-    shift
-    maintainer_name="$1"
+        [ $# -le 1 ] && missing_argument "$1"
+        shift
+        maintainer_name="$1"
     elif [[ "x$1" == x--email ]]; then
-    [ $# -le 1 ] && missing_argument "$1"
-    shift
-    maintainer_email="$1"
+        [ $# -le 1 ] && missing_argument "$1"
+        shift
+        maintainer_email="$1"
     elif [[ "x$1" == x--distribution ]]; then
-    [ $# -le 1 ] && missing_argument "$1"
-    shift
-    distribution="$1"
+        [ $# -le 1 ] && missing_argument "$1"
+        shift
+        distribution="$1"
     elif [[ "x$1" == x--priority ]]; then
-    [ $# -le 1 ] && missing_argument "$1"
-    shift
-    priority_override="$1"
+        [ $# -le 1 ] && missing_argument "$1"
+        shift
+        priority_override="$1"
     elif [[ "x$1" == x--revision ]]; then
-    [ $# -le 1 ] && missing_argument "$1"
-    shift
-    revision="-${1}"
+        [ $# -le 1 ] && missing_argument "$1"
+        shift
+        revision="-${1}"
     elif [[ "x$1" == x--changes ]]; then
-    genchanges="true"
+        genchanges="true"
     elif [[ "x$1" == x--source ]]; then
-    build_source="true"
+        build_source="true"
     elif [[ "x$1" == x--with-system-certs ]]; then
-    create_cert_softlinks="true"
+        create_cert_softlinks="true"
+    elif [[ "x$1" == x--no-validate ]]; then
+        NO_VALIDATE=true
     else
-    unrecognized_option "$1"
+        unrecognized_option "$1"
     fi
     shift
 done

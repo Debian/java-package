@@ -1,5 +1,6 @@
 # read_yn <prompt>
 read_yn() {
+    [[ $NO_VALIDATE ]] && return 0
     local prompt="$1"
     while true; do
     read -e -n 1 -p "$prompt" reply
@@ -63,7 +64,7 @@ carefully. If you do not agree to the displayed license terms, the
 package will not be built.
 
 EOF
-    read -e -p "Press [Return] to continue: " dummy
+    [[ $NO_VALIDATE ]] || read -e -p "Press [Return] to continue: " dummy
     echo
     local extract_dir="$tmp/extract"
     mkdir "$extract_dir"
