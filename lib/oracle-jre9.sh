@@ -1,10 +1,10 @@
 # Detect product
-j2se_detect_oracle_server_j9re=oracle_server_j9re_detect
-oracle_server_j9re_detect() {
+j2se_detect_oracle_j9re=oracle_j9re_detect
+oracle_j9re_detect() {
   j2se_release=0
 
-  # Update or GA release (serverjre-9_linux-x64_bin.tar.gz)
-  if [[ $archive_name =~ serverjre-(9|([1-9][0-9]+))((\.[0-9]+)*)_linux-(x64)_bin\.tar\.gz ]]
+  # GA release (jre-9_linux-x64_bin.tar.gz, jre-9.0.1_linux-x64_bin.tar.gz)
+  if [[ $archive_name =~ ^jre-(9|([1-9][0-9]+))((\.[0-9]+)*)_linux-(x64)_bin\.tar\.gz ]]
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[3]}
@@ -19,8 +19,8 @@ oracle_server_j9re_detect() {
     fi
   fi
 
-  # Early Access Release (serverjre-9-ea+123_linux-x64_bin.tar.gz)
-  if [[ $archive_name =~ serverjre-(9)()-ea\+([0-9]+)_linux-(x86|x64)_bin\.tar\.gz ]]
+  # Early Access Release (jre-9-ea+123_linux-x64_bin.tar.gz)
+  if [[ $archive_name =~ ^jre-(9)()-ea\+([0-9]+)_linux-(x86|x64)_bin\.tar\.gz ]]
   then
     j2se_release=${BASH_REMATCH[1]}
     j2se_update=${BASH_REMATCH[2]}
@@ -63,7 +63,7 @@ oracle_server_j9re_detect() {
     cat << EOF
 
 Detected product:
-    Server Java(TM) Runtime Environment (JRE)
+    Java(TM) Runtime Environment (JRE)
     Standard Edition, Version $j2se_version_name
     Oracle(TM)
 EOF
@@ -71,25 +71,23 @@ EOF
       j2se_found=true
       j2se_required_space=$(( $j2se_expected_min_size * 2 + 20 ))
       j2se_vendor="oracle"
-      j2se_title="Java Platform, Standard Edition $j2se_release Server Runtime Environment"
+      j2se_title="Java Platform, Standard Edition $j2se_release Runtime Environment"
 
-      j2se_install=oracle_server_j9re_install
-      j2se_remove=oracle_server_j9re_remove
-      j2se_jinfo=oracle_server_j9re_jinfo
-      j2se_control=oracle_server_j9re_control
+      j2se_install=oracle_j9re_install
+      j2se_remove=oracle_j9re_remove
+      j2se_jinfo=oracle_j9re_jinfo
+      j2se_control=oracle_j9re_control
 
-      oracle_bin_hl="java jrunscript keytool rmid rmiregistry"
+      oracle_bin_hl="appletviewer idlj java javaws jcontrol jjs jrunscript jweblauncher keytool orbd pack200 rmid rmiregistry servertool tnameserv unpack200"
       oracle_lib_hl="jexec"
-      oracle_bin_jdk="jar jarsigner javac jcmd jdb jinfo jmap jps jstack jstat jstatd schemagen serialver wsgen wsimport xjc"
 
-      j2se_package="$j2se_vendor-java$j2se_release-server-jre"
-      exlude_libs="appletviewer libawt_xawt.so libsplashscreen.so policytool"
+      j2se_package="$j2se_vendor-java$j2se_release-jre"
       j2se_run
     fi
   fi
 }
 
-oracle_server_j9re_install() {
+oracle_j9re_install() {
     cat << EOF
 if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
@@ -97,11 +95,10 @@ fi
 
 install_no_man_alternatives $jvm_base$j2se_name/bin $oracle_bin_hl
 install_no_man_alternatives $jvm_base$j2se_name/lib $oracle_lib_hl
-install_no_man_alternatives $jvm_base$j2se_name/bin $oracle_bin_jdk
 EOF
 }
 
-oracle_server_j9re_remove() {
+oracle_j9re_remove() {
     cat << EOF
 if [ ! -e "$jvm_base$j2se_name/debian/info" ]; then
     exit 0
@@ -109,11 +106,10 @@ fi
 
 remove_alternatives $jvm_base$j2se_name/bin $oracle_bin_hl
 remove_alternatives $jvm_base$j2se_name/lib $oracle_lib_hl
-remove_alternatives $jvm_base$j2se_name/bin $oracle_bin_jdk
 EOF
 }
 
-oracle_server_j9re_jinfo() {
+oracle_j9re_jinfo() {
     cat << EOF
 name=$j2se_name
 priority=${priority_override:-$j2se_priority}
@@ -125,13 +121,14 @@ EOF
     jinfos "jdk" $jvm_base$j2se_name/bin/ $oracle_bin_jdk
 }
 
-oracle_server_j9re_control() {
+oracle_j9re_control() {
     j2se_control
     if [ "$create_cert_softlinks" == "true" ]; then
         depends="ca-certificates-java"
     fi
     for i in `seq 5 ${j2se_release}`;
     do
+        provides_runtime="${provides_runtime} java${i}-runtime,"
         provides_headless="${provides_headless} java${i}-runtime-headless,"
     done
     cat << EOF
@@ -139,14 +136,14 @@ Package: $j2se_package
 Architecture: $j2se_debian_arch
 Depends: \${misc:Depends}, \${shlibs:Depends}, java-common, $depends
 Recommends: netbase
-Provides: java-runtime-headless, java2-runtime-headless, $provides_headless
+Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime java-runtime-headless, java2-runtime-headless, $provides_headless java-browser-plugin
 Description: $j2se_title
- The Java(TM) SE Server Runtime Environment contains the Java virtual machine,
- runtime class libraries, and Java application launcher that are necessary to
- run programs written in the Java programming language. It includes tools for
- JVM monitoring and tools commonly required for server applications, but does
- not include browser integration (the Java plug-in), auto-update, nor an
- installer.
+ The Java(TM) SE Runtime Environment contains the Java virtual machine,
+ runtime class libraries, and Java application launcher that are
+ necessary to run programs written in the Java programming language.
+ It is not a development environment and does not contain development
+ tools such as compilers or debuggers.  For development tools, see the
+ Java SE Development Kit (JDK).
  .
  This package has been automatically created with java-package ($version).
 EOF
