@@ -262,7 +262,7 @@ echo
 
 if [[ -z "$j2se_found" ]]; then
     echo "No matching packaging method was found for $archive_name."
-    echo "Please make sure you are using a tar.gz or a self-extracting archive"
+    echo "Please make sure you are using a self-extracting archive or a tar.gz with a name matching the regex jdk-([0-9]+)(u([0-9]+))?-linux-(i586|x64|amd64|arm-vfp-hflt)\.(bin|tar\.gz)"
 fi
 
 
